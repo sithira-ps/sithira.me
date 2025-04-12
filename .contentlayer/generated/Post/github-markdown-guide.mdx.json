@@ -1,0 +1,129 @@
+{
+  "title": "Markdown Guide",
+  "date": "2019-10-11T00:00:00.000Z",
+  "tags": [
+    "github",
+    "guide"
+  ],
+  "draft": false,
+  "summary": "Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on GitHub Flavored Markdown.",
+  "body": {
+    "raw": "\n# Introduction\n\nMarkdown and Mdx parsing is supported via `unified`, and other remark and rehype packages. `next-mdx-remote` allows us to parse `.mdx` and `.md` files in a more flexible manner without touching webpack.\n\nGitHub flavored markdown is used. `mdx-prism` provides syntax highlighting capabilities for code blocks. Here's a demo of how everything looks.\n\nThe following markdown cheatsheet is adapted from: https://guides.github.com/features/mastering-markdown/\n\n# What is Markdown?\n\nMarkdown is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.\n\n# Syntax guide\n\nHere’s an overview of Markdown syntax that you can use anywhere on GitHub.com or in your own text files.\n\n## Headers\n\n```\n# This is a h1 tag\n\n## This is a h2 tag\n\n#### This is a h4 tag\n```\n\n# This is a h1 tag\n\n## This is a h2 tag\n\n#### This is a h4 tag\n\n## Emphasis\n\n```\n_This text will be italic_\n\n**This text will be bold**\n\n_You **can** combine them_\n```\n\n_This text will be italic_\n\n**This text will be bold**\n\n_You **can** combine them_\n\n## Lists\n\n### Unordered\n\n```\n- Item 1\n- Item 2\n  - Item 2a\n  - Item 2b\n```\n\n- Item 1\n- Item 2\n  - Item 2a\n  - Item 2b\n\n### Ordered\n\n```\n1. Item 1\n1. Item 2\n1. Item 3\n   1. Item 3a\n   1. Item 3b\n```\n\n1. Item 1\n1. Item 2\n1. Item 3\n   1. Item 3a\n   1. Item 3b\n\n## Images\n\n```\n![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)\nFormat: ![Alt Text](url)\n```\n\n![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)\n\n## Links\n\n```\nhttp://github.com - automatic!\n[GitHub](http://github.com)\n```\n\nhttp://github.com - automatic!\n[GitHub](http://github.com)\n\n## Blockquotes\n\n```\nAs Kanye West said:\n\n> We're living the future so\n> the present is our past.\n```\n\nAs Kanye West said:\n\n> We're living the future so\n> the present is our past.\n\n## Inline code\n\n```\nI think you should use an\n`<addr>` element here instead.\n```\n\nI think you should use an\n`<addr>` element here instead.\n\n## Syntax highlighting\n\nHere’s an example of how you can use syntax highlighting with [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/):\n\n````\n```js:fancyAlert.js\nfunction fancyAlert(arg) {\n  if (arg) {\n    $.facebox({ div: '#foo' })\n  }\n}\n```\n````\n\nAnd here's how it looks - nicely colored with styled code titles!\n\n```js:fancyAlert.js\nfunction fancyAlert(arg) {\n  if (arg) {\n    $.facebox({ div: '#foo' })\n  }\n}\n```\n\n## Footnotes\n\n```\nHere is a simple footnote[^1]. With some additional text after it.\n\n[^1]: My reference.\n```\n\nHere is a simple footnote[^1]. With some additional text after it.\n\n[^1]: My reference.\n\n## Task Lists\n\n```\n- [x] list syntax required (any unordered or ordered list supported)\n- [x] this is a complete item\n- [ ] this is an incomplete item\n```\n\n- [x] list syntax required (any unordered or ordered list supported)\n- [x] this is a complete item\n- [ ] this is an incomplete item\n\n## Tables\n\nYou can create tables by assembling a list of words and dividing them with hyphens `-` (for the first row), and then separating each column with a pipe `|`:\n\n```\n| First Header                | Second Header                |\n| --------------------------- | ---------------------------- |\n| Content from cell 1         | Content from cell 2          |\n| Content in the first column | Content in the second column |\n```\n\n| First Header                | Second Header                |\n| --------------------------- | ---------------------------- |\n| Content from cell 1         | Content from cell 2          |\n| Content in the first column | Content in the second column |\n\n## Strikethrough\n\nAny word wrapped with two tildes (like `~~this~~`) will appear ~~crossed out~~.\n",
+    "code": "var Component=(()=>{var m=Object.create;var d=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var b=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),w=(i,e)=>{for(var t in e)d(i,t,{get:e[t],enumerable:!0})},l=(i,e,t,h)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of p(e))!f.call(i,r)&&r!==t&&d(i,r,{get:()=>e[r],enumerable:!(h=u(e,r))||h.enumerable});return i};var x=(i,e,t)=>(t=i!=null?m(g(i)):{},l(e||!i||!i.__esModule?d(t,\"default\",{value:i,enumerable:!0}):t,i)),y=i=>l(d({},\"__esModule\",{value:!0}),i);var c=b((M,o)=>{o.exports=_jsx_runtime});var I={};w(I,{default:()=>s,frontmatter:()=>k});var n=x(c()),k={title:\"Markdown Guide\",date:\"2019-10-11\",tags:[\"github\",\"guide\"],draft:!1,summary:\"Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on GitHub Flavored Markdown.\"};function a(i){let e={a:\"a\",blockquote:\"blockquote\",code:\"code\",em:\"em\",h1:\"h1\",h2:\"h2\",h3:\"h3\",h4:\"h4\",img:\"img\",li:\"li\",ol:\"ol\",p:\"p\",pre:\"pre\",strong:\"strong\",ul:\"ul\",...i.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h1,{children:\"Introduction\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Markdown and Mdx parsing is supported via \",(0,n.jsx)(e.code,{children:\"unified\"}),\", and other remark and rehype packages. \",(0,n.jsx)(e.code,{children:\"next-mdx-remote\"}),\" allows us to parse \",(0,n.jsx)(e.code,{children:\".mdx\"}),\" and \",(0,n.jsx)(e.code,{children:\".md\"}),\" files in a more flexible manner without touching webpack.\"]}),`\n`,(0,n.jsxs)(e.p,{children:[\"GitHub flavored markdown is used. \",(0,n.jsx)(e.code,{children:\"mdx-prism\"}),\" provides syntax highlighting capabilities for code blocks. Here's a demo of how everything looks.\"]}),`\n`,(0,n.jsx)(e.p,{children:\"The following markdown cheatsheet is adapted from: https://guides.github.com/features/mastering-markdown/\"}),`\n`,(0,n.jsx)(e.h1,{children:\"What is Markdown?\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Markdown is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like \",(0,n.jsx)(e.code,{children:\"#\"}),\" or \",(0,n.jsx)(e.code,{children:\"*\"}),\".\"]}),`\n`,(0,n.jsx)(e.h1,{children:\"Syntax guide\"}),`\n`,(0,n.jsx)(e.p,{children:\"Here\\u2019s an overview of Markdown syntax that you can use anywhere on GitHub.com or in your own text files.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Headers\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`# This is a h1 tag\n\n## This is a h2 tag\n\n#### This is a h4 tag\n`})}),`\n`,(0,n.jsx)(e.h1,{children:\"This is a h1 tag\"}),`\n`,(0,n.jsx)(e.h2,{children:\"This is a h2 tag\"}),`\n`,(0,n.jsx)(e.h4,{children:\"This is a h4 tag\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Emphasis\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`_This text will be italic_\n\n**This text will be bold**\n\n_You **can** combine them_\n`})}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.em,{children:\"This text will be italic\"})}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"This text will be bold\"})}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsxs)(e.em,{children:[\"You \",(0,n.jsx)(e.strong,{children:\"can\"}),\" combine them\"]})}),`\n`,(0,n.jsx)(e.h2,{children:\"Lists\"}),`\n`,(0,n.jsx)(e.h3,{children:\"Unordered\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`- Item 1\n- Item 2\n  - Item 2a\n  - Item 2b\n`})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Item 1\"}),`\n`,(0,n.jsxs)(e.li,{children:[\"Item 2\",`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Item 2a\"}),`\n`,(0,n.jsx)(e.li,{children:\"Item 2b\"}),`\n`]}),`\n`]}),`\n`]}),`\n`,(0,n.jsx)(e.h3,{children:\"Ordered\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`1. Item 1\n1. Item 2\n1. Item 3\n   1. Item 3a\n   1. Item 3b\n`})}),`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Item 1\"}),`\n`,(0,n.jsx)(e.li,{children:\"Item 2\"}),`\n`,(0,n.jsxs)(e.li,{children:[\"Item 3\",`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Item 3a\"}),`\n`,(0,n.jsx)(e.li,{children:\"Item 3b\"}),`\n`]}),`\n`]}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{children:\"Images\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)\nFormat: ![Alt Text](url)\n`})}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png\",alt:\"GitHub Logo\"})}),`\n`,(0,n.jsx)(e.h2,{children:\"Links\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`http://github.com - automatic!\n[GitHub](http://github.com)\n`})}),`\n`,(0,n.jsxs)(e.p,{children:[`http://github.com - automatic!\n`,(0,n.jsx)(e.a,{href:\"http://github.com\",children:\"GitHub\"})]}),`\n`,(0,n.jsx)(e.h2,{children:\"Blockquotes\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`As Kanye West said:\n\n> We're living the future so\n> the present is our past.\n`})}),`\n`,(0,n.jsx)(e.p,{children:\"As Kanye West said:\"}),`\n`,(0,n.jsxs)(e.blockquote,{children:[`\n`,(0,n.jsx)(e.p,{children:`We're living the future so\nthe present is our past.`}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{children:\"Inline code\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:\"I think you should use an\\n`<addr>` element here instead.\\n\"})}),`\n`,(0,n.jsxs)(e.p,{children:[`I think you should use an\n`,(0,n.jsx)(e.code,{children:\"<addr>\"}),\" element here instead.\"]}),`\n`,(0,n.jsx)(e.h2,{children:\"Syntax highlighting\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Here\\u2019s an example of how you can use syntax highlighting with \",(0,n.jsx)(e.a,{href:\"https://help.github.com/articles/basic-writing-and-formatting-syntax/\",children:\"GitHub Flavored Markdown\"}),\":\"]}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`\\`\\`\\`js:fancyAlert.js\nfunction fancyAlert(arg) {\n  if (arg) {\n    $.facebox({ div: '#foo' })\n  }\n}\n\\`\\`\\`\n`})}),`\n`,(0,n.jsx)(e.p,{children:\"And here's how it looks - nicely colored with styled code titles!\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{className:\"language-js:fancyAlert.js\",children:`function fancyAlert(arg) {\n  if (arg) {\n    $.facebox({ div: '#foo' })\n  }\n}\n`})}),`\n`,(0,n.jsx)(e.h2,{children:\"Footnotes\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`Here is a simple footnote[^1]. With some additional text after it.\n\n[^1]: My reference.\n`})}),`\n`,(0,n.jsx)(e.p,{children:\"Here is a simple footnote[^1]. With some additional text after it.\"}),`\n`,(0,n.jsx)(e.p,{children:\"[^1]: My reference.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Task Lists\"}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`- [x] list syntax required (any unordered or ordered list supported)\n- [x] this is a complete item\n- [ ] this is an incomplete item\n`})}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"[x] list syntax required (any unordered or ordered list supported)\"}),`\n`,(0,n.jsx)(e.li,{children:\"[x] this is a complete item\"}),`\n`,(0,n.jsx)(e.li,{children:\"[ ] this is an incomplete item\"}),`\n`]}),`\n`,(0,n.jsx)(e.h2,{children:\"Tables\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"You can create tables by assembling a list of words and dividing them with hyphens \",(0,n.jsx)(e.code,{children:\"-\"}),\" (for the first row), and then separating each column with a pipe \",(0,n.jsx)(e.code,{children:\"|\"}),\":\"]}),`\n`,(0,n.jsx)(e.pre,{children:(0,n.jsx)(e.code,{children:`| First Header                | Second Header                |\n| --------------------------- | ---------------------------- |\n| Content from cell 1         | Content from cell 2          |\n| Content in the first column | Content in the second column |\n`})}),`\n`,(0,n.jsx)(e.p,{children:`| First Header                | Second Header                |\n| --------------------------- | ---------------------------- |\n| Content from cell 1         | Content from cell 2          |\n| Content in the first column | Content in the second column |`}),`\n`,(0,n.jsx)(e.h2,{children:\"Strikethrough\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Any word wrapped with two tildes (like \",(0,n.jsx)(e.code,{children:\"~~this~~\"}),\") will appear ~~crossed out~~.\"]})]})}function s(i={}){let{wrapper:e}=i.components||{};return e?(0,n.jsx)(e,{...i,children:(0,n.jsx)(a,{...i})}):a(i)}return y(I);})();\n;return Component;"
+  },
+  "_id": "github-markdown-guide.mdx",
+  "_raw": {
+    "sourceFilePath": "github-markdown-guide.mdx",
+    "sourceFileName": "github-markdown-guide.mdx",
+    "sourceFileDir": ".",
+    "contentType": "mdx",
+    "flattenedPath": "github-markdown-guide"
+  },
+  "type": "Post",
+  "url": "/blog/github-markdown-guide",
+  "path": "github-markdown-guide",
+  "slug": "github-markdown-guide",
+  "filePath": "github-markdown-guide.mdx",
+  "toc": [
+    {
+      "value": "Introduction",
+      "url": "#introduction",
+      "depth": 1
+    },
+    {
+      "value": "What is Markdown?",
+      "url": "#what-is-markdown",
+      "depth": 1
+    },
+    {
+      "value": "Syntax guide",
+      "url": "#syntax-guide",
+      "depth": 1
+    },
+    {
+      "value": "Headers",
+      "url": "#headers",
+      "depth": 2
+    },
+    {
+      "value": "This is a h1 tag",
+      "url": "#this-is-a-h1-tag",
+      "depth": 1
+    },
+    {
+      "value": "This is a h2 tag",
+      "url": "#this-is-a-h2-tag",
+      "depth": 2
+    },
+    {
+      "value": "This is a h4 tag",
+      "url": "#this-is-a-h4-tag",
+      "depth": 4
+    },
+    {
+      "value": "Emphasis",
+      "url": "#emphasis",
+      "depth": 2
+    },
+    {
+      "value": "Lists",
+      "url": "#lists",
+      "depth": 2
+    },
+    {
+      "value": "Unordered",
+      "url": "#unordered",
+      "depth": 3
+    },
+    {
+      "value": "Ordered",
+      "url": "#ordered",
+      "depth": 3
+    },
+    {
+      "value": "Images",
+      "url": "#images",
+      "depth": 2
+    },
+    {
+      "value": "Links",
+      "url": "#links",
+      "depth": 2
+    },
+    {
+      "value": "Blockquotes",
+      "url": "#blockquotes",
+      "depth": 2
+    },
+    {
+      "value": "Inline code",
+      "url": "#inline-code",
+      "depth": 2
+    },
+    {
+      "value": "Syntax highlighting",
+      "url": "#syntax-highlighting",
+      "depth": 2
+    },
+    {
+      "value": "Footnotes",
+      "url": "#footnotes",
+      "depth": 2
+    },
+    {
+      "value": "Task Lists",
+      "url": "#task-lists",
+      "depth": 2
+    },
+    {
+      "value": "Tables",
+      "url": "#tables",
+      "depth": 2
+    },
+    {
+      "value": "Strikethrough",
+      "url": "#strikethrough",
+      "depth": 2
+    }
+  ]
+}

@@ -55,6 +55,7 @@ export default function AuthorLayout() {
               hope you find something here that resonates with you!
             </p>
           </div>
+          
         </div>
       </div>
     </>

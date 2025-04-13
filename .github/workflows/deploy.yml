@@ -41,6 +41,7 @@ jobs:
           docker rm sithira-me || true
           docker pull sithiraps/sithira-me:latest
           docker run -d --name sithira-me \
+            --network shared-web-network \
             -p 4355:4255 \
             -e NODE_ENV=production \
             sithiraps/sithira-me:latest

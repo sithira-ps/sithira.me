@@ -35,9 +35,7 @@ export default function Home() {
                     {post.tags && post.tags.map((tag) => <span key={tag}>{tag}</span>)}
                   </div>
                   <p className="my-4 text-gray-400">
-                    Release of Tailwind Nextjs Starter Blog template v2.0, refactored with Nextjs
-                    App directory and React Server Components setup. Discover the new features and
-                    how to migrate from V1.
+                    {post.summary}
                   </p>
                   <p className="text-sm font-medium text-gray-300 hover:text-cyan-500">
                     Read more →

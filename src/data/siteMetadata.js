@@ -1,17 +1,17 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'Sithira Senanayake | Blog',
+  author: 'Sithira Senanayake',
+  headerTitle: 'Sithira Senanayake',
+  description: 'The personal blog of Sithira Senanayake',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
-  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
+  siteUrl: 'https://sithira.me',
+  siteRepo: '',
+  siteLogo: `${process.env.BASE_PATH || ''}/images/sithira-senanayake-2.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/images/sithira-senanayake-2.png`,
   mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
+  email: 'hello@sithira.me',
   github: 'https://github.com',
   x: 'https://twitter.com/x',
   // twitter: 'https://twitter.com/Twitter',
@@ -23,8 +23,7 @@ const siteMetadata = {
   medium: 'https://medium.com',
   bluesky: 'https://bsky.app/',
   locale: 'en-US',
-  // set to true if you want a navbar fixed to the top
-  stickyNav: false,
+  stickyNav: true,
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
@@ -73,7 +72,7 @@ const siteMetadata = {
       metadata: '0',
       // theme example: light, dark, dark_dimmed, dark_high_contrast
       // transparent_dark, preferred_color_scheme, custom
-      theme: 'light',
+      theme: 'dark',
       // theme when dark mode
       darkTheme: 'transparent_dark',
       // If the theme option above is set to 'custom`
@@ -84,20 +83,20 @@ const siteMetadata = {
       lang: 'en',
     },
   },
-  search: {
-    provider: 'kbar', // kbar or algolia
-    kbarConfig: {
-      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
-    },
-    // provider: 'algolia',
-    // algoliaConfig: {
-    //   // The application ID provided by Algolia
-    //   appId: 'R2IYF7ETH7',
-    //   // Public API key: it is safe to commit it
-    //   apiKey: '599cec31baffa4868cae4e79f180729b',
-    //   indexName: 'docsearch',
-    // },
-  },
+//   search: {
+//     provider: 'kbar', // kbar or algolia
+//     kbarConfig: {
+//       searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
+//     },
+//     // provider: 'algolia',
+//     // algoliaConfig: {
+//     //   // The application ID provided by Algolia
+//     //   appId: 'R2IYF7ETH7',
+//     //   // Public API key: it is safe to commit it
+//     //   apiKey: '599cec31baffa4868cae4e79f180729b',
+//     //   indexName: 'docsearch',
+//     // },
+//   },
 }
 
 module.exports = siteMetadata

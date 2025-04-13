@@ -40,7 +40,7 @@ export default function ProjectsList() {
             filteredProjects.map((d) => (
               <Card
                 key={d.title}
-                className="mx-auto max-w-md rounded-lg border border-[#2a2c31] bg-[#0f1117] px-2 pt-6 text-white"
+                className="mx-auto max-w-md rounded-lg border border-[#2a2c31] bg-[#0f1117] text-white"
               >
                 <CardContent className="flex flex-col items-start gap-4">
                   <Image src={d.imgSrc} alt={d.title} width={1080} height={720} className="mb-2 w-full rounded-md object-cover" />

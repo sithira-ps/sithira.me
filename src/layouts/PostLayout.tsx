@@ -32,7 +32,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
-          <header className="pt-6 xl:pb-6">
+          <header className="pt-12 xl:pb-12">
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
                 <div>
@@ -53,11 +53,11 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             <div className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
               <div className="flex flex-wrap items-center gap-4">
                 <Image
-                  src={'/images/avatar.png'}
+                  src="/images/sithira-senanayake-2.png"
                   width={20}
                   height={20}
                   alt="avatar"
-                  className="h-8 w-8 rounded-full"
+                  className="h-8 w-8 rounded-full object-cover"
                 />
                 <p className="dark:text-primary-100 text-gray-900">Sithira Senanayake</p>
               </div>

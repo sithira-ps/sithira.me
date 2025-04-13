@@ -7,21 +7,22 @@
 /* Core theme configuration */
 @theme {
   /* Font families */
-  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+  --font-sans:
+    var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   /* Colors */
   /* Copied from https://tailwindcss.com/docs/theme#default-theme-variable-reference */
   --color-primary-50: oklch(0.975 0.01 200);
   --color-primary-100: oklch(0.95 0.02 200);
-  --color-primary-200: oklch(0.90 0.04 200);
+  --color-primary-200: oklch(0.9 0.04 200);
   --color-primary-300: oklch(0.83 0.08 200);
   --color-primary-400: oklch(0.75 0.15 200);
   --color-primary-500: oklch(0.73 0.21 200);
   --color-primary-600: oklch(0.65 0.18 200);
   --color-primary-700: oklch(0.55 0.15 200);
   --color-primary-800: oklch(0.45 0.12 200);
-  --color-primary-900: oklch(0.35 0.10 200);
+  --color-primary-900: oklch(0.35 0.1 200);
   --color-primary-950: oklch(0.25 0.08 200);
 
   --color-gray-50: oklch(0.985 0.002 247.839);
@@ -47,8 +48,6 @@
   --z-70: 70;
   --z-80: 80;
 }
-
-
 
 @layer base {
   *,

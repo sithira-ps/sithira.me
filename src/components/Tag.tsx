@@ -4,9 +4,7 @@ interface Props {
 
 const Tag = ({ text }: Props) => {
   return (
-    <div
-      className="text-primary-100 border-1 mr-3 text-xs rounded-sm p-1 px-2 ounded-sm font-medium uppercase"
-    >
+    <div className="text-primary-100 ounded-sm mr-3 rounded-sm border-1 p-1 px-2 text-xs font-medium uppercase">
       {text.split(' ').join('-')}
     </div>
   )

@@ -51,16 +51,16 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
             <div className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
-               <div className="flex flex-wrap items-center gap-4">
-                    <Image
-                          src={'/images/avatar.png'}
-                          width={20}
-                          height={20}
-                          alt="avatar"
-                          className="h-8 w-8 rounded-full"
-                        />
-                        <p className="text-gray-900 dark:text-primary-100">Sithira Senanayake</p>
-                </div>
+              <div className="flex flex-wrap items-center gap-4">
+                <Image
+                  src={'/images/avatar.png'}
+                  width={20}
+                  height={20}
+                  alt="avatar"
+                  className="h-8 w-8 rounded-full"
+                />
+                <p className="dark:text-primary-100 text-gray-900">Sithira Senanayake</p>
+              </div>
             </div>
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
@@ -80,7 +80,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                     <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                       Tags
                     </h2>
-                    <div className="flex flex-wrap mt-2">
+                    <div className="mt-2 flex flex-wrap">
                       {tags.map((tag) => (
                         <Tag key={tag} text={tag} />
                       ))}

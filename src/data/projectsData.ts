@@ -6,8 +6,6 @@ interface Project {
   imgSrc?: string
 }
 
-const projectsData: Project[] = [
-  
-]
+const projectsData: Project[] = []
 
 export default projectsData

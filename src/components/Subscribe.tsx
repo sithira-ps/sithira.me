@@ -1,36 +1,36 @@
-'use client';
+'use client'
 
-import { toast } from "sonner";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { useState } from "react";
+import { toast } from 'sonner'
+import { Button } from './ui/button'
+import { Input } from './ui/input'
+import { useState } from 'react'
 
 export default function Subscribe() {
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('')
 
-    const onSubscribe = () => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const onSubscribe = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     if (!email.trim()) {
-        toast.error("Email is required.");
-        return;
+      toast.error('Email is required.')
+      return
     }
 
     if (!emailRegex.test(email)) {
-        toast.error("Please enter a valid email address.");
-        return;
+      toast.error('Please enter a valid email address.')
+      return
     }
 
     toast.success(
-    <>
+      <>
         Successfully subscribed with <b>{email}</b>
-    </>
-    );
-    setEmail("");
-  };
+      </>
+    )
+    setEmail('')
+  }
 
   return (
-    <div className="max-w-96 mx-auto my-12">
+    <div className="mx-auto my-12 max-w-96">
       <p className="mb-2 text-sm">Subscribe to the newsletter</p>
       <div className="flex gap-4">
         <Input
@@ -38,16 +38,16 @@ export default function Subscribe() {
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="focus:outline-none focus:ring-0 focus-visible:ring-0 focus:border-cyan-500"
+          className="focus:border-cyan-500 focus:ring-0 focus:outline-none focus-visible:ring-0"
         />
         <Button
-        disabled={email.trim().length == 0}
-          className="bg-cyan-500 text-white hover:bg-cyan-600 focus:outline-none focus:ring-0"
+          disabled={email.trim().length == 0}
+          className="bg-cyan-500 text-white hover:bg-cyan-600 focus:ring-0 focus:outline-none"
           onClick={onSubscribe}
         >
           Subscribe
         </Button>
       </div>
     </div>
-  );
+  )
 }

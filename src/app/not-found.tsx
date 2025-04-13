@@ -1,5 +1,5 @@
-import Link from "@/components/Link";
-import { ArrowLeft } from "lucide-react";
+import Link from '@/components/Link'
+import { ArrowLeft } from 'lucide-react'
 
 export default function NotFound() {
   return (
@@ -20,10 +20,10 @@ export default function NotFound() {
           href="/"
           className="flex py-2 text-xs leading-5 font-medium text-white shadow-xs transition-colors duration-150 hover:text-cyan-500 focus:outline-hidden dark:hover:text-cyan-500"
         >
-          <ArrowLeft className="mr-4" size={20}/>
+          <ArrowLeft className="mr-4" size={20} />
           Back to homepage
         </Link>
       </div>
     </div>
-  );
+  )
 }

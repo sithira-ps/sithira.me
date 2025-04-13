@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import siteMetadata from "@/data/siteMetadata";
-import { Space_Grotesk } from "next/font/google";
-import { ThemeProviders } from "./theme-providers";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
-import { Toaster } from "sonner";
+import type { Metadata } from 'next'
+import './globals.css'
+import siteMetadata from '@/data/siteMetadata'
+import { Space_Grotesk } from 'next/font/google'
+import { ThemeProviders } from './theme-providers'
+import Footer from '@/components/Footer'
+import NavBar from '@/components/NavBar'
+import { Toaster } from 'sonner'
 
 const space_grotesk = Space_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-space-grotesk",
-});
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space-grotesk',
+})
 
-const basePath = process.env.BASE_PATH || "";
+const basePath = process.env.BASE_PATH || ''
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
-    url: "./",
+    url: './',
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],
-    locale: "en_US",
-    type: "website",
+    locale: 'en_US',
+    type: 'website',
   },
   alternates: {
-    canonical: "./",
+    canonical: './',
     types: {
-      "application/rss+xml": `${siteMetadata.siteUrl}/feed.xml`,
+      'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
     },
   },
   robots: {
@@ -43,22 +43,22 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
   twitter: {
     title: siteMetadata.title,
-    card: "summary_large_image",
+    card: 'summary_large_image',
     images: [siteMetadata.socialBanner],
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html
@@ -67,31 +67,19 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <meta name="msapplication-TileColor" content="#000000" />
-      <meta
-        name="theme-color"
-        media="(prefers-color-scheme: light)"
-        content="#fff"
-      />
-      <meta
-        name="theme-color"
-        media="(prefers-color-scheme: dark)"
-        content="#000"
-      />
-      <link
-        rel="alternate"
-        type="application/rss+xml"
-        href={`${basePath}/feed.xml`}
-      />
-      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white min-h-screen flex flex-col">
+      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
+      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
+      <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      <body className="flex min-h-screen flex-col bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ThemeProviders>
-          <section className="mx-auto w-full max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0 flex flex-col flex-1">
+          <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 sm:px-6 xl:max-w-5xl xl:px-0">
             <NavBar />
             <main className="mb-auto">{children}</main>
-            <Toaster richColors/>
+            <Toaster richColors />
             <Footer />
           </section>
         </ThemeProviders>
       </body>
     </html>
-  );
+  )
 }

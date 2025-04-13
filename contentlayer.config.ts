@@ -2,9 +2,7 @@
 import { defineDocumentType, makeSource } from 'contentlayer2/source-files'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
-import {
-  extractTocHeadings,
-} from 'pliny/mdx-plugins/index.js'
+import { extractTocHeadings } from 'pliny/mdx-plugins/index.js'
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -26,11 +24,10 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     url: { type: 'string', resolve: (post) => `/blog/${post._raw.flattenedPath}` },
     path: { type: 'string', resolve: (post) => post._raw.flattenedPath },
-    slug: { type: 'string', resolve: (post) => post._raw.flattenedPath.replace(/^.+?(\/)/, '')},
+    slug: { type: 'string', resolve: (post) => post._raw.flattenedPath.replace(/^.+?(\/)/, '') },
     filePath: { type: 'string', resolve: (post) => post._raw.sourceFilePath },
     toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) },
   },
-  
 }))
 
 export default makeSource({

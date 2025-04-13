@@ -1,10 +1,7 @@
 import Subscribe from "@/components/Subscribe";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import siteMetadata from "@/data/siteMetadata";
 import { allPosts } from "contentlayer/generated";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -23,7 +20,7 @@ export default function Home() {
     
   return (
     <div>
-     {recentPosts.map((post, idx) => (
+     {recentPosts.map((post) => (
         <Link key={post._id} href={post.url}>
           <Card className="mt-8 border-0 border-b bg-transparent rounded-none text-white shadow-none">
             <CardContent className="md:flex">

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import projectsData from "@/data/projectsData";
 import { Card, CardContent } from "@/components/ui/card";
-import { genPageMetadata } from "@/app/seo";
 import Link from "next/link";
 import Image from "next/image";
 

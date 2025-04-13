@@ -1,5 +1,5 @@
 import Link from "@/components/Link";
-import { ArrowBigLeft, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -11,14 +11,14 @@ export default function NotFound() {
       </div>
       <div className="max-w-md">
         <p className="mb-4 text-xl leading-normal font-bold md:text-2xl">
-          Sorry we couldn't find this page.
+          {`Sorry we couldn't find this page.`}
         </p>
         <p className="mb-8">
-          But dont worry, you can find plenty of other things on our homepage.
+          {`But dont worry, you can find plenty of other things on our homepage.`}
         </p>
         <Link
           href="/"
-          className="flex py-2 text-xs leading-5 font-medium text-white shadow-xs transition-colors duration-150 hover:bg-blue-700 focus:outline-hidden dark:hover:bg-blue-500"
+          className="flex py-2 text-xs leading-5 font-medium text-white shadow-xs transition-colors duration-150 hover:text-cyan-500 focus:outline-hidden dark:hover:text-cyan-500"
         >
           <ArrowLeft className="mr-4" size={20}/>
           Back to homepage

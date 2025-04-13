@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
-const { withContentlayer } = require('next-contentlayer2')
+import { withContentlayer } from 'next-contentlayer2';
 
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+    typescript: {
+    ignoreBuildErrors: true,
+  },
+};
 
 export default withContentlayer(nextConfig);

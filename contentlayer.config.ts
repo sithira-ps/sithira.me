@@ -3,9 +3,6 @@ import { defineDocumentType, makeSource } from 'contentlayer2/source-files'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import {
-  remarkExtractFrontmatter,
-  remarkCodeTitles,
-  remarkImgToJsx,
   extractTocHeadings,
 } from 'pliny/mdx-plugins/index.js'
 

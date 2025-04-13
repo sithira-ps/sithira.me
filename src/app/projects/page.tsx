@@ -1,13 +1,7 @@
-import projectsData from "@/data/projectsData";
-import { Card, CardContent } from "@/components/ui/card";
 import { genPageMetadata } from "@/app/seo";
-import Link from "next/link";
-import Image from "next/image";
 import ProjectsList from "@/components/ProjectsList";
 
 export const metadata = genPageMetadata({ title: "Projects" });
-
-const categories = ["All", "Web", "Mobile", "AI"];
 
 export default function Projects() {
   return (

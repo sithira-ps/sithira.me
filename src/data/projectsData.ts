@@ -1,6 +1,7 @@
 interface Project {
   title: string
   description: string
+  category: string
   href?: string
   imgSrc?: string
 }
@@ -13,6 +14,7 @@ const projectsData: Project[] = [
     for.`,
     imgSrc: '/static/images/google.png',
     href: 'https://www.google.com',
+    category: 'WEB'
   },
   {
     title: 'The Time Machine',
@@ -21,6 +23,7 @@ const projectsData: Project[] = [
     forgotten headphones with this simple yet affordable solution.`,
     imgSrc: '/static/images/time-machine.jpg',
     href: '/blog/the-time-machine',
+    category:'MOBILE'
   },
 ]
 

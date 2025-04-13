@@ -5,6 +5,7 @@ import { Space_Grotesk } from "next/font/google";
 import { ThemeProviders } from "./theme-providers";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
+import { Toaster } from "sonner";
 
 const space_grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -86,6 +87,7 @@ export default function RootLayout({
           <section className="mx-auto w-full max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0 flex flex-col flex-1">
             <NavBar />
             <main className="mb-auto">{children}</main>
+            <Toaster richColors/>
             <Footer />
           </section>
         </ThemeProviders>

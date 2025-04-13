@@ -20,7 +20,8 @@ export default function Home() {
     
   return (
     <div>
-     {recentPosts.map((post) => (
+    {recentPosts.length > 0 ? (
+ recentPosts.map((post) => (
         <Link key={post._id} href={post.url}>
           <Card className="mt-8 border-0 border-b bg-transparent rounded-none text-white shadow-none">
             <CardContent className="md:flex">
@@ -52,14 +53,21 @@ export default function Home() {
             </CardContent>
           </Card>         
         </Link>
-      ))} 
+      ))) 
+      : (
+                <div className="flex items-center justify-center text-muted-foreground text-sm text-center h-full min-h-60">
+                No posts available.
+                </div>
+            )}
       <div className="text-right mt-6">
+        {recentPosts.length > 0 ? (
         <Link
           href="/blog"
           className="text-gray-300 hover:text-cyan-500 text-md font-medium"
         >
           All Posts →
         </Link>
+): <div></div>}
       </div>
 
       <Subscribe/>

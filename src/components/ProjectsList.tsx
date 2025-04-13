@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 
-const categories = ["All", "Web", "Mobile", "AI"];
+const categories = ["All", "Web", "Mobile", "Desktop", "Other"];
 
 export default function ProjectsList() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -23,7 +23,7 @@ export default function ProjectsList() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full border text-sm font-medium transition-all
+                className={`px-4 py-2 rounded-md border text-sm font-medium transition-all
                   ${
                     selectedCategory === category
                       ? "bg-cyan-600 text-white border-cyan-600"
@@ -37,7 +37,7 @@ export default function ProjectsList() {
 
         <div className="container py-12 border-t-1 mt-6">
           <div className="-m-4 flex flex-wrap justify-center gap-6">
-            {filteredProjects.map((d) => (
+            {filteredProjects.length > 0 ? ( filteredProjects.map((d) => (
               <Card
                 key={d.title}
                 className="bg-[#0f1117] border border-[#2a2c31] rounded-lg text-white max-w-md mx-auto p-6"
@@ -65,7 +65,14 @@ export default function ProjectsList() {
                   </Link>
                 </CardContent>
               </Card>
-            ))}
+            ))):
+            (
+                        <div className="flex items-center justify-center text-muted-foreground text-sm text-center h-full min-h-60">
+                No projects available.
+                </div>
+            )
+            
+            }
           </div>
         </div>
     </div>

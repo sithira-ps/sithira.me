@@ -14,7 +14,7 @@ export default function ProjectsList() {
   const filteredProjects =
     selectedCategory === 'All'
       ? projectsData
-      : projectsData.filter((project) => project.category === selectedCategory)
+      : projectsData.filter((project) => project.category.toLowerCase() === selectedCategory.toLowerCase())
 
   return (
     <div className="">
@@ -40,10 +40,10 @@ export default function ProjectsList() {
             filteredProjects.map((d) => (
               <Card
                 key={d.title}
-                className="mx-auto max-w-md rounded-lg border border-[#2a2c31] bg-[#0f1117] p-6 text-white"
+                className="mx-auto max-w-md rounded-lg border border-[#2a2c31] bg-[#0f1117] px-2 pt-6 text-white"
               >
                 <CardContent className="flex flex-col items-start gap-4">
-                  <Image src={d.imgSrc} alt={d.title} width={120} height={40} className="mb-2" />
+                  <Image src={d.imgSrc} alt={d.title} width={1080} height={720} className="mb-2 w-full rounded-md object-cover" />
 
                   <h3 className="text-xl font-semibold">{d.title}</h3>
 
@@ -53,7 +53,7 @@ export default function ProjectsList() {
                     href={d.href}
                     className="flex items-center gap-1 text-sm font-medium text-cyan-500 hover:underline"
                   >
-                    Learn more →
+                    Link →
                   </Link>
                 </CardContent>
               </Card>

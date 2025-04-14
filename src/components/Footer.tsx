@@ -1,27 +1,24 @@
 // import Link from "./Link";
 'use client'
 
-import siteMetadata from "@/data/siteMetadata";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { Button } from './ui/button'
+import { Moon, Sun } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 export default function Footer() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-    const { theme, setTheme } = useTheme()
-    const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
-    useEffect(() => {
-      setMounted(true)
-    }, [])
+  if (!mounted) return null
 
-    if (!mounted) return null 
-    
   return (
     <footer className="border-t-1 border-t-gray-300 dark:border-t-gray-800">
-      <div className="mt-8 flex flex-col items-center">
+      <div className="py-4 flex flex-col items-center">
         <div className="mb-2 flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <div>Sithira Senanayake</div>
           <div>{` • `}</div>

@@ -24,7 +24,7 @@ export default function Home() {
           <Link key={post._id} href={post.url}>
             <Card className="mt-8 rounded-none border-0 border-b bg-transparent text-white shadow-none">
               <CardContent className="md:flex">
-                <div className="mx-auto min-w-50 pl-0">
+                <div className="mx-auto min-w-50">
                   <p className="text-md mb-4 text-left text-gray-400">
                     {new Date(post.date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                   </p>

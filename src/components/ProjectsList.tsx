@@ -34,7 +34,7 @@ export default function ProjectsList() {
         ))}
       </div>
 
-      <div className="container mt-6 border-t-1 py-12">
+      <div className="container mt-6 border-t-1 py-12 px-4 md:px-0">
         <div className="-m-4 flex flex-wrap justify-center gap-6">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((d) => (

@@ -18,17 +18,17 @@ export default function BlogList({ posts, pageNumber = 1, category = 'all' }: Bl
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl gap-10 text-white sm:mt-10">
+    <div className="mx-auto flex w-full max-w-7xl gap-10 sm:mt-10">
       <section className="flex-1 space-y-2">
         {currentPosts && currentPosts.length > 0 ? (
           currentPosts.map((post, idx) => (
             <Card
               key={idx}
-              className="rounded-none border-0 border-b border-[#2a2c31] bg-transparent"
+              className="rounded-none border-0 border-b border-b-gray-300 bg-transparent px-4 shadow-none dark:border-b-gray-800"
             >
               <CardContent className="w-full p-0">
                 <Link href={post.url} className="block">
-                  <p className="text-muted-foreground text-xs">
+                  <p className="dark:text-muted-foreground text-xs">
                     {format(new Date(post.date), 'MMMM do, yyyy')}
                   </p>
                   <h3 className="mt-1 text-xl font-semibold">{post.title}</h3>
@@ -37,7 +37,7 @@ export default function BlogList({ posts, pageNumber = 1, category = 'all' }: Bl
                   </div>
                   <p className="text-muted-foreground mt-4 text-sm">{post.summary}</p>
                   <div className="mt-4">
-                    <span className="text-sm font-medium text-gray-300 hover:text-cyan-500">
+                    <span className="text-sm font-medium text-gray-600 hover:text-cyan-500 dark:text-gray-300">
                       Read more →
                     </span>
                   </div>

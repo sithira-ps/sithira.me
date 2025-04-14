@@ -34,16 +34,22 @@ export default function ProjectsList() {
         ))}
       </div>
 
-      <div className="container mt-6 border-t-1 py-12 px-4 md:px-0">
+      <div className="container mt-6 border-t-1 border-t-gray-300 px-4 py-12 md:px-0 dark:border-t-gray-800">
         <div className="-m-4 flex flex-wrap justify-center gap-6">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((d) => (
               <Card
                 key={d.title}
-                className="mx-auto max-w-md rounded-lg border border-[#2a2c31] bg-[#0f1117] text-white"
+                className="mx-auto max-w-md shadow-none rounded-lg border border-gray-200 dark:border-[#2a2c31] dark:bg-[#0f1117] dark:text-white"
               >
                 <CardContent className="flex flex-col items-start gap-4">
-                  <Image src={d.imgSrc} alt={d.title} width={1080} height={720} className="mb-2 w-full rounded-md object-cover" />
+                  <Image
+                    src={d.imgSrc}
+                    alt={d.title}
+                    width={1080}
+                    height={720}
+                    className="mb-2 w-full rounded-md object-cover"
+                  />
 
                   <h3 className="text-xl font-semibold">{d.title}</h3>
 

@@ -19,7 +19,22 @@ const NavBar = () => {
     <header className={headerClass}>
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="logo text-2xl font-semibold sm:block">
-          <Image src="/images/logo.png" alt="Next.js logo" width={120} height={40} priority />
+          <Image
+            src="/images/logo-light.png"
+            alt="Logo Light"
+            width={120}
+            height={40}
+            className="block dark:hidden"
+            priority
+          />
+          <Image
+            src="/images/logo-dark.png"
+            alt="Logo Dark"
+            width={120}
+            height={40}
+            className="hidden dark:block"
+            priority
+          />{' '}
         </div>
       </Link>
       <div className="mr-0 flex items-center space-x-4 leading-5 sm:mr-6 sm:space-x-6">

@@ -42,10 +42,10 @@ export default function Home() {
         {recentPosts.length > 0 ? (
           recentPosts.map((post) => (
             <Link key={post._id} href={post.url}>
-              <Card className="mt-8 rounded-none border-0 border-b bg-transparent text-white shadow-none">
+              <Card className="mt-8 rounded-none border-0 border-b border-b-gray-300 dark:border-b-gray-800 bg-transparent dark:text-white shadow-none">
                 <CardContent className="md:flex">
                   <div className="mx-auto min-w-50">
-                    <p className="text-md mb-4 text-left text-gray-400">
+                    <p className="text-md mb-4 text-left text-gray-500 dark:text-gray-400">
                       {new Date(post.date).toLocaleDateString(
                         siteMetadata.locale,
                         postDateTemplate
@@ -53,12 +53,12 @@ export default function Home() {
                     </p>
                   </div>
                   <div>
-                    <h2 className="mb-2 text-xl font-semibold text-white">{post.title}</h2>
+                    <h2 className="mb-2 text-xl font-semibold text-gray-700 dark:text-white">{post.title}</h2>
                     <div className="mt-1 flex flex-wrap gap-3 text-xs font-medium text-cyan-500 uppercase">
                       {post.tags && post.tags.map((tag) => <span key={tag}>{tag}</span>)}
                     </div>
-                    <p className="my-4 text-gray-400">{post.summary}</p>
-                    <p className="text-sm font-medium text-gray-300 hover:text-cyan-500">
+                    <p className="my-4 text-gray-600 dark:text-gray-400">{post.summary}</p>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-cyan-500">
                       Read more →
                     </p>
                   </div>
@@ -73,7 +73,7 @@ export default function Home() {
         )}
         <div className="mt-6 text-right">
           {recentPosts.length > 0 ? (
-            <Link href="/blog" className="text-md font-medium text-gray-300 hover:text-cyan-500">
+            <Link href="/blog" className="text-md font-medium text-gray-600 dark:text-gray-300 hover:text-cyan-500">
               All Posts →
             </Link>
           ) : (

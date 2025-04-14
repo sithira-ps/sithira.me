@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: 'Sithira Senanayake',
   description: 'The personal blog of Sithira Senanayake',
   language: 'en-us',
-  theme: 'system', // system, dark or light
+  theme: 'light', // system, dark or light
   siteUrl: 'https://sithira.me',
   siteRepo: '',
   siteLogo: `${process.env.BASE_PATH || ''}/images/sithira-senanayake-2.png`,

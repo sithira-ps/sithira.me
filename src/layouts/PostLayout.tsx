@@ -94,7 +94,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                         <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Previous Article
                         </h2>
-                        <div className="text-primary-100 hover:text-primary-00 dark:hover:text-primary-400 mt-2">
+                        <div className="dark:text-primary-100 hover:text-primary-00 dark:hover:text-primary-400 mt-2">
                           <Link href={`/blog/${prev.path}`}>{prev.title}</Link>
                         </div>
                       </div>
@@ -104,7 +104,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                         <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Next Article
                         </h2>
-                        <div className="text-primary-100 hover:text-primary-600 dark:hover:text-primary-400 mt-2">
+                        <div className="dark:text-primary-100 hover:text-primary-600 dark:hover:text-primary-400 mt-2">
                           <Link href={`/blog/${next.path}`}>{next.title}</Link>
                         </div>
                       </div>
@@ -115,7 +115,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               <div className="pt-4 xl:pt-8">
                 <Link
                   href={'/blog'}
-                  className="text-primary-100 hover:text-primary-600 dark:hover:text-primary-400"
+                  className="dark:text-primary-100 hover:text-primary-600 dark:hover:text-primary-400"
                   aria-label="Back to the blog"
                 >
                   &larr; Back to the blog

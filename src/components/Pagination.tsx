@@ -30,7 +30,7 @@ export default function Pagination({
             key={i}
             href={createPageLink(i)}
             className={`mx-1 rounded px-2 py-1 ${
-              i === currentPage ? 'bg-cyan-600 text-white' : 'text-white hover:bg-cyan-800'
+              i === currentPage ? 'bg-cyan-600 text-white' : 'dark:text-white hover:bg-cyan-800 hover:text-white'
             }`}
           >
             {i}

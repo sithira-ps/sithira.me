@@ -12,11 +12,6 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Debugging step to verify secrets
-      run: |
-        echo "DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}"
-        echo "DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}"
-
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
@@ -29,6 +24,8 @@ jobs:
         context: .
         push: true
         tags: sithiraps/sithira-me:latest
+        cache-from: type=registry,ref=sithiraps/sithira-me:cache
+        cache-to: type=registry,ref=sithiraps/sithira-me:cache,mode=max
 
     - name: Deploy on VPS via SSH
       uses: appleboy/ssh-action@master
@@ -39,9 +36,9 @@ jobs:
         script: |
           docker stop sithira-me || true
           docker rm sithira-me || true
-          docker pull sithiraps/sithira-me:latest
-          docker run -d --name sithira-me \
+          docker run -d --pull=always --name sithira-me \
             --network shared-web-network \
             -p 4355:4255 \
             -e NODE_ENV=production \
+            -e NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }} \
             sithiraps/sithira-me:latest

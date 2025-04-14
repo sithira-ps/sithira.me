@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: 'Sithira Senanayake',
   description: 'The personal blog of Sithira Senanayake',
   language: 'en-us',
-  theme: 'system', // system, dark or light
+  theme: 'light', // system, dark or light
   siteUrl: 'https://sithira.me',
   siteRepo: '',
   siteLogo: `${process.env.BASE_PATH || ''}/images/sithira-senanayake-2.png`,
@@ -83,20 +83,20 @@ const siteMetadata = {
       lang: 'en',
     },
   },
-//   search: {
-//     provider: 'kbar', // kbar or algolia
-//     kbarConfig: {
-//       searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
-//     },
-//     // provider: 'algolia',
-//     // algoliaConfig: {
-//     //   // The application ID provided by Algolia
-//     //   appId: 'R2IYF7ETH7',
-//     //   // Public API key: it is safe to commit it
-//     //   apiKey: '599cec31baffa4868cae4e79f180729b',
-//     //   indexName: 'docsearch',
-//     // },
-//   },
+  //   search: {
+  //     provider: 'kbar', // kbar or algolia
+  //     kbarConfig: {
+  //       searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
+  //     },
+  //     // provider: 'algolia',
+  //     // algoliaConfig: {
+  //     //   // The application ID provided by Algolia
+  //     //   appId: 'R2IYF7ETH7',
+  //     //   // Public API key: it is safe to commit it
+  //     //   apiKey: '599cec31baffa4868cae4e79f180729b',
+  //     //   indexName: 'docsearch',
+  //     // },
+  //   },
 }
 
 module.exports = siteMetadata

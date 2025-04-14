@@ -18,18 +18,18 @@ export default function Footer() {
 
   return (
     <footer className="border-t-1 border-t-gray-300 dark:border-t-gray-800">
-      <div className="py-4 flex flex-col items-center">
+      <div className="flex flex-col items-center py-4">
         <div className="mb-2 flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <div>Sithira Senanayake</div>
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <p className="mx-2">|</p>
           {theme === 'dark' ? (
-            <Button variant="ghost" onClick={() => setTheme('light')}>
+            <Button aria-label="Light mode" variant="ghost" onClick={() => setTheme('light')}>
               <Sun className="h-5 w-5" />
             </Button>
           ) : (
-            <Button variant="ghost" onClick={() => setTheme('dark')}>
+            <Button aria-label="Dark mode" variant="ghost" onClick={() => setTheme('dark')}>
               <Moon className="h-5 w-5" />
             </Button>
           )}

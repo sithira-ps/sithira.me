@@ -17,7 +17,6 @@ const projectsData: Project[] = [
     href: 'https://wes.sithira.me',
     category: 'WEB',
   },
-
   {
     title: 'JADE - Mobile POS System',
     description: `This is a mobile Point of Sale (POS) system built for a small juice bar.
@@ -25,7 +24,7 @@ const projectsData: Project[] = [
       The system provides a set of reports and visual charts to help track sales performance and revenue trends over time, offering valuable insights for business decisions.`,
     imgSrc: '/images/flutter.png',
     href: '',
-    category: 'WEB',
+    category: 'MOBILE',
   },
 ]
 

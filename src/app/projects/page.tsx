@@ -11,7 +11,7 @@ export default function Projects() {
           Projects
         </h1>
         <p className="text-lg text-gray-500 dark:text-gray-400">
-          Showcase your projects with a hero image (16 x 9)
+          List of my personal projects, freelance projects and saas projects.
         </p>
       </div>
       <ProjectsList />

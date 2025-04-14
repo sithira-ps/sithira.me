@@ -61,6 +61,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  console.log(process.env.NEXT_PUBLIC_GA_ID)
   return (
     <html
       lang={siteMetadata.language}
@@ -76,7 +77,7 @@ export default function RootLayout({
           <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 sm:px-6 xl:max-w-5xl xl:px-0">
             <NavBar />
             <main className="mb-auto">{children}</main>
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+            <GoogleAnalytics gaId="G-J2KWNVV0XC" />
             <Toaster richColors />
             <Footer />
           </section>

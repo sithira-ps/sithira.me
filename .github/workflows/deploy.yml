@@ -24,9 +24,6 @@ jobs:
         context: .
         push: true
         tags: sithiraps/sithira-me:latest
-        cache-from: type=registry,ref=sithiraps/sithira-me:cache
-        cache-to: type=registry,ref=sithiraps/sithira-me:cache,mode=max
-
     - name: Deploy on VPS via SSH
       uses: appleboy/ssh-action@master
       with:

@@ -22,21 +22,18 @@ export default function Home() {
       <div className="mx-auto mt-8 mb-8 max-w-7xl pb-4 text-center">
         <h1 className="mb-4 text-4xl font-bold">Welcome to My Blog</h1>
         <p className="mx-auto mb-6 max-w-2xl text-lg">
-          I'm 'Sithira Senanayake, a software engineer passionate about technology, science, and
+          {`I'm 'Sithira Senanayake, a software engineer passionate about technology, science, and
           philosophy. Join me as I share details about my projects, opinions on different topics,
-          and thoughs on anything else I find interesting.
+          and thoughs on anything else I find interesting.`}
         </p>
 
         <p className="mx-auto mb-6 max-w-4xl text-lg">
-          In this blog, I share my journey, experiences, and the challenges I encounter in my
+          {`In this blog, I share my journey, experiences, and the challenges I encounter in my
           day-to-day life. This is primarily for my entertainment, to establish an online presence,
-          and to serve as a time capsule to look back on after 20 years.
+          and to serve as a time capsule to look back on after 20 years.`}
         </p>
         <div className="mt-8">
-          <Link
-            href="/about"
-            className="text-cyan-500 hover:text-cyan-600"
-          >
+          <Link href="/about" className="text-cyan-500 hover:text-cyan-600">
             Learn More About Me →
           </Link>
         </div>

@@ -15,6 +15,10 @@ const space_grotesk = Space_Grotesk({
 })
 
 const basePath = process.env.BASE_PATH || ''
+const gaId = process.env.GA_ID || 'G-J2KWNVV0XC'
+
+console.log(gaId)
+console.log(process.env.GA_ID)
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -61,7 +65,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  console.log(process.env.NEXT_PUBLIC_GA_ID)
   return (
     <html
       lang={siteMetadata.language}
@@ -77,7 +80,7 @@ export default function RootLayout({
           <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 sm:px-6 xl:max-w-5xl xl:px-0">
             <NavBar />
             <main className="mb-auto">{children}</main>
-            <GoogleAnalytics gaId="G-J2KWNVV0XC" />
+            <GoogleAnalytics gaId={gaId} />
             <Toaster richColors />
             <Footer />
           </section>

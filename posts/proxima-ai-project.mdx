@@ -1,0 +1,109 @@
+---
+title: 'Project Proxima.ai - Live AI Chat Web App'
+date: '2025-04-17'
+lastmod: '2025-04-17'
+tags: ['project', 'nextjs', 'ai', 'llm']
+draft: false
+summary: 'Proxima.ai is a minimalistic live AI chat web app built with Next.js and Google Gemini API. It reflects my journey of overcoming perfectionism, using AI to speed up UI development, and focusing on shipping small, functional projects rather than chasing perfection. Future updates will include adding more models and fixing production streaming issues.'
+images: []
+---
+
+![shiny-object-syndrome](/images/articles/llm-platform.png)
+
+# Project Proxima.ai - Live AI Chat Web App
+
+> Proxima.ai is a minimalistic live AI chat web app built with Next.js and Google Gemini API. It reflects my journey of overcoming perfectionism, using AI to speed up UI development, and focusing on shipping small, functional projects rather than chasing perfection. Future updates will include adding more models and fixing production streaming issues.
+
+---
+
+## Introduction
+
+**Proxima.ai** is a lightweight AI chat web app inspired by the growing number of multi-LLM platforms out there.  
+It’s built using **Next.js** and leverages the **Google Gemini free tier API** to deliver live AI responses.
+
+While the initial version is simple, I have plans to integrate more open-source models, possibly self-hosting a smaller model on a VPS to provide a more personalized experience.
+
+---
+
+## Building the Project
+
+### 1. UI/UX Design Journey
+
+I’ll be honest — **I’m not great at designing UIs**.  
+In the past, I would spend countless hours trying to craft the perfect interface, only to end up with something that looked mismatched and lacked good color combinations.
+
+This time, I used AI tools like **Claude**, **ChatGPT**, and **Gemini** to help **generate components** based on a rough layout I had in mind.  
+Instead of building the full UI all at once, I went **component-by-component**, tweaking things manually until I achieved the simple, clean look I wanted.
+
+Thanks to AI, I was able to **skip over my perfectionism** and actually **ship something functional**.
+
+### 2. Backend Architecture
+
+There’s no complex backend for Proxima.ai.  
+I simply used **Next.js API routes** to handle everything.
+
+The core functionality is to call **Gemini’s streaming API** and display AI-generated responses in real-time, simulating a "typing" effect by streaming the text chunk by chunk.
+
+Here’s a simplified version of how the backend streaming works:
+
+```javascript
+const encoder = new TextEncoder();
+const stream = new ReadableStream({
+  async start(controller) {
+    try {
+      const genAI = new GoogleGenerativeAI(geminiApiKey);
+      const model = genAI.getGenerativeModel({ model: llmModel });
+
+      const streamingResponse = await model.generateContentStream(message);
+
+      for await (const chunk of streamingResponse.stream) {
+        const text = chunk.text();
+        if (text) {
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`));
+        }
+      }
+
+      controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true })}\n\n`));
+      controller.close();
+    } catch (error) {
+      console.error("Streaming error:", error);
+      controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: "Streaming error occurred" })}\n\n`));
+      controller.close();
+    }
+  },
+});
+```
+
+### 3. Reflection and Lessons
+
+This project helped me realize a few important things:
+
+- **Progress over perfection**: Done is better than perfect.
+- **Use AI to speed up boring parts**: Designing UI isn't my strength, so using AI allowed me to focus more on functionality.
+- **Start small, improve later**: Instead of aiming for a full-fledged product, launching a small, working version gave me motivation to continue.
+
+Proxima.ai isn't perfect.  
+But it exists — and that’s a huge win.
+
+### 4. What's Next?
+
+- Fixing the streaming issue in production.
+- Adding support for more LLM providers (like Ollama, DeepSeek, or local-hosted models).
+- Improving UI polish bit by bit (without falling into the perfectionism trap again).
+
+### Final Thoughts
+
+Proxima.ai is just a starting point — a small but important step toward overcoming my old habits of endless planning and second-guessing.
+Building it reminded me that simple, functional projects are always more valuable than perfect ones that never see the light of day.
+
+I’m excited to keep improving this app, adding more models, and maybe even building a small ecosystem around it.
+More importantly, I’m determined to carry this momentum into my future projects — focusing more on finishing, not just starting.
+
+That said, I still feel like I rely a bit too much on AI for my projects.
+It definitely helps me move faster — but I believe we should never use AI when we don't understand what it's doing.
+If it reaches that point, it's a signal that we need to pause and learn properly, instead of blindly copying and pasting.
+AI should mainly help with repetitive, boring tasks — the things we could do ourselves, at our own pace, even without an LLM.
+That’s a mindset I’m slowly trying to embed into my habits. Let's see how it goes.
+
+Thanks for reading! 🚀
+Until next time, keep building — even if it’s messy, small, and imperfect.

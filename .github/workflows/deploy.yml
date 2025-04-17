@@ -37,5 +37,5 @@ jobs:
             --network shared-web-network \
             -p 4355:4255 \
             -e NODE_ENV=production \
-            -e NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }} \
+            -e GA_ID=${{ secrets.GA_ID }} \
             sithiraps/sithira-me:latest

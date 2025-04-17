@@ -5,6 +5,7 @@ import projectsData from '@/data/projectsData'
 import { Card, CardContent } from '@/components/ui/card'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ExternalLink } from 'lucide-react'
 
 const categories = ['All', 'Web', 'Mobile', 'Desktop', 'Other']
 
@@ -14,7 +15,9 @@ export default function ProjectsList() {
   const filteredProjects =
     selectedCategory === 'All'
       ? projectsData
-      : projectsData.filter((project) => project.category.toLowerCase() === selectedCategory.toLowerCase())
+      : projectsData.filter(
+          (project) => project.category.toLowerCase() === selectedCategory.toLowerCase()
+        )
 
   return (
     <div className="">
@@ -40,7 +43,7 @@ export default function ProjectsList() {
             filteredProjects.map((d) => (
               <Card
                 key={d.title}
-                className="mx-auto max-w-md shadow-none rounded-lg border border-gray-200 dark:border-[#2a2c31] dark:bg-[#0f1117] dark:text-white"
+                className="mx-auto max-w-md rounded-lg border border-gray-200 shadow-none dark:border-[#2a2c31] dark:bg-[#0f1117] dark:text-white"
               >
                 <CardContent className="flex flex-col items-start gap-4">
                   <Image
@@ -58,8 +61,18 @@ export default function ProjectsList() {
                   <Link
                     href={d.href}
                     className="flex items-center gap-1 text-sm font-medium text-cyan-500 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Link →
+                    {d.href.startsWith('https://github.com') ? (
+                      <span className="flex items-center justify-center gap-2">
+                        Github <ExternalLink size={18} />
+                      </span>
+                    ) : (
+                      <span className="flex items-center justify-center gap-2">
+                        Demo <ExternalLink size={18} />
+                      </span>
+                    )}
                   </Link>
                 </CardContent>
               </Card>

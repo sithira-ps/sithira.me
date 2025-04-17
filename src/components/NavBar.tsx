@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const NavBar = () => {
-  let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
+  let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-4'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50'
   }
@@ -34,7 +34,7 @@ const NavBar = () => {
             height={40}
             className="hidden dark:block"
             priority
-          />{' '}
+          />
         </div>
       </Link>
       <div className="mr-0 flex items-center space-x-4 leading-5 sm:mr-6 sm:space-x-6">

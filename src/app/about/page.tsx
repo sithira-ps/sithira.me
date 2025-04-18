@@ -1,5 +1,8 @@
 import SocialIcon from '@/components/social-icons'
 import NextImage from 'next/image'
+import { genPageMetadata } from '../seo'
+
+export const metadata = genPageMetadata({ title: 'About' })
 
 export default function AuthorLayout() {
   return (

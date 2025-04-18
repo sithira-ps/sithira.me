@@ -3,6 +3,9 @@ import { Card, CardContent } from '@/components/ui/card'
 import siteMetadata from '@/data/siteMetadata'
 import { allPosts } from 'contentlayer/generated'
 import Link from 'next/link'
+import { genPageMetadata } from './seo'
+
+export const metadata = genPageMetadata({ title: 'Home | Sithira Senanayake - Personal Blog' })
 
 export default function Home() {
   const postDateTemplate: Intl.DateTimeFormatOptions = {

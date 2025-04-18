@@ -1,6 +1,6 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Sithira Senanayake | Blog',
+  title: 'Sithira Senanayake | Personal Blog',
   author: 'Sithira Senanayake',
   headerTitle: 'Sithira Senanayake',
   description: 'The personal blog of Sithira Senanayake',

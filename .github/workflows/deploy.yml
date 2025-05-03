@@ -36,7 +36,7 @@ jobs:
           docker rm sithira-me || true
           docker run -d --pull=always --name sithira-me \
             --network shared-web-network \
-            -p 4355:4255 \
+            -p 4020:4020 \
             -e NODE_ENV=production \
             -e GA_ID=${{ secrets.GA_ID }} \
             sithiraps/sithira-me:latest

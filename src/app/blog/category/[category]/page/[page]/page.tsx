@@ -1,4 +1,5 @@
-// app/blog/page/[page]/page.tsx
+// app/blog/category/[category]/page/[page]/page.tsx
+
 import Blog from '../../../../page';
 
 export default function BlogPage({ params }: { params: { page: string, category: string } }) {

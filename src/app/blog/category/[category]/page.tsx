@@ -1,4 +1,4 @@
-// app/blog/page/[page]/page.tsx
+// app/blog/category/[category]/page.tsx
 import Blog from '../../page';
 
 export default function CategoryFilteedBlogPage({ params }: { params: { category: string } }) {

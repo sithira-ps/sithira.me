@@ -34,7 +34,7 @@ jobs:
         script: |
           docker stop sithira-me || true
           docker rm sithira-me || true
-          docker run -d --pull=always --name sithira-me \
+          docker run -d --pull=always --restart=unless-stopped --name sithira-me \
             --network shared-web-network \
             -p 4020:4020 \
             -e NODE_ENV=production \

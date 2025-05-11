@@ -17,9 +17,6 @@ const space_grotesk = Space_Grotesk({
 const basePath = process.env.BASE_PATH || ''
 const gaId = process.env.GA_ID || 'G-J2KWNVV0XC'
 
-console.log(gaId)
-console.log(process.env.GA_ID)
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {

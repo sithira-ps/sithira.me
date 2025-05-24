@@ -1,0 +1,292 @@
+---
+title: 'Server Setup and CyberPanel Installation Guide'
+date: '2025-05-13'
+lastmod: '2025-05-13'
+tags: ['personal', 'blog']
+draft: false
+summary: 'This guide walks through the end-to-end setup of a new Linux server with a focus on security and usability, followed by the installation of CyberPanel, a modern web hosting control panel powered by OpenLiteSpeed.'
+---
+
+# Server Setup and CyberPanel Installation Guide
+
+This guide walks through the end-to-end setup of a new Linux server with a focus on security and usability, followed by the installation of CyberPanel, a modern web hosting control panel powered by OpenLiteSpeed.
+## 1. Initial Server Access and Update
+
+First, access your server via SSH. While Termius is suggested, any SSH client will work.
+
+### Log in to the Server
+
+```bash
+ssh root@203.54.168.221
+```
+
+Replace `203.54.168.221` with your server's IP address.
+
+If you encounter a "REMOTE HOST IDENTIFICATION HAS CHANGED" error:
+
+```bash
+ssh-keygen -R 203.54.168.221
+```
+
+### Update System Packages
+
+Before installing any software, it's essential to update the system to the latest packages to ensure security and compatibility.
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+## 2. Create a New Sudo User
+
+It's a best practice not to use the root user for regular operations. Create a new user and grant them sudo privileges.
+
+### Add New User
+
+```bash
+sudo adduser username
+```
+
+### Grant Sudo Privileges
+
+```bash
+sudo usermod -aG sudo username
+```
+
+### Re-login as New User
+
+Exit from the current terminal session and log in with the new user you just created using the following command:
+
+```bash
+exit
+ssh username@203.54.168.221
+```
+
+## 3. Set Up SSH Key-Based Authentication
+
+SSH key-based authentication is more secure than password authentication. Generate a key pair locally and upload the public key to the server.
+
+### Generate SSH Key Pair (Local)
+
+In your local machine, run the following command to generate an SSH key pair. This will be used to securely access the server without typing a password each time.
+
+```bash
+ssh-keygen -t ed25519 -C "youremailaddress@gmail.com"
+```
+
+### Copy Public Key to Server
+This command uploads your locally generated public key to the server's ~/.ssh/authorized_keys file. Once done, you can log in to the server without entering a password, which enhances both convenience and security.
+
+```bash
+ssh-copy-id -i ~/.ssh/id_ed25519.pub username@203.54.168.221
+```
+
+Now you can login without a password:
+
+```bash
+ssh username@203.54.168.221
+```
+
+## 4. Secure SSH Configuration
+
+To enhance security, we will change the default SSH port, disable root login, and disable password-based logins.
+
+### Edit SSH Config
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Change or add:
+
+```
+Port 2222
+PasswordAuthentication no
+PermitRootLogin no
+```
+
+### Restart SSH
+
+```bash
+sudo systemctl restart ssh
+```
+
+Reconnect using the new port. (Make sure to mention the port in the ssh command as -p 2222)
+
+```bash
+ssh username@203.54.168.221 -p 2222
+```
+
+## 5. Configure Firewall (UFW)
+
+UFW (Uncomplicated Firewall) is used to restrict access to only the necessary ports.
+
+### Install and Allow Ports
+These commands install the UFW firewall and explicitly allow traffic on ports used by SSH (2222), HTTP (80), HTTPS (443), CyberPanel (8090), and OpenLiteSpeed (7080). Enabling only necessary ports minimizes your server's attack surface.
+
+```bash
+sudo apt install ufw -y
+sudo ufw allow 2222/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 8090/tcp
+sudo ufw allow 7080/tcp
+sudo ufw enable
+```
+
+Check firewall status:
+
+```bash
+sudo ufw status verbose
+```
+This command verifies the firewall's current state and rules. The verbose flag provides detailed output, including the default policies and all open ports.
+
+
+## 6. Install and Configure Fail2Ban
+
+Fail2Ban helps protect your server from brute-force attacks by banning IPs that show malicious signs.
+
+### Install and Enable
+
+```bash
+sudo apt install fail2ban -y
+sudo systemctl enable fail2ban --now
+```
+
+### Configure Jail
+This opens the configuration file where you define custom jail settings. A “jail” in Fail2Ban refers to a set of rules for a specific service (like SSH) that triggers banning based on log patterns.
+
+
+```bash
+sudo nano /etc/fail2ban/jail.local
+```
+
+Add:
+
+```
+[sshd]
+enabled = true
+port = 2222
+```
+This enables Fail2Ban protection for SSH on the custom port 2222. If multiple failed login attempts are detected, the source IP will be temporarily banned to prevent brute-force attacks.
+
+### Restart Fail2Ban
+
+```bash
+sudo systemctl restart fail2ban
+```
+
+Check status:
+
+```bash
+sudo fail2ban-client status sshd
+```
+This checks the active status of the SSH jail. It shows how many IPs are currently banned and how many attempts were recorded, helping you monitor server intrusion attempts.
+
+## 7. Install CyberPanel
+
+CyberPanel is a modern web hosting control panel powered by OpenLiteSpeed. It's easy to install and provides a GUI for managing your server.
+
+### Install Wget
+
+```bash
+sudo apt install wget -y
+```
+
+### Switch to Root and Run Installer
+CyberPanel must be installed as root to ensure all system-level changes are permitted. wget downloads the installer script, chmod makes it executable, and running it initiates the installation process.
+
+```bash
+sudo su -
+wget -O installer.sh https://cyberpanel.net/install.sh
+chmod +x installer.sh
+./installer.sh
+```
+
+Follow prompts:
+
+- Install CyberPanel → 1
+- Web Server → 1 (OpenLiteSpeed)
+- Full installation → Y
+- Remote MySQL → N
+- Install Memcached, Redis → Y
+- Install Watchdog → N
+
+### Reset Admin Password
+After installation, use this command to set or reset the CyberPanel admin password. This is essential for logging in to the CyberPanel dashboard securely.
+
+
+```bash
+sudo adminPass YOUR_NEW_PASSWORD
+```
+
+Reset OpenLiteSpeed admin username and password for the OpenLiteSpeed WebAdmin Console.
+
+```bash
+sudo /usr/local/lsws/admin/misc/admpass.sh
+```
+
+Now you can access CyberPanel and OpenLiteSpeed using below ports.
+
+- CyberPanel: `https://203.54.168.221:8090/` 
+
+This is CyberPanel, a control panel that simplifies server and website management through a graphical interface.
+
+- OpenLiteSpeed: `https://203.54.168.221:7080/`
+
+This is OpenLiteSpeed, a high-performance, open-source web server used by CyberPanel to efficiently serve websites with low resource usage.
+
+Both of these get installed when you install CyberPanel.
+
+
+
+## 8. CI/CD: Retrieve Private Key
+
+This private key may be used in your CI/CD pipeline (e.g., GitHub Actions) to access the server.
+
+```bash
+cat ~/.ssh/id_ed25519
+```
+
+## 9. Install Docker
+
+Docker allows you to containerize your applications.
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+Logout and log in again for changes to take effect.
+
+### Optional: Create Docker Network
+Creating a custom Docker network allows multiple containers (e.g., your app and a reverse proxy) to communicate securely and efficiently with each other using DNS-based service discovery.
+
+```bash
+sudo docker network create shared-web-network
+```
+
+## 10. Domain and Website Setup
+
+Make sure your domain's A records point to `203.54.168.221`.
+
+In CyberPanel:
+
+- Navigate to Websites → Create Website
+- Fill in your domain, select package, enable SSL and DKIM if needed
+
+## 11. Configure Reverse Proxy
+
+To expose backend services securely over the internet, use rewrite rules as a reverse proxy.
+
+In CyberPanel → Manage Website → Rewrite Rules:
+
+```
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteRule ^(.*)$ http://127.0.0.1:4030/$1 [P,L]
+```
+
+Ensure the application is listening on `127.0.0.1:4030`. Restart OpenLiteSpeed after saving the changes.
+
+
+Thanks you!

@@ -23,9 +23,9 @@ export default function Home() {
   return (
     <div>
       <div className="mx-auto mt-8 mb-8 max-w-7xl pb-4 text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to My Blog</h1>
+        <h1 className="mb-4 text-4xl font-bold">Thoughts by <br/> Sithira Senanayake</h1>
         <p className="mx-auto mb-6 max-w-2xl text-lg">
-          {`I'm 'Sithira Senanayake, a software engineer passionate about technology, science, and
+          {`I'm Sithira Senanayake, a software engineer passionate about technology, science, and
           philosophy. Join me as I share details about my projects, opinions on different topics,
           and thoughs on anything else I find interesting.`}
         </p>
@@ -45,7 +45,7 @@ export default function Home() {
         {recentPosts.length > 0 ? (
           recentPosts.map((post) => (
             <Link key={post._id} href={post.url}>
-              <Card className="mt-8 rounded-none border-0 border-b border-b-gray-300 dark:border-b-gray-800 bg-transparent dark:text-white shadow-none">
+              <Card className="mt-8 rounded-none border-0 border-b border-b-gray-300 bg-transparent shadow-none dark:border-b-gray-800 dark:text-white">
                 <CardContent className="md:flex">
                   <div className="mx-auto min-w-50">
                     <p className="text-md mb-4 text-left text-gray-500 dark:text-gray-400">
@@ -56,12 +56,14 @@ export default function Home() {
                     </p>
                   </div>
                   <div>
-                    <h2 className="mb-2 text-xl font-semibold text-gray-700 dark:text-white">{post.title}</h2>
+                    <h2 className="mb-2 text-xl font-semibold text-gray-700 dark:text-white">
+                      {post.title}
+                    </h2>
                     <div className="mt-1 flex flex-wrap gap-3 text-xs font-medium text-cyan-500 uppercase">
                       {post.tags && post.tags.map((tag) => <span key={tag}>{tag}</span>)}
                     </div>
                     <p className="my-4 text-gray-600 dark:text-gray-400">{post.summary}</p>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-cyan-500">
+                    <p className="text-sm font-medium text-gray-600 hover:text-cyan-500 dark:text-gray-300">
                       Read more →
                     </p>
                   </div>
@@ -76,7 +78,10 @@ export default function Home() {
         )}
         <div className="mt-6 text-right">
           {recentPosts.length > 0 ? (
-            <Link href="/blog" className="text-md font-medium text-gray-600 dark:text-gray-300 hover:text-cyan-500">
+            <Link
+              href="/blog"
+              className="text-md font-medium text-gray-600 hover:text-cyan-500 dark:text-gray-300"
+            >
               All Posts →
             </Link>
           ) : (

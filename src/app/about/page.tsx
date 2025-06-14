@@ -1,8 +1,10 @@
+// src/app/about/page.ts
+
 import SocialIcon from '@/components/social-icons'
 import NextImage from 'next/image'
 import { genPageMetadata } from '../seo'
 
-export const metadata = genPageMetadata({ title: 'About' })
+export const metadata = genPageMetadata({ title: 'About Sithira Senanayake' })
 
 export default function AuthorLayout() {
   return (
@@ -10,7 +12,7 @@ export default function AuthorLayout() {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-            About
+            About Sithira Senanayake
           </h1>
         </div>
         <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:space-y-0 xl:gap-x-8">
@@ -58,7 +60,6 @@ export default function AuthorLayout() {
               hope you find something here that resonates with you!
             </p>
           </div>
-          
         </div>
       </div>
     </>

@@ -1,3 +1,5 @@
+// src/app/sitemap.ts
+
 import { MetadataRoute } from 'next'
 import { allPosts } from 'contentlayer/generated'
 import siteMetadata from '@/data/siteMetadata'

@@ -17,6 +17,7 @@ const space_grotesk = Space_Grotesk({
 const basePath = process.env.BASE_PATH || ''
 const gaId = process.env.GA_ID || 'G-J2KWNVV0XC'
 
+// --- RECOMMENDED METADATA UPDATES ---
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     url: './',
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],
-    locale: 'en_US',
+    locale: 'en_LK', // Changed to be more accurate for your location
     type: 'website',
   },
   alternates: {
@@ -39,6 +40,17 @@ export const metadata: Metadata = {
       'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
     },
   },
+  // Added a comprehensive icons object
+  icons: {
+    icon: '/favicon.ico', // Make sure you have these files in your /public folder
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  // Added theme colors here
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000' },
+  ],
   robots: {
     index: true,
     follow: true,
@@ -55,6 +67,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [siteMetadata.socialBanner],
   },
+  // --- COMBINED & ENHANCED SCHEMA ---
+  other: {
+    'msapplication-TileColor': '#000000', // Kept this for Windows tiles
+  },
 }
 
 export default function RootLayout({
@@ -62,17 +78,57 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const combinedSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
+        name: 'Sithira Senanayake',
+        url: 'https://sithira.me',
+        image: 'https://sithira.me/images/sithira-senanayake-2.png',
+        sameAs: [
+          'https://github.com/SthiraPs',
+          'https://www.linkedin.com/in/sithira-senanayake/',
+          'https://x.com/_Sithira',
+          'http://instagram.com/__sithira/',
+        ],
+        jobTitle: 'Software Engineer',
+        nationality: 'Sri Lankan',
+        knowsAbout: ['Technology', 'Software Engineering', 'Science', 'Philosophy'],
+      },
+      {
+        '@type': 'WebSite',
+        url: 'https://sithira.me',
+        name: 'Sithira Senanayake - Personal Blog',
+        publisher: {
+          '@type': 'Person',
+          name: 'Sithira Senanayake',
+        },
+        // This part enables the Sitelinks Search Box in Google
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://sithira.me/blog?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      },
+    ],
+  }
+
   return (
     <html
       lang={siteMetadata.language}
       className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <meta name="msapplication-TileColor" content="#000000" />
-      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-      <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      <head>
+        <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      </head>
+
       <body className="mr-2 flex min-h-screen flex-col bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
+        />
         <ThemeProviders>
           <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 sm:px-6 xl:max-w-5xl xl:px-0">
             <NavBar />

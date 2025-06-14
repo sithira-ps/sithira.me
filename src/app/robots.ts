@@ -1,3 +1,5 @@
+// src/app/robots.ts
+
 import { MetadataRoute } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 

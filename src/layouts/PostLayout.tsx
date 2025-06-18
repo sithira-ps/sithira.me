@@ -25,7 +25,8 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, next, prev, children }: LayoutProps) {
-  const { slug, date, title, tags } = content
+  // const { slug, date, title, tags } = content
+  const { date, title, tags } = content
 
   return (
     <SectionContainer>
@@ -54,7 +55,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                 Author
               </h2>
-              <div className="flex flex-wrap items-center gap-4 mt-2">
+              <div className="mt-2 flex flex-wrap items-center gap-4">
                 <Image
                   src="/images/sithira-senanayake-2.png"
                   width={20}
@@ -72,7 +73,8 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                   className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
                   id="comment"
                 >
-                  <Comments slug={slug} />
+                  {/* <Comments slug={slug} /> */}
+                  <Comments />
                 </div>
               )}
             </div>

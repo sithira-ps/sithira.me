@@ -1,0 +1,49 @@
+/* css/giscus.css */
+
+/*
+  This file acts as a bridge between your site's Tailwind theme and Giscus.
+  Tailwind will process this file, replacing your theme variables (e.g., var(--color-primary-500))
+  with their actual values (e.g., oklch(0.73 0.21 200)), and output a static CSS file for Giscus.
+*/
+
+:root {
+    /* --- General --- */
+    --giscus-body-font: var(--font-sans); /* Use your site's main font */
+  
+    /* --- Light Mode Colors --- */
+    --giscus-color-text-primary: var(--color-gray-800);
+    --giscus-color-text-secondary: var(--color-gray-600);
+    --giscus-color-text-tertiary: var(--color-gray-500);
+    --giscus-color-link: var(--color-primary-600);
+    --giscus-color-link-hover: var(--color-primary-700);
+    --giscus-color-border-primary: var(--color-gray-200);
+    --giscus-color-input-bg: var(--color-gray-100);
+    --giscus-color-input-border: var(--color-gray-300);
+    --giscus-color-input-border-focus: var(--color-primary-500);
+    --giscus-color-btn-bg: var(--color-gray-100);
+    --giscus-color-btn-border: var(--color-gray-300);
+    --giscus-color-btn-text: var(--color-gray-800);
+    --giscus-color-btn-primary-bg: var(--color-primary-600);
+    --giscus-color-btn-primary-border: var(--color-primary-600);
+    --giscus-color-btn-primary-text: #ffffff;
+  }
+  
+  /* --- Dark Mode Colors --- */
+  /* Giscus uses a `data-theme='dark'` selector */
+  [data-theme='dark'] {
+    --giscus-color-text-primary: var(--color-gray-200);
+    --giscus-color-text-secondary: var(--color-gray-400);
+    --giscus-color-text-tertiary: var(--color-gray-500);
+    --giscus-color-link: var(--color-primary-500);
+    --giscus-color-link-hover: var(--color-primary-400);
+    --giscus-color-border-primary: var(--color-gray-800);
+    --giscus-color-input-bg: var(--color-gray-950);
+    --giscus-color-input-border: var(--color-gray-800);
+    --giscus-color-input-border-focus: var(--color-primary-500);
+    --giscus-color-btn-bg: var(--color-gray-900);
+    --giscus-color-btn-border: var(--color-gray-800);
+    --giscus-color-btn-text: var(--color-gray-200);
+    --giscus-color-btn-primary-bg: var(--color-primary-600);
+    --giscus-color-btn-primary-border: var(--color-primary-600);
+    --giscus-color-btn-primary-text: #ffffff;
+  }

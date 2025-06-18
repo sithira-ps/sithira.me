@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import siteMetadata from '@/data/siteMetadata'
 import { Space_Grotesk } from 'next/font/google'
@@ -17,6 +17,12 @@ const space_grotesk = Space_Grotesk({
 const basePath = process.env.BASE_PATH || ''
 const gaId = process.env.GA_ID || 'G-J2KWNVV0XC'
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
+}
 // --- RECOMMENDED METADATA UPDATES ---
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -40,17 +46,14 @@ export const metadata: Metadata = {
       'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
     },
   },
+
   // Added a comprehensive icons object
   icons: {
     icon: '/favicon.ico', // Make sure you have these files in your /public folder
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
-  // Added theme colors here
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#fff' },
-    { media: '(prefers-color-scheme: dark)', color: '#000' },
-  ],
+
   robots: {
     index: true,
     follow: true,

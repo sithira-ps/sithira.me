@@ -11,7 +11,7 @@ interface PageParams {
 }
 
 interface PageProps {
-  params: PageParams
+  params: Promise<PageParams>
   searchParams?: Record<string, string | string[] | undefined>
 }
 
@@ -22,9 +22,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(props: PageProps) {
-  // Await the entire params object first
   const { params } = await Promise.resolve(props)
-  const slug = params.slug
+  const slug = (await params).slug
   const post = allPosts.find((post) => post._raw.flattenedPath === slug)
   if (!post) throw new Error(`Post not found for slug: ${slug}`)
   return { title: post.title }
@@ -33,7 +32,7 @@ export async function generateMetadata(props: PageProps) {
 export default async function Page(props: PageProps) {
   // Await the entire params object first
   const { params } = await Promise.resolve(props)
-  const slug = params.slug
+  const slug = (await params).slug
   const post = allPosts.find((post) => post._raw.flattenedPath === slug)
   if (!post) throw new Error(`Post not found for slug: ${slug}`)
   if (!post?.body.code) return notFound()

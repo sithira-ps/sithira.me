@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ExternalLink } from 'lucide-react'
 
-const categories = ['All', 'Web', 'Mobile', 'Desktop', 'Other']
+const categories = ['All', 'Web', 'Mobile', 'Desktop', 'Open Source', 'Other']
 
 export default function ProjectsList() {
   const [selectedCategory, setSelectedCategory] = useState('All')
@@ -26,7 +26,7 @@ export default function ProjectsList() {
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`rounded-md border px-4 py-2 text-sm font-medium transition-all ${
+            className={`rounded-md border px-4 py-2 text-sm font-medium transition-all cursor-pointer ${
               selectedCategory === category
                 ? 'border-cyan-600 bg-cyan-600 text-white'
                 : 'border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800'

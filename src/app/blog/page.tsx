@@ -29,8 +29,8 @@ export default function BlogPage({ pageNumber = 1, category = 'all' }: { pageNum
   })()
 
   return (
-    <div className="max-w-7xl mx-auto flex gap-10">
-      <CategoriesSidebar categories={categories}/>
+    <div className="mx-auto flex max-w-7xl gap-10">
+      <CategoriesSidebar categories={categories} totalPostsCount={allPosts.length} />
       <BlogList posts={filteredPost} pageNumber={pageNumber} category={category} />
     </div>
   )

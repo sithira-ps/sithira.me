@@ -11,15 +11,16 @@ interface Category {
 
 interface CategoriesSidebarProps {
   categories: Category[]
+  totalPostsCount: number
 }
 
-const CategoriesSidebar: FC<CategoriesSidebarProps> = ({ categories }) => {
+const CategoriesSidebar: FC<CategoriesSidebarProps> = ({ categories, totalPostsCount }) => {
   const pathname = usePathname()
 
   return (
-    <div className="mx-auto mb-4 flex max-w-7xl gap-10 sm:mt-10">
+    <div className="hidden sm:flex mx-auto mb-4 flex max-w-7xl gap-10 sm:mt-10">
       {/* Sidebar */}
-      <aside className="hidden h-full max-h-[calc(100vh-5rem)] w-64 max-w-[280px] min-w-[280px] overflow-y-auto rounded-md bg-gray-100/70 dark:bg-gray-900/70 pt-5 shadow-sm sm:flex">
+      <aside className="h-full max-h-[calc(100vh-5rem)] w-64 max-w-[280px] min-w-[280px] overflow-y-auto rounded-md bg-gray-100/70 pt-5 shadow-sm dark:bg-gray-900/70">
         <div className="px-6 py-4">
           <ul className="ml-4 space-y-2 text-sm">
             <Link href={`/blog/category/all`}>
@@ -28,9 +29,9 @@ const CategoriesSidebar: FC<CategoriesSidebarProps> = ({ categories }) => {
                   pathname.startsWith('/blog/category/all')
                     ? 'dark:text-primary-400 text-cyan-500'
                     : 'text-gray-900 dark:text-gray-100'
-                } cursor-pointer pb-2 uppercase hover:text-cyan-500 mb-4`}
+                } mb-4 cursor-pointer pb-2 uppercase hover:text-cyan-500`}
               >
-                All Posts
+                All Posts ({totalPostsCount})
               </li>
             </Link>
             {categories.map((cat) => {

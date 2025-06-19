@@ -24,7 +24,7 @@ export default function Home() {
     <div>
       <div className="mx-auto mt-8 mb-8 max-w-7xl pb-4 text-center">
         <h1 className="mb-4 text-4xl font-bold">Thoughts by <br/> Sithira Senanayake</h1>
-        <p className="mx-auto mb-6 max-w-2xl text-lg">
+        <p className="mx-auto mb-6 max-w-2xl text-md md:text-lg">
           {`I'm Sithira Senanayake, a software engineer passionate about technology, science, and
           philosophy. Join me as I share details about my projects, opinions on different topics,
           and thoughs on anything else I find interesting.`}

@@ -14,9 +14,10 @@ export default function Home() {
     day: 'numeric',
   }
 
-  const sortedPosts = allPosts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
+
+  const sortedPosts = allPosts
+    .filter((post) => !post.draft)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const recentPosts = sortedPosts.slice(0, 5)
 

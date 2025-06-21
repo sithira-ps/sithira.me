@@ -6,9 +6,10 @@ tags: ['project', 'nextjs', 'ai', 'llm']
 draft: false
 summary: 'Proxima.ai is a minimalistic live AI chat web app built with Next.js and Google Gemini API. It reflects my journey of overcoming perfectionism, using AI to speed up UI development, and focusing on shipping small, functional projects rather than chasing perfection. Future updates will include adding more models and fixing production streaming issues.'
 images: []
+coverImage: '/images/articles/llm-1.png'
 ---
 
-![shiny-object-syndrome](/images/articles/llm-platform.png)
+![llm-chat-app](/images/articles/llm-1.png)
 
 # Project Proxima.ai - Live AI Chat Web App
 
@@ -80,14 +81,14 @@ const stream = new ReadableStream({
 
 I have hosted this on both a VPS and AWS Lightsail. Both processes were fairly similar, as they both ultimately involve Linux virtual machines.
 
-On my VPS, I use CyberPanel to manage the server. However, on AWS Lightsail, I use a much more lightweight solution: Nginx Proxy Manager + Portainer. 
-This setup works well, and its biggest advantage is its minimalist design. It focuses solely on reverse proxy functionality and container management. 
+On my VPS, I use CyberPanel to manage the server. However, on AWS Lightsail, I use a much more lightweight solution: Nginx Proxy Manager + Portainer.
+This setup works well, and its biggest advantage is its minimalist design. It focuses solely on reverse proxy functionality and container management.
 (Portainer is also optional; I rarely use it because I'm accustomed to managing my Docker containers via the command line interface.)
 
 I've implemented a simple GitHub Action to build the Docker image, upload it to Docker Hub, log into my VPS, pull the Docker image from Docker Hub, and run it.
 This entire process is automated, so when I commit to the main branch, it immediately begins deploying the new changes to the production environment.
 
-During the this process, I encountered an interesting issue when using Nginx Proxy Manager: my application didn't display the "typing effect" when responding to questions. 
+During the this process, I encountered an interesting issue when using Nginx Proxy Manager: my application didn't display the "typing effect" when responding to questions.
 While I stream the response word by word, this wasn't visible in the UI.
 This issue didn't occur when using CyberPanel. I later discovered that this is a common problem with Nginx due to its default behavior of buffering responses.
 The solution is simple: add the following custom Nginx configuration within Nginx Proxy Manager.

@@ -43,10 +43,12 @@ export default function AuthorLayout() {
           </div>
           <div className="prose dark:prose-invert max-w-none pt-8 pb-8 xl:col-span-2">
             <p>
+              {`
               Welcome to my little corner of the internet! This is where curiosity leads the way, a
               space for thoughts, ideas, and those random musings that pop up when you least expect
               them. No rigid themes, no strict schedules, just authentic exploration of whatever
               catches my attention.
+              `}
             </p>
             <p>
               My journey started with a <b>Computer Science</b> degree from the{' '}
@@ -73,17 +75,20 @@ export default function AuthorLayout() {
             </p>
 
             <p>
+              {`
               What you'll find here is wonderfully unpredictable. One day I might reflect on a
               breakthrough moment in my coding journey, the next I could be sharing a story about
               adapting to remote work culture, or diving deep into a concept that's been keeping me
-              up at night. It's this spontaneity that keeps the writing fresh and honest.
+              up at night. It's this spontaneity that keeps the writing fresh and honest.  `}
             </p>
             <p>
+              {`
               I like to think of our interaction here as grabbing coffee with a friend, sometimes
               we'll geek out over technical discoveries, other times we'll laugh about the
               absurdities of daily life, and occasionally we'll venture into those bigger questions
               that make us human. Whatever brings you here, I hope you leave with something that
               sparks your own sense of wonder.
+              `}
             </p>
           </div>
         </div>

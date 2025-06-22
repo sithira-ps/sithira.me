@@ -10,6 +10,10 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: [
+        '/favicon.ico',
+        '/_next/static/media/*.woff2',
+      ],
     },
     sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
     host: siteMetadata.siteUrl,

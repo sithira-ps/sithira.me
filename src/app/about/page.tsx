@@ -35,7 +35,7 @@ export default function AuthorLayout() {
             </div> */}
             <div className="mt-6 flex space-x-3 pt-6">
               <SocialIcon kind="mail" href={`mailto:hello@sithira.me`} />
-              <SocialIcon kind="github" href="https://github.com/SthiraPs" />
+              <SocialIcon kind="github" href="https://github.com/sithira-ps" />
               <SocialIcon kind="linkedin" href="https://www.linkedin.com/in/sithira-senanayake/" />
               <SocialIcon kind="x" href="https://x.com/_Sithira" />
               <SocialIcon kind="instagram" href="http://instagram.com/__sithira/" />

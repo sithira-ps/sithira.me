@@ -3,10 +3,18 @@
 import { allPosts } from 'contentlayer/generated'
 import BlogList from '@/components/BlogList'
 import CategoriesSidebar from '@/components/CategoriesSidebar'
+import { Metadata } from 'next'
 
 interface Category {
   category: string
   postsCount: number
+}
+
+// Add this metadata object
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://sithira.me/blog/',
+  },
 }
 
 export default function BlogPage({

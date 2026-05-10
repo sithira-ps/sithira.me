@@ -20,7 +20,7 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, next, prev, children }: LayoutProps) {
-  const { date, title, tags } = content
+  const { date, title, tags, toc } = content
 
   return (
     <>
@@ -50,6 +50,38 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             </div>
           )}
         </header>
+
+        {toc && (toc as { value: string; url: string; depth: number }[]).length > 0 && (
+          <nav
+            className="not-prose my-8 rounded-lg p-4"
+            style={{ backgroundColor: 'var(--color-offset)', border: '1px solid var(--color-border)' }}
+            aria-label="Table of contents"
+          >
+            <h2
+              className="mb-2 text-sm font-semibold uppercase"
+              style={{ color: 'var(--color-caption)', fontFamily: 'var(--font-sans)' }}
+            >
+              Table of Contents
+            </h2>
+            <ul className="list-none space-y-1 p-0">
+              {(toc as { value: string; url: string; depth: number }[]).map((heading) => (
+                <li
+                  key={heading.url}
+                  className="before:!content-none"
+                  style={{ paddingLeft: `${(heading.depth - 1) * 0.75}rem` }}
+                >
+                  <a
+                    href={heading.url}
+                    className="text-sm no-underline hover:underline"
+                    style={{ color: 'var(--color-text)' }}
+                  >
+                    {heading.value}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
 
         {children}
 

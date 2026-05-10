@@ -78,21 +78,36 @@ export default function Sidebar() {
       <div>
         <h2>Elsewhere</h2>
         <ul className="grid list-none grid-cols-2 gap-x-6 gap-y-0.5 p-0">
-          <li className="!ml-0 before:!content-none">
-            <Link href={siteMetadata.github}>GitHub</Link>
-          </li>
-          <li className="!ml-0 before:!content-none">
-            <Link href={siteMetadata.instagram || '#'}>Instagram</Link>
-          </li>
-          <li className="!ml-0 before:!content-none">
-            <Link href={siteMetadata.linkedin}>LinkedIn</Link>
-          </li>
-          <li className="!ml-0 before:!content-none">
-            <Link href={siteMetadata.x || '#'}>X / Twitter</Link>
-          </li>
-          <li className="!ml-0 before:!content-none">
-            <Link href={siteMetadata.medium || '#'}>Medium</Link>
-          </li>
+          {siteMetadata.github && (
+            <li className="!ml-0 before:!content-none">
+              <a href={siteMetadata.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+            </li>
+          )}
+          {siteMetadata.instagram && (
+            <li className="!ml-0 before:!content-none">
+              <a href={siteMetadata.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+            </li>
+          )}
+          {siteMetadata.linkedin && (
+            <li className="!ml-0 before:!content-none">
+              <a href={siteMetadata.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </li>
+          )}
+          {siteMetadata.x && (
+            <li className="!ml-0 before:!content-none">
+              <a href={siteMetadata.x} target="_blank" rel="noopener noreferrer">X / Twitter</a>
+            </li>
+          )}
+          {siteMetadata.medium && (
+            <li className="!ml-0 before:!content-none">
+              <a href={siteMetadata.medium} target="_blank" rel="noopener noreferrer">Medium</a>
+            </li>
+          )}
+          {siteMetadata.facebook && (
+            <li className="!ml-0 before:!content-none">
+              <a href={siteMetadata.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+            </li>
+          )}
         </ul>
       </div>
 

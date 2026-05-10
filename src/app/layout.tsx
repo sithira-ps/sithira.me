@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import siteMetadata from '@/data/siteMetadata'
-import { Source_Serif_4 } from 'next/font/google'
-import { Space_Grotesk } from 'next/font/google'
+import { Source_Serif_4, Space_Grotesk, Caveat } from 'next/font/google'
 import { ThemeProviders } from './theme-providers'
 import Sidebar from '@/components/Sidebar'
 import { Toaster } from 'sonner'
@@ -22,6 +21,12 @@ const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-space-grotesk',
+})
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-caveat',
 })
 
 const basePath = process.env.BASE_PATH || ''
@@ -110,11 +115,6 @@ export default function RootLayout({
           '@type': 'Person',
           name: 'Sithira Senanayake',
         },
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: 'https://sithira.me/blog?q={search_term_string}',
-          'query-input': 'required name=search_term_string',
-        },
       },
     ],
   }
@@ -122,11 +122,12 @@ export default function RootLayout({
   return (
     <html
       lang={siteMetadata.language}
-      className={`${sourceSerif.variable} ${space_grotesk.variable} scroll-smooth`}
+      className={`${sourceSerif.variable} ${space_grotesk.variable} ${caveat.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+        <link rel="manifest" href="/manifest.json" />
       </head>
 
       <body>
@@ -143,8 +144,8 @@ export default function RootLayout({
                 <h1>
                   <Link
                     href="/"
-                    className="section-title flex items-center gap-2 no-underline active" 
-                    style={{ textDecoration: 'none' }}
+                    className="flex items-center gap-2 no-underline active"
+                    style={{ textDecoration: 'none', fontFamily: 'var(--font-caveat)', fontSize: '2.5rem', fontWeight: 700, color: 'var(--color-header)' }}
                   >
                     sithira.me
                   </Link>

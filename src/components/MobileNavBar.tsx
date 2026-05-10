@@ -39,7 +39,7 @@ const MobileNav = () => {
       <SheetContent side="left" className="w-3/4 bg-[--color-bg-dark] border-r border-gray-800 pt-4 pl-4">
         <SheetTitle>
           <Link href="/" onClick={() => setOpen(false)}>
-            <span className="font-sans text-lg font-medium text-[--color-accent]">sithira.me</span>
+            <span className="section-title text-[--color-accent]">sithira.me</span>
           </Link>
         </SheetTitle>
         <nav
@@ -57,9 +57,9 @@ const MobileNav = () => {
                 key={link.title}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`${
-                  isActive ? 'text-[--color-accent]' : 'text-[--color-text-body]'
-                } hover:text-[--color-accent] mb-2 py-2 pr-4 text-xl font-bold tracking-wide transition-colors`}
+                className={`item-title ${
+                  isActive ? 'text-[--color-accent]' : 'text-[--color-text]'
+                } hover:text-[--color-accent] mb-2 py-2 pr-4 transition-colors`}
               >
                 {link.title}
               </Link>

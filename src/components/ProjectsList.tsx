@@ -24,18 +24,13 @@ export default function ProjectsList() {
                 className="w-full sm:w-48 h-32 object-cover rounded-md shrink-0"
               />
               <div>
-                <h3
-                  className="font-sans text-base font-semibold mb-1"
-                  style={{ color: 'var(--color-header)' }}
-                >
-                  {d.title}
-                </h3>
-                <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--color-caption)' }}>
+                <h3 className="item-title mb-1">{d.title}</h3>
+                <p className="text-caption leading-relaxed mb-3">
                   {d.description}
                 </p>
                 <Link
                   href={d.href}
-                  className="inline-flex items-center gap-1.5 text-sm"
+                  className="text-caption inline-flex items-center gap-1.5"
                   style={{ color: 'var(--color-accent)' }}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -48,7 +43,7 @@ export default function ProjectsList() {
           </div>
         ))
       ) : (
-        <div className="flex h-40 items-center justify-center text-sm" style={{ color: 'var(--color-caption)' }}>
+        <div className="text-caption flex h-40 items-center justify-center">
           No projects available.
         </div>
       )}

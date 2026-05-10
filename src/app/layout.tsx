@@ -9,6 +9,8 @@ import { Toaster } from 'sonner'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import Link from 'next/link'
 import NavLinks from '@/components/NavLinks'
+import Footer from '@/components/Footer'
+import ThemeToggle from '@/components/ThemeToggle'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
@@ -27,7 +29,8 @@ const gaId = process.env.GA_ID || 'G-J2KWNVV0XC'
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: 'hsl(48, 40%, 5%)' },
+    { media: '(prefers-color-scheme: light)', color: '#faf9f7' },
+    { media: '(prefers-color-scheme: dark)', color: '#121008' },
   ],
 }
 
@@ -119,7 +122,7 @@ export default function RootLayout({
   return (
     <html
       lang={siteMetadata.language}
-      className={`${sourceSerif.variable} ${space_grotesk.variable} scroll-smooth dark`}
+      className={`${sourceSerif.variable} ${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
@@ -140,19 +143,23 @@ export default function RootLayout({
                 <h1>
                   <Link
                     href="/"
-                    className="flex items-center gap-2 no-underline"
-                    style={{ textDecoration: 'none', fontSize: '1.5rem', fontWeight: 700 }}
+                    className="section-title flex items-center gap-2 no-underline active" 
+                    style={{ textDecoration: 'none' }}
                   >
-                    <span style={{ color: 'var(--color-header)' }}>Sithira Senanayake</span>
+                    sithira.me
                   </Link>
                 </h1>
-                <NavLinks />
+                <div className="flex items-center gap-5">
+                  <NavLinks />
+                  <ThemeToggle />
+                </div>
               </div>
             </header>
 
             {/* Main content area */}
             <main className="Wrapper__main">
               <div className="Content">{children}</div>
+              <Footer />
             </main>
 
             {/* Sidebar */}

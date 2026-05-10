@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import siteMetadata from '@/data/siteMetadata'
 import { allPosts } from 'contentlayer/generated'
-import { Mail, Rss, FolderOpen, FlaskConical, Briefcase } from 'lucide-react'
+import { Mail, Rss, Briefcase, Asterisk } from 'lucide-react'
 
 export default function Sidebar() {
   const sortedPosts = allPosts
@@ -17,16 +17,16 @@ export default function Sidebar() {
   )
 
   return (
-    <aside className="Sidebar">
+    <aside className="Sidebar border-r border-[var(--color-caption)] pr-5">
       {/* Bio */}
       <p>
-        A weblog by Sithira Senanayake about exploring and building software, sharing knowledge,
-        and documenting the journey.
+        A weblog by Sithira Senanayake about exploring and building software, sharing knowledge, and
+        documenting the journey.
       </p>
 
       {/* Navigation Links */}
       <nav>
-        <ul className="flex flex-wrap gap-x-6 gap-y-2 list-none p-0">
+        <ul className="flex list-none flex justify-between p-0">
           <li className="!ml-0 before:!content-none">
             <Link href={`mailto:${siteMetadata.email}`} className="flex items-center gap-1.5">
               <Mail className="h-3.5 w-3.5" />
@@ -37,18 +37,6 @@ export default function Sidebar() {
             <Link href="/feed.xml" className="flex items-center gap-1.5">
               <Rss className="h-3.5 w-3.5" />
               RSS
-            </Link>
-          </li>
-          <li className="!ml-0 before:!content-none">
-            <Link href="/blog/category/all" className="flex items-center gap-1.5">
-              <FolderOpen className="h-3.5 w-3.5" />
-              Blog
-            </Link>
-          </li>
-          <li className="!ml-0 before:!content-none">
-            <Link href="/projects" className="flex items-center gap-1.5">
-              <FlaskConical className="h-3.5 w-3.5" />
-              Projects
             </Link>
           </li>
           <li className="!ml-0 before:!content-none">
@@ -74,8 +62,13 @@ export default function Sidebar() {
         <h2>Featured</h2>
         <ul className="list-none p-0">
           {featuredPosts.map((post) => (
-            <li key={post._id} className="!ml-0 mb-1">
-              <Link href={post.url}>{post.title}</Link>
+            <li key={post._id} className="mb-1 !ml-0">
+              <span className="flex items-center">
+                <Asterisk size={12} className="mr-1" />
+                <Link href={post.url} className="w-80 truncate">
+                  {post.title}
+                </Link>
+              </span>
             </li>
           ))}
         </ul>
@@ -84,7 +77,7 @@ export default function Sidebar() {
       {/* Elsewhere */}
       <div>
         <h2>Elsewhere</h2>
-        <ul className="list-none p-0 grid grid-cols-2 gap-x-6 gap-y-0.5">
+        <ul className="grid list-none grid-cols-2 gap-x-6 gap-y-0.5 p-0">
           <li className="!ml-0 before:!content-none">
             <Link href={siteMetadata.github}>GitHub</Link>
           </li>
@@ -93,9 +86,6 @@ export default function Sidebar() {
           </li>
           <li className="!ml-0 before:!content-none">
             <Link href={siteMetadata.linkedin}>LinkedIn</Link>
-          </li>
-          <li className="!ml-0 before:!content-none">
-            <Link href={siteMetadata.bluesky || '#'}>Bluesky</Link>
           </li>
           <li className="!ml-0 before:!content-none">
             <Link href={siteMetadata.x || '#'}>X / Twitter</Link>
@@ -109,10 +99,10 @@ export default function Sidebar() {
       {/* Archives */}
       <div>
         <h2>Archives</h2>
-        <ul className="list-none p-0 flex flex-wrap gap-x-1 gap-y-0">
+        <ul className="flex list-none flex-wrap gap-x-1 gap-y-0 p-0">
           {years.map((year, idx) => (
-            <li key={year} className="!ml-0 before:!content-none inline">
-              <Link href="/blog/category/all">{year}</Link>
+            <li key={year} className="!ml-0 inline before:!content-none">
+              <Link href="/blog">{year}</Link>
               {idx < years.length - 1 && (
                 <span style={{ color: 'var(--color-border)', margin: '0 2px' }}>/</span>
               )}

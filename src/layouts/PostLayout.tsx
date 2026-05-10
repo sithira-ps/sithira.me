@@ -34,16 +34,14 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             {title}
           </h1>
           {tags && tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-2" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem' }}>
+            <div className="text-tag flex flex-wrap gap-2 mt-2">
               {tags.map((tag) => (
                 <span
                   key={tag}
                   style={{
-                    color: 'var(--color-caption)',
                     border: '1px solid var(--color-border)',
                     padding: '1px 8px',
                     borderRadius: '3px',
-                    textTransform: 'uppercase',
                   }}
                 >
                   {tag}
@@ -61,7 +59,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           </div>
         )}
 
-        <footer className="mt-12 pt-8" style={{ borderTop: '1px solid var(--color-border)', fontFamily: 'var(--font-sans)', fontSize: '0.9rem' }}>
+        <footer className="text-caption mt-12 pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
           <div className="flex justify-between items-center">
             {prev && prev.path ? (
               <Link href={`/blog/${prev.path}`}>← {prev.title}</Link>
@@ -75,7 +73,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             )}
           </div>
           <div className="mt-4">
-            <Link href="/blog/category/all">← All posts</Link>
+            <Link href="/blog">← All posts</Link>
           </div>
         </footer>
       </article>

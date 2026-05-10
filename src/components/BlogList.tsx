@@ -8,10 +8,9 @@ const POSTS_PER_PAGE = 8
 interface BlogProps {
   posts: typeof allPosts
   pageNumber?: number
-  category: string
 }
 
-export default function BlogList({ posts, pageNumber = 1, category = 'all' }: BlogProps) {
+export default function BlogList({ posts, pageNumber = 1 }: BlogProps) {
   const startIndex = (pageNumber - 1) * POSTS_PER_PAGE
   const currentPosts = posts.slice(startIndex, startIndex + POSTS_PER_PAGE)
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
@@ -26,8 +25,8 @@ export default function BlogList({ posts, pageNumber = 1, category = 'all' }: Bl
               className="py-6"
               style={{ borderBottom: '1px solid var(--color-border)' }}
             >
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                <h3 className="font-sans text-base font-semibold">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                <h3 className="item-title">
                   <Link
                     href={post.url}
                     style={{ color: 'var(--color-header)', textDecoration: 'none' }}
@@ -36,38 +35,34 @@ export default function BlogList({ posts, pageNumber = 1, category = 'all' }: Bl
                     {post.title}
                   </Link>
                 </h3>
-                <time
-                  className="font-sans text-xs shrink-0"
-                  style={{ color: 'var(--color-caption)' }}
-                >
+                <time className="text-caption shrink-0">
                   {format(new Date(post.date), 'MMM d, yyyy')}
                 </time>
               </div>
+
+              <p className="text-summary-body mt-2 mb-2 leading-relaxed">{post.summary}</p>
               {post.tags && post.tags.length > 0 && (
-                <div className="mt-1.5 flex flex-wrap gap-2 text-xs font-sans font-medium uppercase" style={{ color: 'var(--color-caption)' }}>
+                <div className="text-tag mt-1.5 flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
+                    <span
+                      key={tag}
+                      className="after:ml-2 after:content-['|'] last:after:content-['']"
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
               )}
-              <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--color-text)' }}>
-                {post.summary}
-              </p>
             </article>
           ))
         ) : (
-          <div className="flex h-40 items-center justify-center text-center text-sm" style={{ color: 'var(--color-caption)' }}>
+          <div className="text-caption flex h-40 items-center justify-center text-center">
             No posts available.
           </div>
         )}
 
         {currentPosts.length > 0 && (
-          <Pagination
-            totalPages={totalPages}
-            currentPage={pageNumber}
-            basePath={'blog'}
-            category={category}
-          />
+          <Pagination totalPages={totalPages} currentPage={pageNumber} basePath={'blog'} />
         )}
       </section>
     </div>

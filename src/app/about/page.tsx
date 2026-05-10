@@ -19,13 +19,8 @@ export default function AuthorLayout() {
           width={160}
           height={160}
         />
-        <h1
-          className="text-2xl font-bold mb-1"
-          style={{ color: 'var(--color-header)', fontFamily: 'var(--font-sans)' }}
-        >
-          Sithira Senanayake
-        </h1>
-        <p style={{ color: 'var(--color-caption)' }}>Software Engineer</p>
+        <h1 className="page-title mb-1">Sithira Senanayake</h1>
+        <p className="text-caption">Software Engineer</p>
         <div className="mt-4 flex space-x-3">
           <SocialIcon kind="mail" href="mailto:hello@sithira.me" />
           <SocialIcon kind="github" href="https://github.com/sithira-ps" />

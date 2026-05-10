@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next *)",
+      "Bash(curl -s http://localhost:3847)",
+      "Bash(npx tsc *)",
+      "Bash(mkdir -p /Users/sithira/Developments/sithira.me/src/app/blog/page/\\\\[page\\\\])"
+    ],
+    "additionalDirectories": [
+      "/Users/sithira/Developments/sithira.me/src/app/blog/page"
+    ]
+  }
+}

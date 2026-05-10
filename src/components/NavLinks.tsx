@@ -13,7 +13,7 @@ export default function NavLinks() {
   const pathname = usePathname()
 
   return (
-    <nav className="flex items-center gap-6" style={{ fontSize: '1rem' }}>
+    <nav className="text-nav flex items-center gap-6">
       {links.map((link) => {
         const isActive =
           link.href === '/'
@@ -23,7 +23,7 @@ export default function NavLinks() {
         return (
           <Link
             key={link.href}
-            href={link.href === '/blog' ? '/blog/category/all' : link.href}
+            href={link.href === '/blog' ? '/blog' : link.href}
             className={`nav-link${isActive ? ' active' : ''}`}
           >
             {link.label}

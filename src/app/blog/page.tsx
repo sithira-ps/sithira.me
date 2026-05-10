@@ -1,16 +1,7 @@
-// blog/page.tsx
-
 import { allPosts } from 'contentlayer/generated'
 import BlogList from '@/components/BlogList'
-import CategoriesSidebar from '@/components/CategoriesSidebar'
 import { Metadata } from 'next'
 
-interface Category {
-  category: string
-  postsCount: number
-}
-
-// Add this metadata object
 export const metadata: Metadata = {
   alternates: {
     canonical: 'https://sithira.me/blog/',
@@ -30,22 +21,9 @@ export default function BlogPage({
   const filteredPost =
     category === 'all' ? sortedPosts : sortedPosts.filter((post) => post.tags?.includes(category))
 
-  const categories: Category[] = (() => {
-    const map: Record<string, number> = {}
-    allPosts.forEach((post) => {
-      ;(post.tags || []).forEach((tag) => {
-        map[tag] = (map[tag] || 0) + 1
-      })
-    })
-    return Object.entries(map).map(([category, postsCount]) => ({
-      category,
-      postsCount,
-    }))
-  })()
-
   return (
-    <div className="mx-auto flex max-w-7xl gap-10">
-      <CategoriesSidebar categories={categories} totalPostsCount={allPosts.length} />
+    <div>
+      <h1 className="font-sans text-2xl font-bold mb-8" style={{ color: 'var(--color-header)' }}>Blog</h1>
       <BlogList posts={filteredPost} pageNumber={pageNumber} category={category} />
     </div>
   )

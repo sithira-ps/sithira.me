@@ -1,12 +1,20 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import siteMetadata from '@/data/siteMetadata'
+import { Source_Serif_4 } from 'next/font/google'
 import { Space_Grotesk } from 'next/font/google'
 import { ThemeProviders } from './theme-providers'
-import Footer from '@/components/Footer'
-import NavBar from '@/components/NavBar'
+import Sidebar from '@/components/Sidebar'
 import { Toaster } from 'sonner'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Link from 'next/link'
+import NavLinks from '@/components/NavLinks'
+
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-source-serif',
+})
 
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -19,11 +27,10 @@ const gaId = process.env.GA_ID || 'G-J2KWNVV0XC'
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: '(prefers-color-scheme: dark)', color: 'hsl(48, 40%, 5%)' },
   ],
 }
-// --- RECOMMENDED METADATA UPDATES ---
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {
@@ -37,7 +44,7 @@ export const metadata: Metadata = {
     url: './',
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],
-    locale: 'en_LK', // Changed to be more accurate for your location
+    locale: 'en_LK',
     type: 'website',
   },
   alternates: {
@@ -46,14 +53,11 @@ export const metadata: Metadata = {
       'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
     },
   },
-
-  // Added a comprehensive icons object
   icons: {
-    icon: '/favicon.ico', // Make sure you have these files in your /public folder
+    icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
-
   robots: {
     index: true,
     follow: true,
@@ -69,10 +73,6 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     card: 'summary_large_image',
     images: [siteMetadata.socialBanner],
-  },
-  // --- COMBINED & ENHANCED SCHEMA ---
-  other: {
-    'msapplication-TileColor': '#000000', // Kept this for Windows tiles
   },
 }
 
@@ -107,7 +107,6 @@ export default function RootLayout({
           '@type': 'Person',
           name: 'Sithira Senanayake',
         },
-        // This part enables the Sitelinks Search Box in Google
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://sithira.me/blog?q={search_term_string}',
@@ -120,26 +119,48 @@ export default function RootLayout({
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      className={`${sourceSerif.variable} ${space_grotesk.variable} scroll-smooth dark`}
       suppressHydrationWarning
     >
       <head>
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       </head>
 
-      <body className="mr-2 flex min-h-screen flex-col bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
         />
         <ThemeProviders>
-          <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 sm:px-6 xl:max-w-5xl xl:px-0">
-            <NavBar />
-            <main className="mb-auto">{children}</main>
-            <GoogleAnalytics gaId={gaId} />
-            <Toaster richColors />
-            <Footer />
-          </section>
+          {/* Wrapper — CSS Grid two-column layout */}
+          <div className="Wrapper">
+            {/* Header with top accent border */}
+            <header className="Wrapper__header">
+              <div className="flex items-center justify-between">
+                <h1>
+                  <Link
+                    href="/"
+                    className="flex items-center gap-2 no-underline"
+                    style={{ textDecoration: 'none', fontSize: '1.5rem', fontWeight: 700 }}
+                  >
+                    <span style={{ color: 'var(--color-header)' }}>Sithira Senanayake</span>
+                  </Link>
+                </h1>
+                <NavLinks />
+              </div>
+            </header>
+
+            {/* Main content area */}
+            <main className="Wrapper__main">
+              <div className="Content">{children}</div>
+            </main>
+
+            {/* Sidebar */}
+            <Sidebar />
+          </div>
+
+          <GoogleAnalytics gaId={gaId} />
+          <Toaster richColors />
         </ThemeProviders>
       </body>
     </html>

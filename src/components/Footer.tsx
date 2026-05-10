@@ -1,39 +1,34 @@
-// import Link from "./Link";
 'use client'
 
-import { Button } from './ui/button'
-import { Moon, Sun } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 export default function Footer() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
-
   return (
-    <footer className="border-t-1 border-t-gray-300 dark:border-t-gray-800">
-      <div className="flex flex-col items-center py-4">
-        <div className="mb-2 flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>Sithira Senanayake</div>
-          <div>{` • `}</div>
-          <div>{`© ${new Date().getFullYear()}`}</div>
-          <p className="mx-2">|</p>
-          {theme === 'dark' ? (
-            <Button aria-label="Light mode" variant="ghost" onClick={() => setTheme('light')}>
-              <Sun className="h-5 w-5" />
-            </Button>
-          ) : (
-            <Button aria-label="Dark mode" variant="ghost" onClick={() => setTheme('dark')}>
-              <Moon className="h-5 w-5" />
-            </Button>
-          )}
+    <footer className="mt-16 border-t border-gray-800 pt-8 pb-6">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[--color-text-muted]">
+        <div className="flex items-center gap-4">
+          <Link
+            href="/feed.xml"
+            className="hover:text-[--color-accent] transition-colors"
+          >
+            RSS
+          </Link>
+          <Link
+            href="https://github.com/SthiraPs"
+            className="hover:text-[--color-accent] transition-colors"
+          >
+            GitHub
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/sithira-senanayake/"
+            className="hover:text-[--color-accent] transition-colors"
+          >
+            LinkedIn
+          </Link>
         </div>
+        <p>
+          &copy; {new Date().getFullYear()} Sithira Senanayake
+        </p>
       </div>
     </footer>
   )

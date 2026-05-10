@@ -18,43 +18,44 @@ const CategoriesSidebar: FC<CategoriesSidebarProps> = ({ categories, totalPostsC
   const pathname = usePathname()
 
   return (
-    <div className="hidden sm:flex mx-auto mb-4 flex max-w-7xl gap-10 sm:mt-10">
-      {/* Sidebar */}
-      <aside className="h-full max-h-[calc(100vh-5rem)] w-64 max-w-[280px] min-w-[280px] overflow-y-auto rounded-md bg-gray-100/70 pt-5 shadow-sm dark:bg-gray-900/70">
-        <div className="px-6 py-4">
-          <ul className="ml-4 space-y-2 text-sm">
-            <Link href={`/blog/category/all`}>
-              <li
-                className={`${
-                  pathname.startsWith('/blog/category/all')
-                    ? 'dark:text-primary-400 text-cyan-500'
-                    : 'text-gray-900 dark:text-gray-100'
-                } mb-4 cursor-pointer pb-2 uppercase hover:text-cyan-500`}
-              >
-                All Posts ({totalPostsCount})
-              </li>
+    <aside className="hidden sm:block w-56 shrink-0">
+      <div className="sticky top-8">
+        <h3 className="font-sans text-sm font-bold text-white uppercase tracking-wide mb-4">
+          Categories
+        </h3>
+        <ul className="space-y-2 text-sm">
+          <li>
+            <Link
+              href="/blog/category/all"
+              className={`block py-1 transition-colors ${
+                pathname.startsWith('/blog/category/all')
+                  ? 'text-[--color-accent]'
+                  : 'text-[--color-text-body] hover:text-[--color-accent]'
+              }`}
+            >
+              All Posts ({totalPostsCount})
             </Link>
-            {categories.map((cat) => {
-              const isActive = pathname.startsWith(`/blog/category/${cat.category}`)
-
-              return (
-                <Link key={cat.category} href={`/blog/category/${cat.category}`}>
-                  <li
-                    className={`${
-                      isActive
-                        ? 'dark:text-primary-400 text-cyan-500'
-                        : 'text-gray-900 dark:text-gray-100'
-                    } cursor-pointer pb-2 uppercase hover:text-cyan-500`}
-                  >
-                    {cat.category} ({cat.postsCount})
-                  </li>
+          </li>
+          {categories.map((cat) => {
+            const isActive = pathname.startsWith(`/blog/category/${cat.category}`)
+            return (
+              <li key={cat.category}>
+                <Link
+                  href={`/blog/category/${cat.category}`}
+                  className={`block py-1 transition-colors ${
+                    isActive
+                      ? 'text-[--color-accent]'
+                      : 'text-[--color-text-body] hover:text-[--color-accent]'
+                  }`}
+                >
+                  {cat.category} ({cat.postsCount})
                 </Link>
-              )
-            })}
-          </ul>
-        </div>
-      </aside>
-    </div>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </aside>
   )
 }
 

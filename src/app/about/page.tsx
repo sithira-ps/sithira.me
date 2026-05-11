@@ -4,11 +4,35 @@ import { genPageMetadata } from '../seo'
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
 
-export const metadata = genPageMetadata({ title: 'About Sithira Senanayake' })
+export const metadata = genPageMetadata({
+  title: 'About Sithira Senanayake',
+  description:
+    'Learn about Sithira Senanayake — a software engineer from Sri Lanka specializing in web and mobile development with Next.js, Flutter, and Angular.',
+  canonicalUrl: 'https://sithira.me/about',
+})
 
 export default function AuthorLayout() {
+  const profileSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: { '@id': 'https://sithira.me/#person' },
+    dateCreated: '2024-01-01',
+    dateModified: new Date().toISOString().split('T')[0],
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sithira.me' },
+        { '@type': 'ListItem', position: 2, name: 'About', item: 'https://sithira.me/about' },
+      ],
+    },
+  }
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
+      />
       {/* Photo, name, title, socials */}
       <div className="flex flex-col items-center text-center mb-10">
         <NextImage

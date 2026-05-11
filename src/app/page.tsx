@@ -1,9 +1,34 @@
 import Link from 'next/link'
 import siteMetadata from '@/data/siteMetadata'
 import { allPosts } from 'contentlayer/generated'
-import { genPageMetadata } from './seo'
+import { Metadata } from 'next'
 
-export const metadata = genPageMetadata({ title: 'Home | Sithira Senanayake - Personal Blog' })
+export const metadata: Metadata = {
+  title: {
+    absolute: 'Sithira Senanayake | Software Engineer & Personal Blog',
+  },
+  description:
+    'Personal blog by Sithira Senanayake — a software engineer writing about technology, web development, science, and philosophy.',
+  alternates: {
+    canonical: 'https://sithira.me/',
+  },
+  openGraph: {
+    title: 'Sithira Senanayake | Software Engineer & Personal Blog',
+    description:
+      'Personal blog by Sithira Senanayake — a software engineer writing about technology, web development, science, and philosophy.',
+    url: 'https://sithira.me/',
+    siteName: siteMetadata.title,
+    images: [siteMetadata.socialBanner],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Sithira Senanayake | Software Engineer & Personal Blog',
+    card: 'summary_large_image',
+    images: [siteMetadata.socialBanner],
+    creator: '@_Sithira',
+  },
+}
 
 export default function Home() {
   const sortedPosts = allPosts
@@ -22,10 +47,9 @@ export default function Home() {
     <section>
       <div className="prose mb-20 max-w-none text-center">
         <p>
-          I&apos;m <span className="text-[var(--color-accent)]">Sithira Senanayake</span>, a
-          software engineer passionate about technology, science, and philosophy. Join me as I share
-          details about my projects, opinions on different topics, and thoughts on anything else I
-          find interesting.
+          I&apos;m <span className="text-underline">Sithira Senanayake</span>, a software engineer
+          passionate about technology, science, and philosophy. Join me as I share details about my
+          projects, opinions on different topics, and thoughts on anything else I find interesting.
         </p>
         <p>
           In this blog, I share my journey, experiences, and the challenges I encounter in my

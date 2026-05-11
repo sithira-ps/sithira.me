@@ -26,7 +26,7 @@ export default function Sidebar() {
 
       {/* Navigation Links */}
       <nav>
-        <ul className="flex list-none flex justify-between p-0">
+        <ul className="flex list-none justify-between p-0">
           <li className="!ml-0 before:!content-none">
             <Link href={`mailto:${siteMetadata.email}`} className="flex items-center gap-1.5">
               <Mail className="h-3.5 w-3.5" />
@@ -80,34 +80,76 @@ export default function Sidebar() {
         <ul className="grid list-none grid-cols-2 gap-x-6 gap-y-0.5 p-0">
           {siteMetadata.github && (
             <li className="!ml-0 before:!content-none">
-              <a href={siteMetadata.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href={siteMetadata.github} target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
             </li>
           )}
           {siteMetadata.instagram && (
             <li className="!ml-0 before:!content-none">
-              <a href={siteMetadata.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href={siteMetadata.instagram} target="_blank" rel="noopener noreferrer">
+                Instagram
+              </a>
             </li>
           )}
           {siteMetadata.linkedin && (
             <li className="!ml-0 before:!content-none">
-              <a href={siteMetadata.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href={siteMetadata.linkedin} target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
             </li>
           )}
           {siteMetadata.x && (
             <li className="!ml-0 before:!content-none">
-              <a href={siteMetadata.x} target="_blank" rel="noopener noreferrer">X / Twitter</a>
+              <a href={siteMetadata.x} target="_blank" rel="noopener noreferrer">
+                X / Twitter
+              </a>
             </li>
           )}
           {siteMetadata.medium && (
             <li className="!ml-0 before:!content-none">
-              <a href={siteMetadata.medium} target="_blank" rel="noopener noreferrer">Medium</a>
+              <a href={siteMetadata.medium} target="_blank" rel="noopener noreferrer">
+                Medium
+              </a>
             </li>
           )}
           {siteMetadata.facebook && (
             <li className="!ml-0 before:!content-none">
-              <a href={siteMetadata.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href={siteMetadata.facebook} target="_blank" rel="noopener noreferrer">
+                Facebook
+              </a>
             </li>
           )}
+        </ul>
+      </div>
+
+      {/* Tags */}
+      <div>
+        <h2>Tags</h2>
+        <ul className="flex list-none flex-wrap gap-x-2 gap-y-1.5 p-0">
+          {(() => {
+            const tagCounts: Record<string, number> = {}
+            sortedPosts.forEach((post) => {
+              post.tags?.forEach((tag) => {
+                tagCounts[tag] = (tagCounts[tag] || 0) + 1
+              })
+            })
+            return Object.entries(tagCounts)
+              .sort((a, b) => b[1] - a[1])
+              .map(([tag, count]) => (
+                <li
+                  key={tag}
+                  className="!ml-0 flex items-center before:!content-none after:ml-2 after:text-[var(--color-caption)] after:content-['|'] last:after:hidden"
+                >
+                  <Link
+                    href={`/tags/${encodeURIComponent(tag.toLowerCase())}`}
+                    className="text-tag no-underline hover:!text-[var(--color-accent)]"
+                  >
+                    {tag} ({count})
+                  </Link>
+                </li>
+              ))
+          })()}
         </ul>
       </div>
 

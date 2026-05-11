@@ -94,26 +94,66 @@ export default function RootLayout({
     '@graph': [
       {
         '@type': 'Person',
+        '@id': 'https://sithira.me/#person',
         name: 'Sithira Senanayake',
         url: 'https://sithira.me',
-        image: 'https://sithira.me/images/sithira-senanayake-2.png',
+        image: {
+          '@type': 'ImageObject',
+          url: 'https://sithira.me/images/sithira-senanayake-2.png',
+          width: 400,
+          height: 400,
+        },
         sameAs: [
-          'https://github.com/SthiraPs',
+          'https://github.com/sithira-ps',
           'https://www.linkedin.com/in/sithira-senanayake/',
           'https://x.com/_Sithira',
-          'http://instagram.com/__sithira/',
+          'https://instagram.com/__sithira/',
+          'https://medium.com/@sithirasenanayake',
         ],
         jobTitle: 'Software Engineer',
-        nationality: 'Sri Lankan',
-        knowsAbout: ['Technology', 'Software Engineering', 'Science', 'Philosophy'],
+        nationality: { '@type': 'Country', name: 'Sri Lanka' },
+        knowsAbout: [
+          'Software Engineering',
+          'Next.js',
+          'React',
+          'Flutter',
+          'Angular',
+          'TypeScript',
+          'Node.js',
+          'Docker',
+          'Cloud Computing',
+          'Artificial Intelligence',
+          'Philosophy',
+          'Science',
+        ],
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'University of Sri Jayewardenepura',
+          url: 'https://www.sjp.ac.lk/',
+        },
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Aventra Group',
+          url: 'https://www.aventragroup.com/',
+        },
+        description:
+          'Software Engineer specializing in web and mobile development. Writes about technology, software engineering, science, and philosophy.',
       },
       {
         '@type': 'WebSite',
+        '@id': 'https://sithira.me/#website',
         url: 'https://sithira.me',
         name: 'Sithira Senanayake - Personal Blog',
-        publisher: {
-          '@type': 'Person',
-          name: 'Sithira Senanayake',
+        description: 'Personal blog about software engineering, technology, science, and philosophy by Sithira Senanayake.',
+        publisher: { '@id': 'https://sithira.me/#person' },
+        inLanguage: 'en-US',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: 'https://sithira.me/blog?q={search_term_string}',
+          },
+          'query-input': 'required name=search_term_string',
         },
       },
     ],
@@ -144,10 +184,16 @@ export default function RootLayout({
                 <h1>
                   <Link
                     href="/"
-                    className="flex items-center gap-2 no-underline active"
-                    style={{ textDecoration: 'none', fontFamily: 'var(--font-caveat)', fontSize: '2.5rem', fontWeight: 700, color: 'var(--color-header)' }}
+                    className="active flex items-center gap-1 no-underline"
+                    style={{
+                      textDecoration: 'none',
+                      fontFamily: 'var(--font-caveat)',
+                      fontSize: '2.5rem',
+                      fontWeight: 700,
+                      color: 'var(--color-header)',
+                    }}
                   >
-                    sithira.me
+                    sithira<span className="text-[var(--color-accent)]">.me</span>
                   </Link>
                 </h1>
                 <div className="flex items-center gap-5">

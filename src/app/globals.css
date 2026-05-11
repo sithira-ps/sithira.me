@@ -48,7 +48,7 @@
   --root-font-size: 14px;
   --content-width: 52rem;
   --sidebar-width: 19rem;
-  --layout-padding: 1rem;
+  --layout-padding: 2rem;
   --color-accent: #ff680a;
   --link-color: var(--color-accent);
   --link-hover: #e05600;
@@ -420,7 +420,7 @@ code {
   grid-column: content;
   padding-inline: var(--layout-padding);
   background-color: var(--color-body-background);
-  padding-bottom: 4rem;
+  padding-bottom: 0rem;
 }
 
 .Content {
@@ -443,10 +443,10 @@ code {
 @media (min-width: 700px) {
   .Sidebar {
     display: flex;
-    padding-bottom: 2rem;
+    padding-bottom:8rem;
     max-width: var(--sidebar-width);
     position: sticky;
-    top: 9rem;
+    top: 10rem;
     align-self: start;
     overflow-y: auto;
   }

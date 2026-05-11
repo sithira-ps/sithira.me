@@ -3,7 +3,8 @@ const siteMetadata = {
   title: 'Sithira Senanayake | Personal Blog',
   author: 'Sithira Senanayake',
   headerTitle: 'Sithira Senanayake',
-  description: 'The personal blog of Sithira Senanayake',
+  description:
+    'Personal blog by Sithira Senanayake — a software engineer writing about web development, Next.js, Flutter, AI, DevOps, science, and philosophy.',
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://sithira.me',

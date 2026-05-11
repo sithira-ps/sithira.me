@@ -43,3 +43,7 @@ next-env.d.ts
 
 # contentlayer
 .contentlayer/
+
+# claude
+.claude/settings.json
+

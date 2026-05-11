@@ -45,7 +45,10 @@ export default function Home() {
 
   return (
     <section>
-      <div className="prose mb-20 max-w-none text-center">
+      <div
+        className="prose mb-20 max-w-none text-center"
+        style={{fontFamily: 'var(--font-sans)' }}
+      >
         <p>
           I&apos;m <span className="text-underline">Sithira Senanayake</span>, a software engineer
           passionate about technology, science, and philosophy. Join me as I share details about my
@@ -56,6 +59,9 @@ export default function Home() {
           day-to-day life. This is primarily for my entertainment, to establish an online presence,
           and to serve as a time capsule to look back on after 20 years.
         </p>
+        <Link href="/about" className="!no-underline">
+          Learn more about me →
+        </Link>
       </div>
 
       {recentPosts.map((post) => (

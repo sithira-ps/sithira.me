@@ -56,7 +56,10 @@ export default function BlogPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
-      <h1 className="page-title mb-8">Blog</h1>
+      <h1 className="page-title mb-2">Blog</h1>
+      <p className="text-summary-body mb-8">
+        Blog post articles
+      </p>
       <BlogList posts={sortedPosts} />
     </div>
   )

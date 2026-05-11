@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import siteMetadata from '@/data/siteMetadata'
-import { allPosts } from 'contentlayer/generated'
-import { Mail, Rss, Briefcase, Asterisk } from 'lucide-react'
+import { allPosts, allNotes } from 'contentlayer/generated'
+import { Mail, Rss, Briefcase, Asterisk, StickyNote } from 'lucide-react'
 
 export default function Sidebar() {
   const sortedPosts = allPosts
@@ -9,6 +9,10 @@ export default function Sidebar() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const featuredPosts = sortedPosts.slice(0, 5)
+
+  const recentNotes = allNotes
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3)
 
   const years = [...new Set(sortedPosts.map((p) => new Date(p.date).getFullYear()))].sort(
     (a, b) => b - a
@@ -48,12 +52,39 @@ export default function Sidebar() {
 
       {/* About */}
       <div>
-        <h2>About the author</h2>
+        <h2>About me</h2>
         <p>
-          Sithira is a software engineer and amateur human passionate about technology, science, and
+          Im Sithira, a software engineer and amateur human passionate about technology, science, and
           philosophy. Currently building things on the web.
         </p>
       </div>
+
+      {/* Recent Notes */}
+      {recentNotes.length > 0 && (
+        <div>
+          <h2>Recent Notes</h2>
+          <ul className="list-none p-0">
+            {recentNotes.map((note) => (
+              <li key={note._id} className="mb-2 !ml-0">
+                <Link href="/notes" className="group block">
+                  <span className="flex items-start gap-1.5">
+                    <StickyNote size={12} className="mt-1 shrink-0" />
+                    <span className="line-clamp-1 text-sm leading-snug group-hover:text-[var(--color-accent)]">
+                      {note.body.raw.trim()}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/notes"
+            className="text-sm text-[var(--color-caption)] hover:text-[var(--color-accent)]"
+          >
+            View all notes →
+          </Link>
+        </div>
+      )}
 
       {/* Featured */}
       <div>

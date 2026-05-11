@@ -48,8 +48,8 @@ export default function Projects() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsSchema) }}
       />
-      <h1 className="page-title mb-4">Projects</h1>
-      <p className="text-caption mb-10">
+      <h1 className="page-title mb-2">Projects</h1>
+      <p className="text-summary-body mb-10">
         List of my personal projects, freelance projects and SaaS projects.
       </p>
       <ProjectsList />

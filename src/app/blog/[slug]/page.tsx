@@ -17,14 +17,14 @@ interface PageProps {
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
-    slug: post._raw.flattenedPath,
+    slug: post.slug,
   }))
 }
 
 export async function generateMetadata(props: PageProps) {
   const { params } = await Promise.resolve(props)
   const slug = (await params).slug
-  const post = allPosts.find((post) => post._raw.flattenedPath === slug)
+  const post = allPosts.find((post) => post.slug === slug)
   if (!post) throw new Error(`Post not found for slug: ${slug}`)
 
   const siteUrl = 'https://sithira.me'
@@ -67,7 +67,7 @@ export default async function Page(props: PageProps) {
   // Await the entire params object first
   const { params } = await Promise.resolve(props)
   const slug = (await params).slug
-  const post = allPosts.find((post) => post._raw.flattenedPath === slug)
+  const post = allPosts.find((post) => post.slug === slug)
   if (!post) throw new Error(`Post not found for slug: ${slug}`)
   if (!post?.body.code) return notFound()
 

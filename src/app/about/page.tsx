@@ -44,7 +44,7 @@ export default function AuthorLayout() {
           height={160}
         />
         <h1 className="page-title mb-1">Sithira Senanayake</h1>
-        <p className="text-caption">Software Engineer</p>
+        <p className="text- ">Software Engineer / Data Engineer</p>
         <div className="mt-4 flex space-x-3">
           <SocialIcon kind="mail" href="mailto:hello@sithira.me" />
           <SocialIcon kind="github" href="https://github.com/sithira-ps" />

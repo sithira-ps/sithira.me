@@ -66,7 +66,7 @@ function TocBranch({ nodes }: { nodes: TocNode[] }) {
 function TocTree({ headings }: { headings: TocHeading[] }) {
   const tree = buildTree(headings)
   return (
-    <div className="toc-tree mt-3" style={{ fontFamily: 'var(--font-sans)' }}>
+    <div className="toc-tree mt-3 ml-5" style={{ fontFamily: 'var(--font-sans)' }}>
       <TocBranch nodes={tree} />
     </div>
   )
@@ -112,7 +112,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
         </header>
 
         {toc && (toc as { value: string; url: string; depth: number }[]).length > 0 && (
-          <details className="not-prose my-8" pl-4 aria-label="Table of contents">
+          <details className="not-prose my-8" aria-label="Table of contents">
             <summary
               className="cursor-pointer text-sm font-semibold uppercase select-none"
               style={{ color: 'var(--color-caption)', fontFamily: 'var(--font-sans)' }}

@@ -1,0 +1,26 @@
+{
+  "name": "Sithira Senanayake | Personal Blog",
+  "short_name": "sithira.me",
+  "description": "The personal blog of Sithira Senanayake",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf9f7",
+  "theme_color": "#ff680a",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/sithira-senanayake-2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

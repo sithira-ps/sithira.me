@@ -2,6 +2,7 @@
 import { defineDocumentType, makeSource } from 'contentlayer2/source-files'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+import rehypeSlug from 'rehype-slug'
 import { extractTocHeadings } from 'pliny/mdx-plugins/index.js'
 
 export const Post = defineDocumentType(() => ({
@@ -36,6 +37,6 @@ export default makeSource({
   documentTypes: [Post],
   mdx: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeSlug, rehypeKatex],
   },
 })

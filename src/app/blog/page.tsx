@@ -1,52 +1,63 @@
-// blog/page.tsx
-
 import { allPosts } from 'contentlayer/generated'
 import BlogList from '@/components/BlogList'
-import CategoriesSidebar from '@/components/CategoriesSidebar'
 import { Metadata } from 'next'
+import siteMetadata from '@/data/siteMetadata'
 
-interface Category {
-  category: string
-  postsCount: number
-}
-
-// Add this metadata object
 export const metadata: Metadata = {
+  title: 'Blog',
+  description:
+    'Articles about software engineering, web development, DevOps, AI, science, and philosophy by Sithira Senanayake.',
   alternates: {
-    canonical: 'https://sithira.me/blog/',
+    canonical: `${siteMetadata.siteUrl}/blog`,
+  },
+  openGraph: {
+    title: `Blog | ${siteMetadata.title}`,
+    description:
+      'Articles about software engineering, web development, DevOps, AI, science, and philosophy.',
+    url: `${siteMetadata.siteUrl}/blog`,
+    type: 'website',
   },
 }
 
-export default function BlogPage({
-  pageNumber = 1,
-  category = 'all',
-}: {
-  pageNumber: number
-  category: string
-}) {
+export default function BlogPage() {
   const sortedPosts = allPosts
     .filter((post) => !post.draft)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  const filteredPost =
-    category === 'all' ? sortedPosts : sortedPosts.filter((post) => post.tags?.includes(category))
 
-  const categories: Category[] = (() => {
-    const map: Record<string, number> = {}
-    allPosts.forEach((post) => {
-      ;(post.tags || []).forEach((tag) => {
-        map[tag] = (map[tag] || 0) + 1
-      })
-    })
-    return Object.entries(map).map(([category, postsCount]) => ({
-      category,
-      postsCount,
-    }))
-  })()
+  const blogSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${siteMetadata.siteUrl}/blog#blog`,
+    name: 'Sithira Senanayake\'s Blog',
+    description:
+      'Articles about software engineering, web development, DevOps, AI, science, and philosophy.',
+    url: `${siteMetadata.siteUrl}/blog`,
+    author: { '@id': 'https://sithira.me/#person' },
+    isPartOf: { '@id': 'https://sithira.me/#website' },
+    blogPost: sortedPosts.slice(0, 10).map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      url: `${siteMetadata.siteUrl}/blog/${post.path}`,
+      datePublished: post.date,
+      description: post.summary,
+    })),
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteMetadata.siteUrl },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteMetadata.siteUrl}/blog` },
+      ],
+    },
+  }
 
   return (
-    <div className="mx-auto flex max-w-7xl gap-10">
-      <CategoriesSidebar categories={categories} totalPostsCount={allPosts.length} />
-      <BlogList posts={filteredPost} pageNumber={pageNumber} category={category} />
+    <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
+      <h1 className="page-title mb-8">Blog</h1>
+      <BlogList posts={sortedPosts} />
     </div>
   )
 }

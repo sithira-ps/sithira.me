@@ -1,75 +1,68 @@
-import { Card, CardContent } from '@/components/ui/card'
 import { allPosts } from 'contentlayer/generated'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import Pagination from '@/components/Pagination'
-import Image from 'next/image'
 
-const POSTS_PER_PAGE = 4
+const POSTS_PER_PAGE = 8
 
 interface BlogProps {
   posts: typeof allPosts
   pageNumber?: number
-  category: string
 }
 
-export default function BlogList({ posts, pageNumber = 1, category = 'all' }: BlogProps) {
+export default function BlogList({ posts, pageNumber = 1 }: BlogProps) {
   const startIndex = (pageNumber - 1) * POSTS_PER_PAGE
   const currentPosts = posts.slice(startIndex, startIndex + POSTS_PER_PAGE)
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl gap-10 sm:mt-10">
-      <section className="flex-1 space-y-2">
+    <div className="w-full">
+      <section className="space-y-1">
         {currentPosts && currentPosts.length > 0 ? (
-          currentPosts.map((post, idx) => (
-            <Card
-              key={idx}
-              className="rounded-none border-0 border-b border-b-gray-300 bg-transparent px-4 shadow-none dark:border-b-gray-800"
+          currentPosts.map((post) => (
+            <article
+              key={post._id}
+              className="py-6"
+              style={{ borderBottom: '1px solid var(--color-border)' }}
             >
-              <CardContent className="w-full p-0">
-                <Link href={post.url} className="block lg:flex justify-between gap-4">
-                  <div className="">
-                    <Image
-                      alt="sithira-senanayake-avatar"
-                      src={post.coverImage}
-                      className="mt-2  w-full lg:w-50 rounded-md object-cover"
-                      width={180}
-                      height={100}
-                    />
-                  </div>
-                  <div className="w-full lg:w-2/3 mt-4 sm:mt-0">
-                    <h3 className="mt-1 text-xl font-semibold">{post.title}</h3>
-                    <div className="mt-1 flex flex-wrap gap-3 text-xs font-medium text-cyan-500 uppercase">
-                      {post.tags && post.tags.map((tag) => <span key={tag}>{tag}</span>)}
-                    </div>
-                    <p className="text-muted-foreground mt-4 text-sm">{post.summary}</p>
-                  </div>
-                </Link>
-                <div className="mt-4 flex items-center justify-between">
-                  <p className="dark:text-muted-foreground text-xs">
-                    {format(new Date(post.date), 'MMMM do, yyyy')}
-                  </p>
-                  <span className="text-sm font-medium text-gray-600 hover:text-cyan-500 dark:text-gray-300">
-                    Read more →
-                  </span>
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                <h3 className="item-title">
+                  <Link
+                    href={post.url}
+                    style={{ color: 'var(--color-header)', textDecoration: 'none' }}
+                    className="hover:!text-[var(--color-accent)]"
+                  >
+                    {post.title}
+                  </Link>
+                </h3>
+                <time className="text-caption shrink-0">
+                  {format(new Date(post.date), 'MMM d, yyyy')}
+                </time>
+              </div>
+
+              <p className="text-summary-body mt-2 mb-2 leading-relaxed">{post.summary}</p>
+              {post.tags && post.tags.length > 0 && (
+                <div className="text-tag mt-1.5 flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="after:ml-2 after:content-['|'] last:after:content-['']"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
+              )}
+            </article>
           ))
         ) : (
-          <div className="text-muted-foreground flex h-full items-center justify-center text-center text-sm">
+          <div className="text-caption flex h-40 items-center justify-center text-center">
             No posts available.
           </div>
         )}
 
         {currentPosts.length > 0 && (
-          <Pagination
-            totalPages={totalPages}
-            currentPage={pageNumber}
-            basePath={'blog'}
-            category={category}
-          />
+          <Pagination totalPages={totalPages} currentPage={pageNumber} basePath={'blog'} />
         )}
       </section>
     </div>

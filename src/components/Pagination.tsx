@@ -5,19 +5,15 @@ interface PaginationProps {
   totalPages: number
   currentPage: number
   basePath: string
-  category: string
 }
 
 export default function Pagination({
   totalPages,
   currentPage,
   basePath,
-  category,
 }: PaginationProps) {
   const createPageLink = (page: number) => {
-    return page === 1
-      ? `/${basePath}/category/${category}`
-      : `/${basePath}/category/${category}/page/${page}`
+    return page === 1 ? `/${basePath}` : `/${basePath}/page/${page}`
   }
 
   const renderPageNumbers = () => {
@@ -29,16 +25,19 @@ export default function Pagination({
           <Link
             key={i}
             href={createPageLink(i)}
-            className={`mx-1 rounded px-2 py-1 ${
-              i === currentPage ? 'bg-cyan-600 text-white' : 'dark:text-white hover:bg-cyan-800 hover:text-white'
-            }`}
+            className="mx-1 rounded px-2 py-1"
+            style={
+              i === currentPage
+                ? { backgroundColor: 'var(--color-accent)', color: '#fff' }
+                : { color: 'var(--color-text)' }
+            }
           >
             {i}
           </Link>
         )
       } else if ((i === currentPage - 2 && i > 1) || (i === currentPage + 2 && i < totalPages)) {
         pages.push(
-          <span key={`ellipsis-${i}`} className="px-2 text-gray-400">
+          <span key={`ellipsis-${i}`} className="px-2" style={{ color: 'var(--color-caption)' }}>
             ...
           </span>
         )
@@ -52,31 +51,23 @@ export default function Pagination({
   const nextPage = currentPage < totalPages ? currentPage + 1 : null
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2 pt-6 pb-8 text-sm">
+    <div className="text-caption flex flex-wrap items-center justify-between gap-2 pt-6 pb-8">
       {prevPage ? (
-        <Link
-          href={createPageLink(prevPage)}
-          rel="prev"
-          className="text-cyan-500 hover:text-cyan-600"
-        >
+        <Link href={createPageLink(prevPage)} rel="prev" style={{ color: 'var(--color-accent)' }}>
           ← Prev
         </Link>
       ) : (
-        <span className="text-gray-400">← Prev</span>
+        <span style={{ color: 'var(--color-caption)' }}>← Prev</span>
       )}
 
       <div>{renderPageNumbers()}</div>
 
       {nextPage ? (
-        <Link
-          href={createPageLink(nextPage)}
-          rel="next"
-          className="text-cyan-500 hover:text-cyan-600"
-        >
+        <Link href={createPageLink(nextPage)} rel="next" style={{ color: 'var(--color-accent)' }}>
           Next →
         </Link>
       ) : (
-        <span className="text-gray-400">Next →</span>
+        <span style={{ color: 'var(--color-caption)' }}>Next →</span>
       )}
     </div>
   )

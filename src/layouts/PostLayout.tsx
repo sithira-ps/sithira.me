@@ -3,18 +3,73 @@ import { CoreContent } from 'pliny/utils/contentlayer.js'
 import type { Post } from 'contentlayer/generated'
 import Comments from '@/components/Comments'
 import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
-import SectionContainer from '@/components/SectionContainer'
-import Image from '@/components/Image'
-import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
-  weekday: 'long',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+}
+
+interface TocHeading {
+  value: string
+  url: string
+  depth: number
+}
+
+interface TocNode {
+  value: string
+  url: string
+  depth: number
+  children: TocNode[]
+}
+
+function buildTree(headings: TocHeading[]): TocNode[] {
+  const root: TocNode[] = []
+  const stack: TocNode[] = []
+
+  for (const heading of headings) {
+    const node: TocNode = { ...heading, children: [] }
+    while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
+      stack.pop()
+    }
+    if (stack.length === 0) {
+      root.push(node)
+    } else {
+      stack[stack.length - 1].children.push(node)
+    }
+    stack.push(node)
+  }
+  return root
+}
+
+function TocBranch({ nodes }: { nodes: TocNode[] }) {
+  return (
+    <ul className="toc-branch list-none pl-0">
+      {nodes.map((node) => (
+        <li key={node.url} className="toc-node">
+          <a
+            href={node.url}
+            className="text-sm"
+            style={{ color: 'var(--color-text)', textDecoration: 'none' }}
+          >
+            {node.value}
+          </a>
+          {node.children.length > 0 && <TocBranch nodes={node.children} />}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function TocTree({ headings }: { headings: TocHeading[] }) {
+  const tree = buildTree(headings)
+  return (
+    <div className="toc-tree mt-3 ml-5" style={{ fontFamily: 'var(--font-sans)' }}>
+      <TocBranch nodes={tree} />
+    </div>
+  )
 }
 
 interface LayoutProps {
@@ -25,111 +80,111 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, next, prev, children }: LayoutProps) {
-  // const { slug, date, title, tags } = content
-  const { date, title, tags } = content
+  const { date, title, tags, toc } = content
 
   return (
-    <SectionContainer>
+    <>
       <ScrollTopAndComment />
-      <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
-          <header className="pt-12 xl:pb-12">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-10">
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                    </time>
-                  </dd>
-                </div>
-              </dl>
-              <div>
-                <PageTitle>{title}</PageTitle>
-              </div>
-            </div>
-          </header>
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
-            <div className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
-              <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                Author
-              </h2>
-              <div className="mt-2 flex flex-wrap items-center gap-4">
-                <Image
-                  src="/images/sithira-senanayake-2.png"
-                  width={20}
-                  height={20}
-                  alt="avatar"
-                  className="h-8 w-8 rounded-full object-cover"
-                />
-                <p className="dark:text-primary-100 text-gray-900">Sithira Senanayake</p>
-              </div>
-            </div>
-            <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
-              <div className="prose dark:prose-invert max-w-none pb-8">{children}</div>
-              {siteMetadata.comments && (
-                <div
-                  className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
-                  id="comment"
+      <article className="prose max-w-none">
+        <header>
+          <time dateTime={date}>
+            {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+          </time>
+          <h1 className="!mt-1" style={{ color: 'var(--color-header)' }}>
+            {title}
+          </h1>
+          {tags && tags.length > 0 && (
+            <div className="text-tag mt-2 flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  style={{
+                    border: '1px solid var(--color-border)',
+                    padding: '1px 8px',
+                    borderRadius: '3px',
+                  }}
                 >
-                  {/* <Comments slug={slug} /> */}
-                  <Comments />
-                </div>
-              )}
+                  {tag}
+                </span>
+              ))}
             </div>
-            <footer>
-              <div className="divide-gray-200 text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2 xl:divide-y dark:divide-gray-700">
-                {tags && (
-                  <div className="py-4 xl:py-8">
-                    <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                      Tags
-                    </h2>
-                    <div className="mt-2 flex flex-wrap">
-                      {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {(next || prev) && (
-                  <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-                    {prev && prev.path && (
-                      <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Previous Article
-                        </h2>
-                        <div className="dark:text-primary-100 hover:text-primary-00 dark:hover:text-primary-400 mt-2">
-                          <Link href={`/blog/${prev.path}`}>{prev.title}</Link>
-                        </div>
-                      </div>
-                    )}
-                    {next && next.path && (
-                      <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Next Article
-                        </h2>
-                        <div className="dark:text-primary-100 hover:text-primary-600 dark:hover:text-primary-400 mt-2">
-                          <Link href={`/blog/${next.path}`}>{next.title}</Link>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-              <div className="pt-4">
-                <Link
-                  href={'/blog'}
-                  className="dark:text-primary-100 hover:text-primary-600 dark:hover:text-primary-400"
-                  aria-label="Back to the blog"
-                >
-                  ← Back
-                </Link>
-              </div>
-            </footer>
+          )}
+        </header>
+
+        {toc && (toc as { value: string; url: string; depth: number }[]).length > 0 && (
+          <details className="not-prose my-8" aria-label="Table of contents">
+            <summary
+              className="cursor-pointer text-sm font-semibold uppercase select-none"
+              style={{ color: 'var(--color-caption)', fontFamily: 'var(--font-sans)' }}
+            >
+              Table of Contents
+            </summary>
+            <TocTree headings={toc as { value: string; url: string; depth: number }[]} />
+          </details>
+        )}
+
+        {children}
+
+        {siteMetadata.comments && (
+          <div
+            className="mt-12 pt-8"
+            style={{ borderTop: '1px solid var(--color-border)' }}
+            id="comment"
+          >
+            <Comments />
           </div>
-        </div>
+        )}
+
+        <footer
+          className="not-prose mt-12 grid grid-cols-2 font-sans"
+          style={{ borderTop: '1px solid var(--color-border)' }}
+        >
+          {prev && prev.path ? (
+            <Link
+              href={`/blog/${prev.path}`}
+              className="group block p-2 pr-10 lg:pr-30"
+              style={{ borderRight: '1px solid var(--color-border)', textDecoration: 'none' }}
+            >
+              <span
+                className="text-xs transition-colors group-hover:!text-orange-400"
+                style={{ color: 'var(--color-caption)' }}
+              >
+                Previous
+              </span>
+              <span
+                className="mt-1 block truncate text-sm transition-colors group-hover:!text-orange-400"
+                style={{ color: 'var(--color-text)' }}
+              >
+                {prev.title}
+              </span>
+            </Link>
+          ) : (
+            <span style={{ borderRight: '1px solid var(--color-border)' }} />
+          )}
+          {next && next.path ? (
+            <Link
+              href={`/blog/${next.path}`}
+              className="group width-4 block p-2 pl-10 text-right lg:pl-30"
+              style={{ textDecoration: 'none' }}
+            >
+              <span
+                className="text-xs transition-colors group-hover:!text-orange-400"
+                style={{ color: 'var(--color-caption)' }}
+              >
+                Next
+              </span>
+              <span
+                className="mt-1 block truncate text-sm transition-colors group-hover:!text-orange-400"
+                style={{ color: 'var(--color-text)' }}
+              >
+                {next.title}
+              </span>
+            </Link>
+          ) : (
+            <span />
+          )}
+        </footer>
       </article>
-    </SectionContainer>
+    </>
   )
 }

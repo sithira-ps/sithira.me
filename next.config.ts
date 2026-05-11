@@ -1,18 +1,20 @@
 import type { NextConfig } from 'next'
 import { withContentlayer } from 'next-contentlayer2'
 
+const isDev = process.env.NODE_ENV === 'development'
+
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://giscus.app;
+  script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com https://giscus.app;
   style-src 'self' 'unsafe-inline' https://giscus.app;
   img-src 'self' data: https: blob:;
   font-src 'self' data:;
-  connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://giscus.app;
+  connect-src 'self'${isDev ? ' ws:' : ''} https://www.google-analytics.com https://analytics.google.com https://giscus.app;
   frame-src https://giscus.app;
   frame-ancestors 'self';
   base-uri 'self';
   form-action 'self' https://buttondown.com;
-  upgrade-insecure-requests;
+  ${isDev ? '' : 'upgrade-insecure-requests;'}
 `
 
 const securityHeaders = [

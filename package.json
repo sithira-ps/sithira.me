@@ -17,7 +17,6 @@
     "@radix-ui/react-slot": "^1.2.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
-    "body-scroll-lock": "^4.0.0-beta.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "contentlayer2": "^0.5.7",
@@ -30,7 +29,6 @@
     "pliny": "^0.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-citation": "^2.3.1",
     "rehype-katex": "^7.0.1",
@@ -44,8 +42,7 @@
     "remark-math": "^6.0.0",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
-    "tailwindcss-animate": "^1.0.7",
-    "tw-animate-css": "^1.2.5"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import siteMetadata from '@/data/siteMetadata'
 import { allPosts } from 'contentlayer/generated'

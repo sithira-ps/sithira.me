@@ -4,12 +4,12 @@ import siteMetadata from '@/data/siteMetadata'
 import { Source_Serif_4, Space_Grotesk, Caveat } from 'next/font/google'
 import { ThemeProviders } from './theme-providers'
 import Sidebar from '@/components/Sidebar'
-import { Toaster } from 'sonner'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import Link from 'next/link'
 import NavLinks from '@/components/NavLinks'
 import Footer from '@/components/Footer'
 import ThemeToggle from '@/components/ThemeToggle'
+import ClientToaster from '@/components/ClientToaster'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
@@ -26,11 +26,13 @@ const space_grotesk = Space_Grotesk({
 const caveat = Caveat({
   subsets: ['latin'],
   display: 'swap',
+  weight: '700',
   variable: '--font-caveat',
+  preload: false,
 })
 
 const basePath = process.env.BASE_PATH || ''
-const gaId = process.env.GA_ID || 'G-J2KWNVV0XC'
+const gaId = process.env.NEXT_PUBLIC_GA_ID || process.env.GA_ID
 
 export const viewport: Viewport = {
   themeColor: [
@@ -171,6 +173,12 @@ export default function RootLayout({
       </head>
 
       <body>
+        <a
+          href="#main-content"
+          className="absolute left-4 top-4 z-[100] -translate-y-16 rounded bg-[var(--color-accent)] px-4 py-2 text-white transition-transform focus:translate-y-0"
+        >
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
@@ -188,7 +196,7 @@ export default function RootLayout({
                     style={{
                       textDecoration: 'none',
                       fontFamily: 'var(--font-caveat)',
-                      fontSize: '2.5rem',
+                      fontSize: '2.0rem',
                       fontWeight: 700,
                       color: 'var(--color-header)',
                     }}
@@ -204,7 +212,7 @@ export default function RootLayout({
             </header>
 
             {/* Main content area */}
-            <main className="Wrapper__main">
+            <main id="main-content" className="Wrapper__main">
               <div className="Content">{children}</div>
               <Footer />
             </main>
@@ -213,8 +221,8 @@ export default function RootLayout({
             <Sidebar />
           </div>
 
-          <GoogleAnalytics gaId={gaId} />
-          <Toaster richColors />
+          {gaId && <GoogleAnalytics gaId={gaId} />}
+          <ClientToaster />
         </ThemeProviders>
       </body>
     </html>

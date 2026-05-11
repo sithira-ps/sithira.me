@@ -1,8 +1,7 @@
 'use client'
 
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { useRef, useState, useEffect } from 'react'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
+import { useState, useEffect } from 'react'
 import Link from './Link'
 import headerNavLinks from '@/data/headerNavLinks'
 import { usePathname } from 'next/navigation'
@@ -10,21 +9,16 @@ import { Menu } from 'lucide-react'
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false)
-  const navRef = useRef<HTMLElement | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
-    const element = navRef.current
-    if (element) {
-      if (open) {
-        disableBodyScroll(element)
-      } else {
-        enableBodyScroll(element)
-      }
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
     }
-
     return () => {
-      clearAllBodyScrollLocks()
+      document.body.style.overflow = ''
     }
   }, [open])
 
@@ -43,7 +37,6 @@ const MobileNav = () => {
           </Link>
         </SheetTitle>
         <nav
-          ref={navRef}
           className="flex h-full flex-col items-start overflow-y-auto pt-8 pl-4 text-left"
         >
           {headerNavLinks.map((link) => {

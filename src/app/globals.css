@@ -57,7 +57,7 @@
   --color-header: #1a1815;
   --color-border: #e0dcd4;
   --color-caption: #7a7568;
-  --color-summary: #bdbab3;
+  --color-summary: #61605f;
   --color-offset: #f0ede8;
 
   /* Typography scale */
@@ -76,6 +76,7 @@
   --color-header: #f5f3ef;
   --color-border: #40391c;
   --color-caption: #848071;
+  --color-summary: #bdbab3;
   --color-offset: #1e1b10;
 }
 
@@ -289,6 +290,39 @@ hr {
   margin: 0;
 }
 
+/* Table of Contents tree lines */
+.toc-tree .toc-branch {
+  margin: 0;
+  padding: 0;
+}
+
+.toc-tree .toc-branch .toc-branch {
+  margin-left: 0.25rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+.toc-tree .toc-node {
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.toc-tree .toc-node::before {
+  content: '' !important;
+  float: none !important;
+  margin: 0 !important;
+  color: transparent !important;
+}
+
+.toc-tree .toc-branch .toc-branch > .toc-node::before {
+  position: absolute;
+  top: 1.25rem;
+  left: -1rem;
+  width: 0.75rem;
+  height: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
 .task-list-item::before {
   @apply hidden;
 }
@@ -325,6 +359,7 @@ input:-webkit-autofill:focus {
 
 pre {
   background-color: var(--color-offset) !important;
+  color: var(--color-text) !important;
   border-radius: 8px;
   padding: 12px var(--layout-padding);
   overflow: auto;
@@ -335,6 +370,7 @@ pre code {
   border: none;
   padding: 12px 0;
   display: block;
+  color: var(--color-text);
 }
 
 code {
@@ -443,7 +479,7 @@ code {
 @media (min-width: 700px) {
   .Sidebar {
     display: flex;
-    padding-bottom:8rem;
+    padding-bottom:2rem;
     max-width: var(--sidebar-width);
     position: sticky;
     top: 10rem;

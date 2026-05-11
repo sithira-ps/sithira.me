@@ -12,6 +12,66 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
   day: 'numeric',
 }
 
+interface TocHeading {
+  value: string
+  url: string
+  depth: number
+}
+
+interface TocNode {
+  value: string
+  url: string
+  depth: number
+  children: TocNode[]
+}
+
+function buildTree(headings: TocHeading[]): TocNode[] {
+  const root: TocNode[] = []
+  const stack: TocNode[] = []
+
+  for (const heading of headings) {
+    const node: TocNode = { ...heading, children: [] }
+    while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
+      stack.pop()
+    }
+    if (stack.length === 0) {
+      root.push(node)
+    } else {
+      stack[stack.length - 1].children.push(node)
+    }
+    stack.push(node)
+  }
+  return root
+}
+
+function TocBranch({ nodes }: { nodes: TocNode[] }) {
+  return (
+    <ul className="toc-branch list-none pl-0">
+      {nodes.map((node) => (
+        <li key={node.url} className="toc-node">
+          <a
+            href={node.url}
+            className="text-sm"
+            style={{ color: 'var(--color-text)', textDecoration: 'none' }}
+          >
+            {node.value}
+          </a>
+          {node.children.length > 0 && <TocBranch nodes={node.children} />}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function TocTree({ headings }: { headings: TocHeading[] }) {
+  const tree = buildTree(headings)
+  return (
+    <div className="toc-tree mt-3" style={{ fontFamily: 'var(--font-sans)' }}>
+      <TocBranch nodes={tree} />
+    </div>
+  )
+}
+
 interface LayoutProps {
   content: CoreContent<Post>
   next?: { path: string; title: string }
@@ -34,7 +94,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             {title}
           </h1>
           {tags && tags.length > 0 && (
-            <div className="text-tag flex flex-wrap gap-2 mt-2">
+            <div className="text-tag mt-2 flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <span
                   key={tag}
@@ -52,61 +112,77 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
         </header>
 
         {toc && (toc as { value: string; url: string; depth: number }[]).length > 0 && (
-          <nav
-            className="not-prose my-8 rounded-lg p-4"
-            style={{ backgroundColor: 'var(--color-offset)', border: '1px solid var(--color-border)' }}
-            aria-label="Table of contents"
-          >
-            <h2
-              className="mb-2 text-sm font-semibold uppercase"
+          <details className="not-prose my-8" pl-4 aria-label="Table of contents">
+            <summary
+              className="cursor-pointer text-sm font-semibold uppercase select-none"
               style={{ color: 'var(--color-caption)', fontFamily: 'var(--font-sans)' }}
             >
               Table of Contents
-            </h2>
-            <ul className="list-none space-y-1 p-0">
-              {(toc as { value: string; url: string; depth: number }[]).map((heading) => (
-                <li
-                  key={heading.url}
-                  className="before:!content-none"
-                  style={{ paddingLeft: `${(heading.depth - 1) * 0.75}rem` }}
-                >
-                  <a
-                    href={heading.url}
-                    className="text-sm no-underline hover:underline"
-                    style={{ color: 'var(--color-text)' }}
-                  >
-                    {heading.value}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+            </summary>
+            <TocTree headings={toc as { value: string; url: string; depth: number }[]} />
+          </details>
         )}
 
         {children}
 
         {siteMetadata.comments && (
-          <div className="mt-12 pt-8" style={{ borderTop: '1px solid var(--color-border)' }} id="comment">
+          <div
+            className="mt-12 pt-8"
+            style={{ borderTop: '1px solid var(--color-border)' }}
+            id="comment"
+          >
             <Comments />
           </div>
         )}
 
-        <footer className="text-caption mt-12 pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
-          <div className="flex justify-between items-center">
-            {prev && prev.path ? (
-              <Link href={`/blog/${prev.path}`}>← {prev.title}</Link>
-            ) : (
-              <span />
-            )}
-            {next && next.path ? (
-              <Link href={`/blog/${next.path}`}>{next.title} →</Link>
-            ) : (
-              <span />
-            )}
-          </div>
-          <div className="mt-4">
-            <Link href="/blog">← All posts</Link>
-          </div>
+        <footer
+          className="not-prose mt-12 grid grid-cols-2 font-sans"
+          style={{ borderTop: '1px solid var(--color-border)' }}
+        >
+          {prev && prev.path ? (
+            <Link
+              href={`/blog/${prev.path}`}
+              className="group block p-2 pr-10 lg:pr-30"
+              style={{ borderRight: '1px solid var(--color-border)', textDecoration: 'none' }}
+            >
+              <span
+                className="text-xs transition-colors group-hover:!text-orange-400"
+                style={{ color: 'var(--color-caption)' }}
+              >
+                Previous
+              </span>
+              <span
+                className="mt-1 block truncate text-sm transition-colors group-hover:!text-orange-400"
+                style={{ color: 'var(--color-text)' }}
+              >
+                {prev.title}
+              </span>
+            </Link>
+          ) : (
+            <span style={{ borderRight: '1px solid var(--color-border)' }} />
+          )}
+          {next && next.path ? (
+            <Link
+              href={`/blog/${next.path}`}
+              className="group width-4 block p-2 pl-10 text-right lg:pl-30"
+              style={{ textDecoration: 'none' }}
+            >
+              <span
+                className="text-xs transition-colors group-hover:!text-orange-400"
+                style={{ color: 'var(--color-caption)' }}
+              >
+                Next
+              </span>
+              <span
+                className="mt-1 block truncate text-sm transition-colors group-hover:!text-orange-400"
+                style={{ color: 'var(--color-text)' }}
+              >
+                {next.title}
+              </span>
+            </Link>
+          ) : (
+            <span />
+          )}
         </footer>
       </article>
     </>

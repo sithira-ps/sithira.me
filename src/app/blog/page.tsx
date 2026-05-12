@@ -58,7 +58,7 @@ export default function BlogPage() {
       />
       <h1 className="page-title mb-2">Blog</h1>
       <p className="text-summary-body mb-8">
-        Blog post articles
+        Thoughts on software engineering, technology, and everything in between.
       </p>
       <BlogList posts={sortedPosts} />
     </div>

@@ -525,6 +525,11 @@ code {
   font-size: var(--text-body);
 }
 
+.bookmark-card,
+.bookmark-card * {
+  text-decoration: none !important;
+}
+
 .Sidebar a {
   color: var(--color-caption);
   text-decoration: none;

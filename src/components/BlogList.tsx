@@ -25,34 +25,37 @@ export default function BlogList({ posts, pageNumber = 1 }: BlogProps) {
               className="py-6"
               style={{ borderBottom: '1px solid var(--color-border)' }}
             >
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                <h3 className="item-title">
-                  <Link
-                    href={post.url}
-                    style={{ color: 'var(--color-header)', textDecoration: 'none' }}
-                    className="hover:!text-[var(--color-accent)]"
+              <Link
+                href={post.url}
+                className="group block no-underline"
+                style={{ textDecoration: 'none' }}
+              >
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                  <h3
+                    className="item-title group-hover:!text-[var(--color-accent)]"
+                    style={{ color: 'var(--color-header)' }}
                   >
                     {post.title}
-                  </Link>
-                </h3>
-                <time className="text-caption shrink-0">
-                  {format(new Date(post.date), 'MMM d, yyyy')}
-                </time>
-              </div>
-
-              <p className="text-summary-body mt-2 mb-2 leading-relaxed">{post.summary}</p>
-              {post.tags && post.tags.length > 0 && (
-                <div className="text-tag mt-1.5 flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="after:ml-2 after:content-['|'] last:after:content-['']"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  </h3>
+                  <time className="text-caption shrink-0">
+                    {format(new Date(post.date), 'MMM d, yyyy')}
+                  </time>
                 </div>
-              )}
+
+                <p className="text-summary-body mt-2 mb-2 leading-relaxed">{post.summary}</p>
+                {post.tags && post.tags.length > 0 && (
+                  <div className="text-tag mt-1.5 flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="after:ml-2 after:content-['|'] last:after:content-['']"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </Link>
             </article>
           ))
         ) : (

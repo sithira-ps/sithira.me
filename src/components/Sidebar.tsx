@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import siteMetadata from '@/data/siteMetadata'
 import { allPosts, allNotes } from 'contentlayer/generated'
-import { Mail, Rss, Briefcase, Asterisk, StickyNote } from 'lucide-react'
+import bookmarksData from '@/data/bookmarksData'
+import { Mail, Rss, Bookmark, Asterisk, StickyNote, Clock } from 'lucide-react'
 
 export default function Sidebar() {
   const sortedPosts = allPosts
     .filter((post) => !post.draft)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-  const featuredPosts = sortedPosts.slice(0, 5)
+  const featuredPosts = sortedPosts.slice(0, 3)
 
   const recentNotes = allNotes
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -42,22 +43,51 @@ export default function Sidebar() {
             </Link>
           </li>
           <li className="!ml-0 before:!content-none">
-            <Link href="/about" className="flex items-center gap-1.5">
-              <Briefcase className="h-3.5 w-3.5" />
-              About
+            <Link href="/bookmarks" className="flex items-center gap-1.5">
+              <Bookmark className="h-3.5 w-3.5" />
+              Bookmarks
+            </Link>
+          </li>
+          <li className="!ml-0 before:!content-none">
+            <Link href="/now" className="flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5" />
+              Now
             </Link>
           </li>
         </ul>
       </nav>
 
-      {/* About */}
-      <div>
-        <h2>About me</h2>
-        <p>
-          Im Sithira, a software engineer and amateur human passionate about technology, science, and
-          philosophy. Currently building things on the web.
-        </p>
-      </div>
+      {/* Recent Bookmarks */}
+      {bookmarksData.length > 0 && (
+        <div>
+          <h2>Recent Bookmarks</h2>
+          <ul className="list-none p-0">
+            {bookmarksData.slice(0, 3).map((bookmark) => (
+              <li key={bookmark.url} className="mb-2 !ml-0">
+                <a
+                  href={bookmark.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                >
+                  <span className="flex items-start gap-1.5">
+                    <Bookmark size={12} className="mt-1 shrink-0" />
+                    <span className="line-clamp-1 text-sm leading-snug group-hover:text-[var(--color-accent)]">
+                      {bookmark.title}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/bookmarks"
+            className="text-sm text-[var(--color-caption)] hover:text-[var(--color-accent)]"
+          >
+            View all bookmarks →
+          </Link>
+        </div>
+      )}
 
       {/* Recent Notes */}
       {recentNotes.length > 0 && (

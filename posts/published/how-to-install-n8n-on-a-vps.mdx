@@ -16,9 +16,9 @@ coverImage: "/images/articles/n8n-setup.png"
 
 ---
 
-## ✅ Step-by-Step Guide to Install n8n with Docker
+## Step-by-Step Guide to Install n8n with Docker
 
-### 🛠️ Step 1: Create a Docker Network
+### Step 1: Create a Docker Network
 
 This lets your containers communicate securely. It's recommended to use a shared external network if you're also using Nginx Proxy Manager or CyberPanel.
 
@@ -30,7 +30,7 @@ If you're using an Nginx reverse proxy (like Nginx Proxy Manager), make sure all
 
 ---
 
-### 🛠️ Step 2: Set Up PostgreSQL Container
+### Step 2: Set Up PostgreSQL Container
 
 While n8n can work with SQLite, using PostgreSQL is more robust for production setups. Theresfore I will use Postgres for this setup.
 
@@ -84,7 +84,7 @@ docker-compose up -d
 
 ---
 
-### 🛠️ Step 3: Set Up n8n Container
+### Step 3: Set Up n8n Container
 
 Create a new directory for n8n:
 
@@ -154,7 +154,7 @@ Now n8n should now be running on http://[your-vps-ip]:5678.
 
 ---
 
-### 🔐 Step 4: Reverse Proxy with Nginx
+### Step 4: Reverse Proxy with Nginx
 
 I recommend using **Nginx** for the reverse proxy instead of CyberPanel. In my experience, CyberPanel frequently causes WebSocket-related issues, resulting in repeated “Connection failed” errors in n8n.
 
@@ -164,16 +164,15 @@ To set up the reverse proxy using **Nginx Proxy Manager**:
 2. Open Nginx Proxy Manager and create a new proxy host with the following settings:
 
 3. Enable the following options:
-
-- ✅ Cache Support
-- ✅ WebSocket Support
-- ✅ Block Common Exploits
+  - Cache Support
+  - WebSocket Support
+  - Block Common Exploits
 
 4. Add a new **SSL certificate** (e.g., using Let's Encrypt) and enable **Force SSL Redirect**.
 
 ---
 
-### ✅ Final Result
+### Final Result
 
 n8n is now accessible at:
 

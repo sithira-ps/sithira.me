@@ -7,7 +7,7 @@ import { ExternalLink } from 'lucide-react'
 export const metadata = genPageMetadata({
   title: 'About Sithira Senanayake',
   description:
-    'Learn about Sithira Senanayake — a software engineer from Sri Lanka specializing in web and mobile development with Next.js, Flutter, and Angular.',
+    'Learn about Sithira Senanayake - a software engineer from Sri Lanka specializing in web and mobile development with Next.js, Flutter, and Angular.',
   canonicalUrl: 'https://sithira.me/about',
 })
 
@@ -34,17 +34,17 @@ export default function AuthorLayout() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
       />
       {/* Photo, name, title, socials */}
-      <div className="flex flex-col items-center text-center mb-10">
+      <div className="mb-10 flex flex-col items-center text-center">
         <NextImage
           alt="sithira-senanayake-avatar"
           src="/images/sithira-senanayake-2.png"
-          className="h-40 w-40 rounded-full object-cover mb-4"
+          className="mb-4 h-40 w-40 rounded-full object-cover"
           style={{ border: '2px solid var(--color-border)' }}
           width={160}
           height={160}
         />
         <h1 className="page-title mb-1">Sithira Senanayake</h1>
-        <p className="text- ">Software Engineer / Data Engineer</p>
+        <p className="text-">Software Engineer / Data Engineer</p>
         <div className="mt-4 flex space-x-3">
           <SocialIcon kind="mail" href="mailto:hello@sithira.me" />
           <SocialIcon kind="github" href="https://github.com/sithira-ps" />
@@ -59,8 +59,8 @@ export default function AuthorLayout() {
         <p>
           Welcome to my little corner of the internet! This is where curiosity leads the way, a
           space for thoughts, ideas, and those random musings that pop up when you least expect
-          them. No rigid themes, no strict schedules, just authentic exploration of whatever
-          catches my attention.
+          them. No rigid themes, no strict schedules, just authentic exploration of whatever catches
+          my attention.
         </p>
         <p>
           My journey started with a <b>Computer Science</b> degree from the{' '}

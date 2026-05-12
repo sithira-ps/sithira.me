@@ -198,6 +198,23 @@ a:hover {
   & strong {
     color: var(--color-header);
   }
+
+  & ol,
+  & ul {
+    padding-left: 1.5em;
+  }
+
+  /* Nested lists inside list items */
+  & li > ul,
+  & li > ol {
+    margin-top: 0.5em;
+    margin-left: 2em;
+  }
+
+  /* Indented list between split ordered lists (ol > ul > ol pattern) */
+  & ol + ul {
+    margin-left: 2.5em;
+  }
 }
 
 /* Typography utilities */
@@ -263,6 +280,10 @@ a:hover {
 }
 
 /* List styling */
+ul > li {
+  list-style: none;
+}
+
 ul > li::before {
   content: '⁕';
   float: left;
@@ -270,6 +291,7 @@ ul > li::before {
   margin-top: -1px;
   margin-left: -1.25em;
 }
+
 
 blockquote:not(.unstyled) {
   color: var(--color-caption);

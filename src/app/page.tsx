@@ -8,14 +8,14 @@ export const metadata: Metadata = {
     absolute: 'Sithira Senanayake | Software Engineer & Personal Blog',
   },
   description:
-    'Personal blog by Sithira Senanayake — a software engineer writing about technology, web development, science, and philosophy.',
+    'Personal blog by Sithira Senanayake - a software engineer writing about technology, web development, science, and philosophy.',
   alternates: {
     canonical: 'https://sithira.me/',
   },
   openGraph: {
     title: 'Sithira Senanayake | Software Engineer & Personal Blog',
     description:
-      'Personal blog by Sithira Senanayake — a software engineer writing about technology, web development, science, and philosophy.',
+      'Personal blog by Sithira Senanayake - a software engineer writing about technology, web development, science, and philosophy.',
     url: 'https://sithira.me/',
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],

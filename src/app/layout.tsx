@@ -146,7 +146,8 @@ export default function RootLayout({
         '@id': 'https://sithira.me/#website',
         url: 'https://sithira.me',
         name: 'Sithira Senanayake - Personal Blog',
-        description: 'Personal blog about software engineering, technology, science, and philosophy by Sithira Senanayake.',
+        description:
+          'Personal blog about software engineering, technology, science, and philosophy by Sithira Senanayake.',
         publisher: { '@id': 'https://sithira.me/#person' },
         inLanguage: 'en-US',
         potentialAction: {
@@ -175,7 +176,7 @@ export default function RootLayout({
       <body>
         <a
           href="#main-content"
-          className="absolute left-4 top-4 z-[100] -translate-y-16 rounded bg-[var(--color-accent)] px-4 py-2 text-white transition-transform focus:translate-y-0"
+          className="absolute top-4 left-4 z-[100] -translate-y-16 rounded bg-[var(--color-accent)] px-4 py-2 text-white transition-transform focus:translate-y-0"
         >
           Skip to content
         </a>
@@ -184,7 +185,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
         />
         <ThemeProviders>
-          {/* Wrapper — CSS Grid two-column layout */}
+          {/* Wrapper - CSS Grid two-column layout */}
           <div className="Wrapper">
             {/* Header with top accent border */}
             <header className="Wrapper__header">

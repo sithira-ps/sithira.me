@@ -4,7 +4,7 @@ const siteMetadata = {
   author: 'Sithira Senanayake',
   headerTitle: 'Sithira Senanayake',
   description:
-    'Personal blog by Sithira Senanayake — a software engineer writing about web development, Next.js, Flutter, AI, DevOps, science, and philosophy.',
+    'Personal blog by Sithira Senanayake - a software engineer writing about web development, Next.js, Flutter, AI, DevOps, science, and philosophy.',
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://sithira.me',

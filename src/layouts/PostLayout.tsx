@@ -152,7 +152,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 Previous
               </span>
               <span
-                className="mt-1 block truncate text-sm transition-colors group-hover:!text-orange-400"
+                className="block truncate text-sm transition-colors group-hover:!text-orange-400"
                 style={{ color: 'var(--color-text)' }}
               >
                 {prev.title}
@@ -174,7 +174,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 Next
               </span>
               <span
-                className="mt-1 block truncate text-sm transition-colors group-hover:!text-orange-400"
+                className=" block truncate text-sm transition-colors group-hover:!text-orange-400"
                 style={{ color: 'var(--color-text)' }}
               >
                 {next.title}

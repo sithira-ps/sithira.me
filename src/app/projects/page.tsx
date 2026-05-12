@@ -5,7 +5,7 @@ import projectsData from '@/data/projectsData'
 export const metadata = genPageMetadata({
   title: 'Projects',
   description:
-    'Personal projects, freelance work, and SaaS products by Sithira Senanayake — including AI chat apps, blogs, document management systems, and mobile POS.',
+    'Personal projects, freelance work, and SaaS products by Sithira Senanayake - including AI chat apps, blogs, document management systems, and mobile POS.',
   canonicalUrl: 'https://sithira.me/projects',
 })
 
@@ -28,7 +28,8 @@ export default function Projects() {
           name: project.title,
           description: project.description,
           url: project.href,
-          applicationCategory: project.category === 'MOBILE' ? 'MobileApplication' : 'WebApplication',
+          applicationCategory:
+            project.category === 'MOBILE' ? 'MobileApplication' : 'WebApplication',
           author: { '@id': 'https://sithira.me/#person' },
         },
       })),

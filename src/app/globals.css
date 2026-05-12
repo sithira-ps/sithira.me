@@ -439,12 +439,13 @@ code {
   display: grid;
   column-gap: 1.5rem;
   grid-template-columns: [content-start sidebar-start] minmax(0, 1fr) [sidebar-end content-end];
-  width: fit-content;
+  width: 100%;
   margin: 0 auto;
 }
 
 @media (min-width: 700px) {
   .Wrapper {
+    width: fit-content;
     grid-template-columns:
       [content-start] minmax(0, calc(var(--content-width) + 2 * var(--layout-padding)))
       [content-end sidebar-start] minmax(0, var(--sidebar-width)) [sidebar-end];
@@ -533,6 +534,15 @@ code {
 .Sidebar a {
   color: var(--color-caption);
   text-decoration: none;
+}
+
+footer nav a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+footer nav a:hover {
+  color: var(--color-accent);
 }
 
 .Sidebar a:hover {

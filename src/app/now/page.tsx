@@ -37,7 +37,7 @@ export default function NowPage() {
         ))}
       </div>
 
-      <span className="text-xs opacity-70 flex justify-end">Last updated: {formatted}</span>
+      <span className="flex justify-end text-xs opacity-70">Last updated: {formatted}</span>
 
       <p className="mt-12 text-xs opacity-50">
         Inspired by{' '}

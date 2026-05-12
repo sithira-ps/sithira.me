@@ -48,15 +48,12 @@ export default function Home() {
   }
 
   const noteDateTemplate: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
     month: 'short',
     day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
   }
-
-  const noteColors = [
-    'bg-blue-50 border-blue-200 dark:bg-blue-950 dark:border-blue-800',
-    'bg-purple-50 border-purple-200 dark:bg-purple-950 dark:border-purple-800',
-    'bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800',
-  ]
 
   return (
     <section>
@@ -80,71 +77,81 @@ export default function Home() {
       </div>
 
       {sortedNotes.length > 0 && (
-        <div className="mb-12">
+        <div className="mb-20">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-2xl font-semibold" style={{ color: 'var(--color-header)' }}>
               Recent Notes
             </h2>
             <Link
               href="/notes"
-              className="text-sm !no-underline hover:text-[var(--color-accent)]"
-              style={{ color: 'var(--color-caption)' }}
+              className="text-caption text-sm !no-underline transition-colors hover:text-[var(--color-accent)]"
             >
               View all →
             </Link>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {sortedNotes.map((note, index) => (
+          <div className="space-y-4">
+            {sortedNotes.map((note) => (
               <article
                 key={note._id}
-                className={`rounded-lg border p-4 transition-transform hover:scale-[1.02] ${noteColors[index % noteColors.length]}`}
+                className="group rounded-smA relative border border-transparent bg-[var(--color-offset)] p-6 transition-all duration-200"
               >
-                <time className="mb-2 block text-xs font-medium opacity-70" dateTime={note.date}>
-                  {new Date(note.date).toLocaleDateString(siteMetadata.locale, noteDateTemplate)}
-                </time>
-                <p className="line-clamp-3 text-sm leading-relaxed">{note.body.raw}</p>
+                <div className="flex items-start gap-4">
+                  <div className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-accent)] opacity-100 transition-opacity" />
+                  <div className="min-w-0 flex-1">
+                    <time
+                      className="text-caption mb-1 block font-medium tracking-wide"
+                      dateTime={note.date}
+                    >
+                      {new Date(note.date).toLocaleDateString(
+                        siteMetadata.locale,
+                        noteDateTemplate
+                      )}
+                    </time>
+                    <div className="text-body leading-relaxed">{note.body.raw}</div>
+                  </div>
+                </div>
               </article>
             ))}
           </div>
         </div>
       )}
-
-      <div>
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold" style={{ color: 'var(--color-header)' }}>
-            Recent Articles
-          </h2>
-          <Link
-            href="/blog"
-            className="text-sm !no-underline hover:text-[var(--color-accent)]"
-            style={{ color: 'var(--color-caption)' }}
-          >
-            View all →
-          </Link>
-        </div>
-
-        {recentPosts.map((post) => (
-          <div key={post._id}>
-            <article className="py-6" style={{ borderBottom: '1px solid var(--color-border)' }}>
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                <h2 className="item-title">
-                  <Link
-                    href={post.url}
-                    style={{ color: 'var(--color-header)', textDecoration: 'none' }}
-                    className="hover:!text-[var(--color-accent)]"
-                  >
-                    {post.title}
-                  </Link>
-                </h2>
-                <time className="text-caption shrink-0" dateTime={post.date}>
-                  {new Date(post.date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                </time>
-              </div>
-              <p className="text-summary-body mt-2 leading-relaxed">{post.summary}</p>
-            </article>
+      {recentPosts.length > 0 && (
+        <div className="mb-1">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-semibold" style={{ color: 'var(--color-header)' }}>
+              Recent Articles
+            </h2>
+            <Link
+              href="/blog"
+              className="text-caption text-sm !no-underline transition-colors hover:text-[var(--color-accent)]"
+            >
+              View all →
+            </Link>
           </div>
-        ))}
-      </div>
+
+          {recentPosts.map((post) => (
+            <div key={post._id}>
+              <article className="py-6" style={{ borderBottom: '1px solid var(--color-border)' }}>
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                  <h2 className="item-title">
+                    <Link
+                      href={post.url}
+                      style={{ color: 'var(--color-header)', textDecoration: 'none' }}
+                      className="hover:!text-[var(--color-accent)]"
+                    >
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <time className="text-caption shrink-0" dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                  </time>
+                </div>
+                <p className="text-summary-body mt-2 leading-relaxed">{post.summary}</p>
+              </article>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   )
 }

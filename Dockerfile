@@ -4,7 +4,7 @@ FROM node:20.18.2-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm ci --omit=dev --ignore-scripts
 
 COPY . .
 RUN npm run build

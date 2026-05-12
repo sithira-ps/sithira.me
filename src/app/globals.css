@@ -141,7 +141,7 @@ a:hover {
 }
 
 .prose {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-optical-sizing: auto;
   font-size: 1.2rem;
   font-weight: 400;
@@ -457,6 +457,15 @@ code {
   padding-inline: var(--layout-padding);
   background-color: var(--color-body-background);
   padding-bottom: 0rem;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 7rem);
+}
+
+@media (min-width: 700px) {
+  .Wrapper__main {
+    min-height: calc(100vh - 11rem);
+  }
 }
 
 .Content {

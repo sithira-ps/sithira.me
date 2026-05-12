@@ -30,39 +30,37 @@ export default function NotesPage() {
   }
 
   return (
-    <div>
-      <h1 className="page-title mb-2">Notes</h1>
-      <p className="text-summary-body mb-8">
-        Quick thoughts, ideas, and messages that come to mind.
-      </p>
+    <div className="max-w-3xl">
+      <div className="mb-12">
+        <h1 className="page-title mb-3">Notes</h1>
+        <p className="text-summary-body text-lg">
+          Quick thoughts, ideas, and messages that come to mind.
+        </p>
+      </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         {sortedNotes.length === 0 ? (
           <p className="text-caption">No notes yet. Check back soon!</p>
         ) : (
           sortedNotes.map((note) => (
             <article
               key={note._id}
-              className="rounded-lg border border-[var(--color-border)] p-4"
+              className="group relative bg-[var(--color-offset)] rounded-smA p-6 transition-all duration-200  border border-transparent"
             >
-              <time className="text-caption mb-2 block text-sm" dateTime={note.date}>
-                {new Date(note.date).toLocaleDateString(siteMetadata.locale, noteDateTemplate)}
-              </time>
-              <div className="prose prose-sm max-w-none whitespace-pre-wrap">
-                {note.body.raw}
-              </div>
-              {note.tags && note.tags.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {note.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-[var(--color-accent)] px-3 py-1 text-xs text-white"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] mt-2 opacity-100 transition-opacity" />
+                <div className="flex-1 min-w-0">
+                  <time
+                    className="text-caption block mb-1 font-medium tracking-wide"
+                    dateTime={note.date}
+                  >
+                    {new Date(note.date).toLocaleDateString(siteMetadata.locale, noteDateTemplate)}
+                  </time>
+                  <div className="text-body leading-relaxed">
+                    {note.body.raw}
+                  </div>
                 </div>
-              )}
+              </div>
             </article>
           ))
         )}

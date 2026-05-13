@@ -1,5 +1,13 @@
 [
   {
+    "title": "addshttp://localhost:3000/admin/bookmarks",
+    "description": "http://localhost:3000/admin/bookmarks",
+    "url": "http://localhost:3000/admin/bookmarks",
+    "category": "Development",
+    "addedAt": "2025-10-29",
+    "comment": "http://localhost:3000/admin/bookmarks"
+  },
+  {
     "title": "MIT Explains the 12 Possible Endings for AI",
     "description": "https://youtu.be/FLcrvMfHUJMhttps://youtu.be/FLcrvMfHUJM",
     "url": "https://youtu.be/FLcrvMfHUJM",

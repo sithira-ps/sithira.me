@@ -40,7 +40,7 @@ export default function AdminNotesPage() {
             name="content"
             required
             rows={6}
-            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
             placeholder="What's on your mind?"
           />
         </div>
@@ -53,7 +53,7 @@ export default function AdminNotesPage() {
             id="tags"
             name="tags"
             type="text"
-            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
             placeholder="note, thought"
           />
         </div>

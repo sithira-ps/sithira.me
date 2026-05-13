@@ -98,12 +98,12 @@ export default function AdminNowPage() {
                 value={section.heading}
                 onChange={(e) => updateSection(si, e.target.value)}
                 placeholder="Section heading"
-                className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm font-semibold text-[var(--color-header)] focus:border-[var(--color-accent)] focus:outline-none"
+                className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm font-semibold text-[var(--color-header)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
               />
               <button
                 type="button"
                 onClick={() => removeSection(si)}
-                className="text-xs text-red-500 hover:text-red-700"
+                className="text-xs text-[var(--color-accent)] hover:opacity-70"
               >
                 Remove
               </button>
@@ -117,19 +117,19 @@ export default function AdminNowPage() {
                     value={item.title}
                     onChange={(e) => updateItem(si, ii, 'title', e.target.value)}
                     placeholder="Item title"
-                    className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+                    className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
                   />
                   <input
                     type="text"
                     value={item.description || ''}
                     onChange={(e) => updateItem(si, ii, 'description', e.target.value)}
                     placeholder="Description (optional)"
-                    className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+                    className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
                   />
                   <button
                     type="button"
                     onClick={() => removeItem(si, ii)}
-                    className="text-xs text-red-500 hover:text-red-700"
+                    className="text-xs text-[var(--color-accent)] hover:opacity-70"
                   >
                     x
                   </button>

@@ -1,14 +1,20 @@
-import { auth } from '@/auth'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export default auth((req) => {
-  const isAdmin = req.nextUrl.pathname.startsWith('/admin')
+export async function middleware(request: NextRequest) {
+  const { nextUrl } = request
+  const sessionToken =
+    request.cookies.get('authjs.session-token')?.value ||
+    request.cookies.get('__Secure-authjs.session-token')?.value
 
-  if (isAdmin && !req.auth) {
-    const signInUrl = new URL('/api/auth/signin', req.nextUrl.origin)
-    signInUrl.searchParams.set('callbackUrl', req.nextUrl.href)
-    return Response.redirect(signInUrl)
+  if (!sessionToken) {
+    const signInUrl = new URL('/api/auth/signin', nextUrl.origin)
+    signInUrl.searchParams.set('callbackUrl', nextUrl.href)
+    return NextResponse.redirect(signInUrl)
   }
-})
+
+  return NextResponse.next()
+}
 
 export const config = {
   matcher: ['/admin/:path*'],

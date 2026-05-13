@@ -42,7 +42,7 @@ export default function AdminBookmarksPage() {
             name="title"
             type="text"
             required
-            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
           />
         </div>
 
@@ -55,7 +55,7 @@ export default function AdminBookmarksPage() {
             name="url"
             type="url"
             required
-            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
           />
         </div>
 
@@ -68,7 +68,7 @@ export default function AdminBookmarksPage() {
             name="description"
             required
             rows={3}
-            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
           />
         </div>
 
@@ -80,7 +80,7 @@ export default function AdminBookmarksPage() {
             id="category"
             name="category"
             required
-            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
           >
             {categories.map((cat) => (
               <option key={cat} value={cat}>
@@ -98,7 +98,7 @@ export default function AdminBookmarksPage() {
             id="comment"
             name="comment"
             rows={2}
-            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none"
+            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
           />
         </div>
 

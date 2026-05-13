@@ -3,14 +3,15 @@ import type { NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
   const { nextUrl } = request
+
+  if (nextUrl.pathname === '/admin/login') return NextResponse.next()
+
   const sessionToken =
     request.cookies.get('authjs.session-token')?.value ||
     request.cookies.get('__Secure-authjs.session-token')?.value
 
   if (!sessionToken) {
-    const signInUrl = new URL('/api/auth/signin', nextUrl.origin)
-    signInUrl.searchParams.set('callbackUrl', nextUrl.href)
-    return NextResponse.redirect(signInUrl)
+    return NextResponse.redirect(new URL('/admin/login', nextUrl.origin))
   }
 
   return NextResponse.next()

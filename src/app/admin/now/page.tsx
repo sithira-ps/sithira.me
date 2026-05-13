@@ -1,12 +1,13 @@
-import fs from 'fs/promises'
-import path from 'path'
+import { getFileContent } from '@/lib/github'
 import NowEditor from './NowEditor'
 
 export const dynamic = 'force-dynamic'
 
 export default async function AdminNowPage() {
-  const filePath = path.join(process.cwd(), 'src/data/now.json')
-  const raw = await fs.readFile(filePath, 'utf-8')
-  const nowData = JSON.parse(raw)
+  const file = await getFileContent('src/data/now.json')
+  if (!file) {
+    return <NowEditor initialSections={[{ heading: 'Working on', items: [{ title: '' }] }]} />
+  }
+  const nowData = JSON.parse(file.content)
   return <NowEditor initialSections={nowData.sections} />
 }

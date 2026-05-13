@@ -10,6 +10,7 @@ import NavLinks from '@/components/NavLinks'
 import Footer from '@/components/Footer'
 import ThemeToggle from '@/components/ThemeToggle'
 import ClientToaster from '@/components/ClientToaster'
+import MobileMenu from '@/components/MobileMenu'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
@@ -208,6 +209,7 @@ export default function RootLayout({
                 <div className="flex items-center gap-5">
                   <NavLinks />
                   <ThemeToggle />
+                  <MobileMenu />
                 </div>
               </div>
             </header>

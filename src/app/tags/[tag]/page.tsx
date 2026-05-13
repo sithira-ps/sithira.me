@@ -106,28 +106,31 @@ export default async function TagPage(props: PageProps) {
           className="py-6"
           style={{ borderBottom: '1px solid var(--color-border)' }}
         >
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-            <h2 className="item-title">
-              <Link
-                href={post.url}
-                style={{ color: 'var(--color-header)', textDecoration: 'none' }}
-                className="hover:!text-[var(--color-accent)]"
+          <Link
+            href={post.url}
+            className="group block no-underline"
+            style={{ textDecoration: 'none' }}
+          >
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+              <h2
+                className="item-title group-hover:!text-[var(--color-accent)]"
+                style={{ color: 'var(--color-header)' }}
               >
                 {post.title}
-              </Link>
-            </h2>
-            <time className="text-caption shrink-0" dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-            </time>
-          </div>
-          {post.summary && (
-            <p className="text-summary-body mt-2 leading-relaxed">{post.summary}</p>
-          )}
+              </h2>
+              <time className="text-caption shrink-0" dateTime={post.date}>
+                {new Date(post.date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+              </time>
+            </div>
+            {post.summary && (
+              <p className="text-summary-body mt-2 leading-relaxed">{post.summary}</p>
+            )}
+          </Link>
         </article>
       ))}
 
       <div className="mt-8">
-        <Link href="/tags" className="text-caption hover:!text-[var(--color-accent)]">
+        <Link href="/tags" className="text-caption !no-underline hover:!text-[var(--color-accent)]" style={{ textDecoration: 'none' }}>
           &larr; All tags
         </Link>
       </div>

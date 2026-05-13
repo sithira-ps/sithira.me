@@ -30,14 +30,14 @@ export default function BookmarksPage() {
   return (
     <div>
       <h1 className="page-title mb-1">Bookmarks</h1>
-      <p className="text-summary-body mb-10">
+      <p className="mb-12 text-sm text-[var(--color-caption)]">
         Interesting links from around the internet that I find worth sharing.
       </p>
 
       <div className="space-y-10">
         {grouped.map(([month, bookmarks]) => (
           <section key={month}>
-            <h2 className="mb-4 text-sm font-medium uppercase tracking-wide text-[var(--color-text)]/50">
+            <h2 className="mb-4 text-sm font-medium tracking-wide text-[var(--color-text)]/50 uppercase">
               {month}
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

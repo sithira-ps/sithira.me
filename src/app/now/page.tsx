@@ -17,7 +17,9 @@ export default function NowPage() {
   return (
     <div>
       <h1 className="page-title mb-1">Now</h1>
-      <p className="text-summary-body mb-10">What I&rsquo;m focused on right now. </p>
+      <p className="mb-12 text-sm text-[var(--color-caption)]">
+        What I&rsquo;m focused on right now.
+      </p>
 
       <div className="prose max-w-none space-y-8">
         {nowSections.map((section) => (

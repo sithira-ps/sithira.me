@@ -42,6 +42,23 @@ const bookmarksData: Bookmark[] = [
     addedAt: '2026-05-01',
     comment: `I don't get tired on watching this man speaks. And Cleo makes it even more interesting. Love this interview.`,
   },
+  {
+    title: `Google's Demis Hassabis, Anthropic's Dario Amodei Debate the World After AGI | AI1G`,
+    description:
+      'At World Economic Forum 2026, leading AI voices debate life after artificial general intelligence. Demis Hassabis, CEO of Google DeepMind; Dario Amodei, CEO of Anthropic; and Zanny Minton Beddoes, Editor-in-Chief of The Economist, discuss AGI risks, governance, and global impact.',
+    url: 'https://www.youtube.com/watch?v=02YLwsCKUww',
+    category: 'YouTube',
+    addedAt: '2026-04-26',
+    comment: `Love how they roasted Sam Altman without even saying his name.`,
+  },
+  {
+    title: `Contributing to Open Source Can Change Your Life - Here’s How to Do It`,
+    description: `GitHub is the new resume and every contribution you make builds your collaboration skills and associates your name with the massive community of driven individuals out there making software for fun and profit. `,
+    url: 'https://youtu.be/CML6vfKjQss',
+    category: 'YouTube',
+    addedAt: '2025-12-14',
+    comment: `I hate my selft for not contributing to open source porjects yet. I must start.`,
+  },
 ]
 
 export default bookmarksData

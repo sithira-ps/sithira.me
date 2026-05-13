@@ -13,7 +13,7 @@ export default function NavLinks() {
   const pathname = usePathname()
 
   return (
-    <nav className="text-nav flex items-center gap-6">
+    <nav className="text-nav hidden items-center gap-6 min-[700px]:flex">
       {links.map((link) => {
         const isActive =
           link.href === '/'

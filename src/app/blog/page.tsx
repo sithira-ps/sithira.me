@@ -57,7 +57,7 @@ export default function BlogPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
       <h1 className="page-title mb-2">Blog</h1>
-      <p className="text-summary-body mb-8">
+      <p className="mb-8 text-sm text-[var(--color-caption)]">
         Thoughts on software engineering, technology, and everything in between.
       </p>
       <BlogList posts={sortedPosts} />

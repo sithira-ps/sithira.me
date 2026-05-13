@@ -2,7 +2,7 @@ import Link from 'next/link'
 import siteMetadata from '@/data/siteMetadata'
 import { allPosts, allNotes } from 'contentlayer/generated'
 import bookmarksData from '@/data/bookmarksData'
-import { Mail, Rss, Bookmark, Asterisk, StickyNote, Clock } from 'lucide-react'
+import { Rss, Bookmark, Asterisk, StickyNote, Clock } from 'lucide-react'
 
 export default function Sidebar() {
   const sortedPosts = allPosts
@@ -31,17 +31,12 @@ export default function Sidebar() {
       <nav>
         <ul className="flex list-none justify-between p-0">
           <li className="!ml-0 before:!content-none">
-            <Link href={`mailto:${siteMetadata.email}`} className="flex items-center gap-1.5">
-              <Mail className="h-3.5 w-3.5" />
-              Email
+            <Link href="/notes" className="flex items-center gap-1.5">
+              <StickyNote className="h-3.5 w-3.5" />
+              Notes
             </Link>
           </li>
-          <li className="!ml-0 before:!content-none">
-            <Link href="/feed.xml" className="flex items-center gap-1.5">
-              <Rss className="h-3.5 w-3.5" />
-              RSS
-            </Link>
-          </li>
+
           <li className="!ml-0 before:!content-none">
             <Link href="/bookmarks" className="flex items-center gap-1.5">
               <Bookmark className="h-3.5 w-3.5" />
@@ -52,6 +47,12 @@ export default function Sidebar() {
             <Link href="/now" className="flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5" />
               Now
+            </Link>
+          </li>
+          <li className="!ml-0 before:!content-none">
+            <Link href="/feed.xml" className="flex items-center gap-1.5">
+              <Rss className="h-3.5 w-3.5" />
+              RSS
             </Link>
           </li>
         </ul>

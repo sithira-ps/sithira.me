@@ -25,7 +25,7 @@ export default function Pagination({
           <Link
             key={i}
             href={createPageLink(i)}
-            className="mx-1 rounded px-2 py-1"
+            className="mx-1 rounded px-2 py-1 !no-underline"
             style={
               i === currentPage
                 ? { backgroundColor: 'var(--color-accent)', color: '#fff' }
@@ -53,7 +53,7 @@ export default function Pagination({
   return (
     <div className="text-caption flex flex-wrap items-center justify-between gap-2 pt-6 pb-8">
       {prevPage ? (
-        <Link href={createPageLink(prevPage)} rel="prev" style={{ color: 'var(--color-accent)' }}>
+        <Link href={createPageLink(prevPage)} rel="prev" className="!no-underline" style={{ color: 'var(--color-accent)', textDecoration: 'none' }}>
           ← Prev
         </Link>
       ) : (
@@ -63,7 +63,7 @@ export default function Pagination({
       <div>{renderPageNumbers()}</div>
 
       {nextPage ? (
-        <Link href={createPageLink(nextPage)} rel="next" style={{ color: 'var(--color-accent)' }}>
+        <Link href={createPageLink(nextPage)} rel="next" className="!no-underline" style={{ color: 'var(--color-accent)', textDecoration: 'none' }}>
           Next →
         </Link>
       ) : (

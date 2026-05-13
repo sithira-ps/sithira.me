@@ -13,7 +13,7 @@ const ContentSecurityPolicy = `
   frame-src https://giscus.app;
   frame-ancestors 'self';
   base-uri 'self';
-  form-action 'self' https://buttondown.com https://github.com;
+  form-action 'self' https://buttondown.com https://github.com https://*.github.com;
   ${isDev ? '' : 'upgrade-insecure-requests;'}
 `
 
@@ -45,7 +45,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: '/((?!api/auth|admin).*)',
         headers: securityHeaders,
       },
       {

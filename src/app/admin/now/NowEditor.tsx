@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { updateNow } from './actions'
-import { Delete, X } from 'lucide-react'
+import { X } from 'lucide-react'
 
 interface NowItem {
   id: string

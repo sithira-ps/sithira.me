@@ -28,9 +28,23 @@ export default function AdminNotesPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-bold text-[var(--color-header)]">Create Note</h1>
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-[var(--color-header)]">Create Note</h1>
+        <label className="cursor-pointer text-sm text-[var(--color-caption)] hover:text-[var(--color-header)]">
+          <input
+            id="date"
+            name="date"
+            type="date"
+            required
+            form="note-form"
+            defaultValue={new Date().toISOString().split('T')[0]}
+            max={new Date().toISOString().split('T')[0]}
+            className="cursor-pointer border-none bg-transparent text-sm text-[var(--color-caption)] hover:text-[var(--color-header)] focus:outline-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full relative"
+          />
+        </label>
+      </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form id="note-form" onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="content" className="mb-1 block text-sm text-[var(--color-caption)]">
             Content
@@ -61,7 +75,7 @@ export default function AdminNotesPage() {
         <button
           type="submit"
           disabled={pending}
-          className="rounded-md bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-white transition-opacity disabled:opacity-50"
+          className="cursor-pointer rounded-md bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-white transition-opacity disabled:opacity-50"
         >
           {pending ? 'Publishing...' : 'Publish Note'}
         </button>

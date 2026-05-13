@@ -13,6 +13,9 @@ export default function robots(): MetadataRoute.Robots {
       disallow: [
         '/favicon.ico',
         '/_next/static/media/*.woff2',
+        '/admin',
+        '/login',
+        '/signout',
       ],
     },
     sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,

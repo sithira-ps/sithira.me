@@ -6,24 +6,36 @@ interface CommitFileOptions {
   path: string
   content: string
   message: string
+  sha?: string
 }
 
-export async function commitFile({ path, content, message }: CommitFileOptions) {
+export async function getFileContent(path: string): Promise<{ sha: string; content: string } | null> {
   const token = process.env.GITHUB_PAT
+  if (!token) throw new Error('GITHUB_PAT not configured')
+
+  const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}?ref=${BRANCH}`
+  const resp = await fetch(url, { headers: { Authorization: `Bearer ${token}` }, cache: 'no-store' })
+  if (!resp.ok) return null
+
+  const data = await resp.json()
+  return { sha: data.sha, content: Buffer.from(data.content, 'base64').toString() }
+}
+
+export async function commitFile({ path, content, message, sha: existingSha }: CommitFileOptions) {
+  const token = process.env.GITHUB_PAT
+  if (!token) throw new Error('GITHUB_PAT not configured')
 
   const base = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`
 
-  let sha: string | undefined
-  const existing = await fetch(`${base}?ref=${BRANCH}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  })
-  if (existing.ok) {
-    const data = await existing.json()
-    sha = data.sha
+  let sha = existingSha
+  if (!sha) {
+    const existing = await getFileContent(path)
+    if (existing) sha = existing.sha
   }
 
   const response = await fetch(base, {
     method: 'PUT',
+    cache: 'no-store',
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -37,8 +49,14 @@ export async function commitFile({ path, content, message }: CommitFileOptions) 
   })
 
   if (!response.ok) {
-    const error = await response.json()
-    throw new Error(`GitHub API error: ${error.message}`)
+    let errorMessage: string
+    try {
+      const error = await response.json()
+      errorMessage = error.message
+    } catch {
+      errorMessage = await response.text()
+    }
+    throw new Error(`GitHub API error (${response.status}): ${errorMessage}`)
   }
 
   return response.json()

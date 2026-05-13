@@ -11,20 +11,20 @@ const navItems = [
   { href: '/admin/now', label: 'Now' },
 ]
 
-export default function AdminNav({ user }: { user: { name?: string | null; image?: string | null } }) {
+export default function AdminNav({ user }: { user: { name?: string | null; username?: string } }) {
   const pathname = usePathname()
 
   return (
-    <nav className="border-b border-[var(--color-border)] bg-[var(--color-body-background)] px-6 py-4">
-      <div className="mx-auto flex max-w-3xl items-center justify-between">
-        <div className="flex items-center gap-6">
+    <nav className="border-b border-[var(--color-border)] py-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-8">
           <Link
             href="/admin"
             className="text-lg font-semibold text-[var(--color-header)] no-underline"
           >
             Admin
           </Link>
-          <div className="flex gap-4">
+          <div className="flex gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -41,12 +41,12 @@ export default function AdminNav({ user }: { user: { name?: string | null; image
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-[var(--color-caption)]">{user.name}</span>
+          <span className="text-sm text-[var(--color-caption)]">{user.username ?? 'Admin'}</span>
           <Link
-            href="/api/auth/signout"
+            href="/signout"
             className="text-xs text-[var(--color-caption)] no-underline hover:text-[var(--color-header)]"
           >
-            <LogOut size={16}/>
+            <LogOut size={16} />
           </Link>
         </div>
       </div>

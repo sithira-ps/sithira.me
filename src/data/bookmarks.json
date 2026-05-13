@@ -1,21 +1,5 @@
 [
   {
-    "title": "addshttp://localhost:3000/admin/bookmarks",
-    "description": "http://localhost:3000/admin/bookmarks",
-    "url": "http://localhost:3000/admin/bookmarks",
-    "category": "Development",
-    "addedAt": "2025-10-29",
-    "comment": "http://localhost:3000/admin/bookmarks"
-  },
-  {
-    "title": "MIT Explains the 12 Possible Endings for AI",
-    "description": "https://youtu.be/FLcrvMfHUJMhttps://youtu.be/FLcrvMfHUJM",
-    "url": "https://youtu.be/FLcrvMfHUJM",
-    "category": "YouTube",
-    "addedAt": "2026-05-13",
-    "comment": "Testing url"
-  },
-  {
     "title": "Yann LeCun's $1B Bet Against LLMs",
     "description": "An alternative vision for AI proposed by Turing Award winner Yann LeCun.",
     "url": "https://youtu.be/kYkIdXwW2AE?si=ko1TmqUeOpor_u8G",

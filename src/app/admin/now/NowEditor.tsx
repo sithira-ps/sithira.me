@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { updateNow } from './actions'
+import { Delete, X } from 'lucide-react'
 
 interface NowItem {
   id: string
@@ -99,66 +100,64 @@ export default function NowEditor({ initialSections }: { initialSections: { head
       <form onSubmit={handleSubmit} className="space-y-6">
         {sections.map((section, si) => (
           <div key={section.id} className="rounded-lg border border-[var(--color-border)] p-4">
-            <div className="mb-3 flex items-center gap-2">
+            <div className="mb-2 flex items-center gap-2">
               <input
                 type="text"
                 value={section.heading}
                 onChange={(e) => updateSection(si, e.target.value)}
                 placeholder="Section heading"
-                className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm font-semibold text-[var(--color-header)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
+                className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm font-semibold text-[var(--color-header)] placeholder:text-[var(--color-caption)] focus:border-[var(--color-accent)] focus:ring-0 focus:outline-none"
               />
               <button
                 type="button"
                 onClick={() => removeSection(si)}
-                className="text-xs text-[var(--color-accent)] hover:opacity-70"
+                className="text-xs text-[var(--color-caption)] hover:text-[var(--color-accent)]"
               >
-                Remove
+                <X size={14} />
               </button>
             </div>
 
             <div className="space-y-2">
               {section.items.map((item, ii) => (
-                <div key={item.id} className="flex gap-2">
+                <div key={item.id} className="flex items-center gap-2">
                   <input
                     type="text"
                     value={item.title}
                     onChange={(e) => updateItem(si, ii, 'title', e.target.value)}
-                    placeholder="Item title"
-                    className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
+                    placeholder="Item"
+                    className="min-w-0 flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] placeholder:text-[var(--color-caption)] focus:border-[var(--color-accent)] focus:ring-0 focus:outline-none"
                   />
-                  <input
+                  {/* <input
                     type="text"
                     value={item.description || ''}
                     onChange={(e) => updateItem(si, ii, 'description', e.target.value)}
                     placeholder="Description (optional)"
-                    className="flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
-                  />
+                    className="min-w-0 flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] placeholder:text-[var(--color-caption)] focus:border-[var(--color-accent)] focus:ring-0 focus:outline-none"
+                  /> */}
                   <button
                     type="button"
                     onClick={() => removeItem(si, ii)}
-                    className="text-xs text-[var(--color-accent)] hover:opacity-70"
+                    className="text-xs text-[var(--color-caption)] hover:text-[var(--color-accent)]"
                   >
-                    x
+                    <X size={14} />
                   </button>
                 </div>
               ))}
             </div>
 
-            <button
-              type="button"
-              onClick={() => addItem(si)}
-              className="mt-2 text-xs text-[var(--color-accent)]"
-            >
-              + Add item
-            </button>
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() => addItem(si)}
+                className="mt-4 text-xs text-[var(--color-accent)]"
+              >
+                + Add item
+              </button>
+            </div>
           </div>
         ))}
 
-        <button
-          type="button"
-          onClick={addSection}
-          className="text-sm text-[var(--color-accent)]"
-        >
+        <button type="button" onClick={addSection} className="text-sm text-[var(--color-accent)]">
           + Add section
         </button>
 
@@ -173,7 +172,9 @@ export default function NowEditor({ initialSections }: { initialSections: { head
         </div>
 
         {message && (
-          <p className={`text-sm ${message.startsWith('Error') ? 'text-red-500' : 'text-green-600'}`}>
+          <p
+            className={`text-sm ${message.startsWith('Error') ? 'text-red-500' : 'text-green-600'}`}
+          >
             {message}
           </p>
         )}

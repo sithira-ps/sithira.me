@@ -7,7 +7,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!session) redirect('/api/auth/signin')
 
   return (
-    <div className="admin-panel">
+    <div className="admin-panel overflow-x-hidden">
       <AdminNav user={session.user} />
       <main className="py-8">{children}</main>
     </div>

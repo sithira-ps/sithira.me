@@ -16,15 +16,15 @@ export default function AdminNav({ user }: { user: { name?: string | null; usern
 
   return (
     <nav className="border-b border-[var(--color-border)] py-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-8">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center gap-3 sm:gap-6">
           <Link
             href="/admin"
             className="text-lg font-semibold text-[var(--color-header)] no-underline"
           >
             Admin
           </Link>
-          <div className="flex gap-8">
+          <div className="flex gap-3 sm:gap-6">
             {navItems.map((item) => (
               <Link
                 key={item.href}

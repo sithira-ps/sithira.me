@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# sithira.me
+
+Personal blog and portfolio site for Sithira Senanayake — built with Next.js 15, Contentlayer, and Tailwind CSS 4.
+
+Live at [sithira.me](https://sithira.me)
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Content:** Contentlayer 2 (MDX)
+- **Styling:** Tailwind CSS 4, `@tailwindcss/typography`
+- **Auth:** NextAuth v5 (GitHub OAuth)
+- **Comments:** Giscus
+- **Deployment:** Vercel
+
+## Features
+
+- Blog with MDX support (math via KaTeX, syntax highlighting, GFM)
+- Short-form notes
+- Bookmarks collection
+- /now page
+- Tag-based filtering
+- RSS feed (`/feed.xml`)
+- Dark/light theme toggle
+- SEO (structured data, sitemap, robots.txt, Open Graph)
+- Admin dashboard (authenticated via GitHub) for creating notes, bookmarks, and updating the /now page
+- Giscus comments on blog posts
+
+## Project Structure
+
+```
+posts/
+  published/       # Blog posts (MDX)
+  notes/           # Short notes (MDX)
+src/
+  app/             # Next.js App Router pages
+    admin/         # Authenticated admin dashboard
+    blog/          # Blog listing and post pages
+    notes/         # Notes listing
+    bookmarks/     # Bookmarks page
+    now/           # /now page
+  components/      # Shared UI components
+  data/            # Site metadata, nav links, bookmarks/now JSON
+  lib/             # GitHub API helper, utilities
+  layouts/         # Post layout
+contentlayer.config.ts  # Content schema definitions
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- npm
+
+### Setup
+
+1. Clone the repo
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Copy the environment file and fill in values:
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+### Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `AUTH_SECRET` | NextAuth secret (`openssl rand -base64 32`) |
+| `AUTH_GITHUB_ID` | GitHub OAuth App Client ID |
+| `AUTH_GITHUB_SECRET` | GitHub OAuth App Client Secret |
+| `GITHUB_PAT` | Fine-grained PAT with Contents read/write on this repo |
+| `ALLOWED_GITHUB_USERNAME` | GitHub username allowed to access admin |
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+### Production
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Runs on port 4020 by default.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Content
 
-## Deploy on Vercel
+### Blog Posts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Add MDX files to `posts/published/`. Frontmatter:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```yaml
+---
+title: Post Title
+date: 2026-01-01
+tags: [tag1, tag2]
+summary: Short description
+draft: false
+---
+```
+
+### Notes
+
+Add MDX files to `posts/notes/` or use the admin dashboard at `/admin/notes`. Frontmatter:
+
+```yaml
+---
+date: 2026-01-01T12:00:00
+tags: [note]
+---
+```
+
+## Admin Dashboard
+
+Accessible at `/admin` — requires GitHub OAuth sign-in with the allowed username. Supports:
+
+- Creating notes (commits directly to repo via GitHub API)
+- Adding bookmarks
+- Updating the /now page

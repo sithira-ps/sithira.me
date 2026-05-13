@@ -46,7 +46,9 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/auth/(.*)',
-        headers: [],
+        headers: [
+          { key: 'Content-Security-Policy', value: "default-src 'self'; form-action 'self' https://github.com" },
+        ],
       },
       {
         source: '/(.*)',

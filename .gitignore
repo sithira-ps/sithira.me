@@ -46,3 +46,6 @@ next-env.d.ts
 # claude
 .claude/settings.json
 
+# draft posts
+/posts/published/drafts/*
+

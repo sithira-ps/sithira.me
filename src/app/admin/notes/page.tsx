@@ -59,18 +59,6 @@ export default function AdminNotesPage() {
           />
         </div>
 
-        {/* <div>
-          <label htmlFor="tags" className="mb-1 block text-sm text-[var(--color-caption)]">
-            Tags (comma-separated, defaults to &quot;note&quot;)
-          </label>
-          <input
-            id="tags"
-            name="tags"
-            type="text"
-            className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] placeholder:text-[var(--color-caption)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
-            placeholder="note, thought"
-          />
-        </div> */}
 
         <button
           type="submit"

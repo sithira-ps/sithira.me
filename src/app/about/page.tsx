@@ -63,7 +63,7 @@ export default function AuthorLayout() {
           my attention.
         </p>
         <p>
-          My journey started with a <b>Computer Science</b> degree from the{' '}
+          My journey started with a Computer Science degree from the{' '}
           <Link href="https://www.sjp.ac.lk/" target="_blank">
             University of Sri Jayewardenepura <ExternalLink className="inline h-3 w-3" />
           </Link>
@@ -76,7 +76,7 @@ export default function AuthorLayout() {
           <Link href="https://www.aventragroup.com/" target="_blank">
             Aventra Group <ExternalLink className="inline h-3 w-3" />
           </Link>
-          {', '}a Malaysian company specialized in <b>Maritime</b> industry. That decision
+          {', '}a Malaysian company specialized in Maritime industry. That decision
           completely transformed my perspective on both technology and life.
         </p>
 

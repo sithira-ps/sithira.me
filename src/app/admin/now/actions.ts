@@ -7,9 +7,7 @@ const MAX_SECTIONS = 20
 const MAX_ITEMS_PER_SECTION = 30
 const MAX_HEADING_LENGTH = 200
 const MAX_TITLE_LENGTH = 300
-const MAX_DESCRIPTION_LENGTH = 1000
-
-export async function updateNow(sections: { heading: string; items: { title: string; description?: string }[] }[]) {
+export async function updateNow(sections: { heading: string; items: { title: string }[] }[]) {
   const session = await auth()
   if (!session) throw new Error('Unauthorized')
 
@@ -39,12 +37,6 @@ export async function updateNow(sections: { heading: string; items: { title: str
       }
       if (item.title.length > MAX_TITLE_LENGTH) {
         throw new Error(`Item titles must be under ${MAX_TITLE_LENGTH} characters`)
-      }
-      if (item.description != null && typeof item.description !== 'string') {
-        throw new Error('Item description must be a string')
-      }
-      if (typeof item.description === 'string' && item.description.length > MAX_DESCRIPTION_LENGTH) {
-        throw new Error(`Item descriptions must be under ${MAX_DESCRIPTION_LENGTH} characters`)
       }
     }
   }

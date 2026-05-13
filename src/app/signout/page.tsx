@@ -17,7 +17,7 @@ export default async function SignOutPage() {
             await signOut({ redirectTo: '/login' })
           }}
         >
-          <SubmitButton>Sign out</SubmitButton>
+          <SubmitButton className="mx-auto">Sign out</SubmitButton>
         </form>
       </div>
     </div>

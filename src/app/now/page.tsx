@@ -29,9 +29,6 @@ export default function NowPage() {
               {section.items.map((item) => (
                 <li key={item.title}>
                   <span className="text-summary-body"> {item.title}</span>
-                  {item.description && (
-                    <span className="text-summary-body"> — {item.description}</span>
-                  )}
                 </li>
               ))}
             </ul>

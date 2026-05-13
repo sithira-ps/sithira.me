@@ -2,7 +2,6 @@ import data from './now.json'
 
 export interface NowItem {
   title: string
-  description?: string
 }
 
 export interface NowSection {

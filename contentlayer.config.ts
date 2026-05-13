@@ -38,7 +38,6 @@ export const Note = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     date: { type: 'date', required: true },
-    tags: { type: 'list', of: { type: 'string' }, default: [] },
   },
   computedFields: {
     slug: { type: 'string', resolve: (note) => note._raw.sourceFileName.replace(/\.mdx$/, '') },

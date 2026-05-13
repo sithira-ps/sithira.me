@@ -7,7 +7,6 @@ import { X } from 'lucide-react'
 interface NowItem {
   id: string
   title: string
-  description?: string
 }
 
 interface NowSection {
@@ -20,7 +19,7 @@ function withId<T>(obj: T): T & { id: string } {
   return { ...obj, id: crypto.randomUUID() }
 }
 
-export default function NowEditor({ initialSections }: { initialSections: { heading: string; items: { title: string; description?: string }[] }[] }) {
+export default function NowEditor({ initialSections }: { initialSections: { heading: string; items: { title: string }[] }[] }) {
   const [sections, setSections] = useState<NowSection[]>(() =>
     initialSections.map((s) => withId({ heading: s.heading, items: s.items.map((item) => withId(item)) }))
   )
@@ -33,10 +32,10 @@ export default function NowEditor({ initialSections }: { initialSections: { head
     setSections(updated)
   }
 
-  function updateItem(sectionIndex: number, itemIndex: number, field: 'title' | 'description', value: string) {
+  function updateItem(sectionIndex: number, itemIndex: number, value: string) {
     const updated = [...sections]
     const items = [...updated[sectionIndex].items]
-    items[itemIndex] = { ...items[itemIndex], [field]: value || undefined }
+    items[itemIndex] = { ...items[itemIndex], title: value }
     updated[sectionIndex] = { ...updated[sectionIndex], items }
     setSections(updated)
   }
@@ -78,7 +77,6 @@ export default function NowEditor({ initialSections }: { initialSections: { head
         heading: s.heading.trim(),
         items: s.items.filter((item) => item.title.trim()).map((item) => ({
           title: item.title.trim(),
-          ...(item.description?.trim() ? { description: item.description.trim() } : {}),
         })),
       }))
       .filter((s) => s.items.length > 0)
@@ -123,17 +121,10 @@ export default function NowEditor({ initialSections }: { initialSections: { head
                   <input
                     type="text"
                     value={item.title}
-                    onChange={(e) => updateItem(si, ii, 'title', e.target.value)}
+                    onChange={(e) => updateItem(si, ii, e.target.value)}
                     placeholder="Item"
                     className="min-w-0 flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] placeholder:text-[var(--color-caption)] focus:border-[var(--color-accent)] focus:ring-0 focus:outline-none"
                   />
-                  {/* <input
-                    type="text"
-                    value={item.description || ''}
-                    onChange={(e) => updateItem(si, ii, 'description', e.target.value)}
-                    placeholder="Description (optional)"
-                    className="min-w-0 flex-1 rounded-md border border-[var(--color-border)] bg-transparent px-3 py-1.5 text-sm text-[var(--color-body)] placeholder:text-[var(--color-caption)] focus:border-[var(--color-accent)] focus:ring-0 focus:outline-none"
-                  /> */}
                   <button
                     type="button"
                     onClick={() => removeItem(si, ii)}

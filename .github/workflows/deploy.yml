@@ -44,4 +44,10 @@ jobs:
             -p 4020:4020 \
             -e NODE_ENV=production \
             -e GA_ID=${{ secrets.GA_ID }} \
+            -e AUTH_SECRET=${{ secrets.AUTH_SECRET }} \
+            -e AUTH_GITHUB_ID=${{ secrets.AUTH_GITHUB_ID }} \
+            -e AUTH_GITHUB_SECRET=${{ secrets.AUTH_GITHUB_SECRET }} \
+            -e AUTH_TRUST_HOST=true \
+            -e GITHUB_PAT=${{ secrets.GH_PAT }} \
+            -e ALLOWED_GITHUB_USERNAME=sithira-ps \
             sithiraps/sithira-me:latest

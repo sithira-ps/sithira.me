@@ -13,7 +13,7 @@ const ContentSecurityPolicy = `
   frame-src https://giscus.app;
   frame-ancestors 'self';
   base-uri 'self';
-  form-action 'self' https://buttondown.com;
+  form-action 'self' https://buttondown.com https://github.com;
   ${isDev ? '' : 'upgrade-insecure-requests;'}
 `
 

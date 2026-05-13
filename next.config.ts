@@ -45,6 +45,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: '/api/auth/(.*)',
+        headers: [],
+      },
+      {
         source: '/(.*)',
         headers: securityHeaders,
       },

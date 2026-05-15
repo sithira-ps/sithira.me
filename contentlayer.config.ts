@@ -1,5 +1,6 @@
 // contentlayer.config.ts
 import { defineDocumentType, makeSource } from 'contentlayer2/source-files'
+import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeSlug from 'rehype-slug'
@@ -49,7 +50,7 @@ export default makeSource({
   contentDirPath: 'posts',
   documentTypes: [Post, Note],
   mdx: {
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkGfm, remarkMath],
     rehypePlugins: [rehypeSlug, rehypeKatex],
   },
 })

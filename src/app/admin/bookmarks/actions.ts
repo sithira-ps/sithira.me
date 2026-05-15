@@ -34,9 +34,8 @@ export async function addBookmark(formData: FormData) {
     throw new Error(`Category must be one of: ${ALLOWED_CATEGORIES.join(', ')}`)
   }
 
-  if (comment != null && typeof comment === 'string' && comment.length > MAX_COMMENT_LENGTH) {
-    throw new Error(`Comment must be under ${MAX_COMMENT_LENGTH} characters`)
-  }
+  if (typeof comment !== 'string' || !comment.trim()) throw new Error('Comment is required')
+  if (comment.length > MAX_COMMENT_LENGTH) throw new Error(`Comment must be under ${MAX_COMMENT_LENGTH} characters`)
 
   const date = formData.get('date')
   if (typeof date !== 'string' || !date.trim()) throw new Error('Date is required')
@@ -52,7 +51,7 @@ export async function addBookmark(formData: FormData) {
     url: url.trim(),
     category,
     addedAt: date,
-    ...(comment && typeof comment === 'string' && comment.trim() ? { comment: comment.trim() } : {}),
+    comment: (comment as string).trim(),
   }
 
   const maxRetries = 3

@@ -106,11 +106,12 @@ export default function AdminBookmarksPage() {
 
         <div>
           <label htmlFor="comment" className="mb-1 block text-sm text-[var(--color-caption)]">
-            Comment (optional)
+            Comment
           </label>
           <textarea
             id="comment"
             name="comment"
+            required
             rows={2}
             className="w-full rounded-md border border-[var(--color-border)] bg-transparent px-3 py-2 text-[var(--color-body)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-0"
           />

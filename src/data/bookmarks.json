@@ -4,21 +4,24 @@
     "description": "This video is based on a book called Life 3.0, where MIT professor Max Tegmark describes 12 possible futures. Some are paradise, some are nightmares. And some look like paradise, until you try to escape.",
     "url": "https://youtu.be/FLcrvMfHUJM",
     "category": "YouTube",
-    "addedAt": "2026-05-13"
+    "addedAt": "2026-05-13",
+    "comment": "A fascinating breakdown of possible AI futures"
   },
   {
     "title": "Yann LeCun's $1B Bet Against LLMs",
     "description": "An alternative vision for AI proposed by Turing Award winner Yann LeCun.",
     "url": "https://youtu.be/kYkIdXwW2AE?si=ko1TmqUeOpor_u8G",
     "category": "YouTube",
-    "addedAt": "2026-05-10"
+    "addedAt": "2026-05-10",
+    "comment": "Interesting counterpoint to the LLM hype and curious to see if his world model approach pans out."
   },
   {
     "title": "Signs of introspection in large language models",
     "description": "Anthropic's research on \"introspection\" suggests that Large Language Models (specifically Claude Opus 4 and 4.1) can, to a limited degree, monitor and control their own internal neural states.",
     "url": "https://www.anthropic.com/research/introspection",
     "category": "Article",
-    "addedAt": "2026-05-04"
+    "addedAt": "2026-05-04",
+    "comment": "Wild that we're at the point where models might actually know what they're doing internally."
   },
   {
     "title": "The Hardest Problem AI Ever Solved, with Google DeepMind CEO",

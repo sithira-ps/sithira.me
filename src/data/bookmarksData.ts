@@ -6,16 +6,17 @@ export interface Bookmark {
   url: string
   category: string
   addedAt: string
-  comment?: string
+  comment: string
 }
 
 export const bookmarkCategories = [
-  'All',
-  'Development',
-  'Design',
+  'Article',
+  'Research Paper',
   'YouTube',
-  'Articles',
-  'Tools',
+  'Project',
+  'Tool',
+  'Social Media Post',
+  'Other',
 ] as const
 
 export type BookmarkCategory = (typeof bookmarkCategories)[number]

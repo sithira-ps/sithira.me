@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-13",
+  "lastUpdated": "2026-05-18",
   "sections": [
     {
       "heading": "Working on",
@@ -16,10 +16,7 @@
       "heading": "Learning",
       "items": [
         {
-          "title": "Data Engineering concepts on DataCamp"
-        },
-        {
-          "title": "Linux basics"
+          "title": "Self teaching advanced SQL concepts & Python"
         }
       ]
     },

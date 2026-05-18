@@ -3,6 +3,7 @@ import NextImage from 'next/image'
 import { genPageMetadata } from '../seo'
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
+import { getISTDateString } from '@/lib/utils'
 
 export const metadata = genPageMetadata({
   title: 'About Sithira Senanayake',
@@ -17,7 +18,7 @@ export default function AuthorLayout() {
     '@type': 'ProfilePage',
     mainEntity: { '@id': 'https://sithira.me/#person' },
     dateCreated: '2024-01-01',
-    dateModified: new Date().toISOString().split('T')[0],
+    dateModified: getISTDateString(),
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [

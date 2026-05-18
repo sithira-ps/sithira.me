@@ -2,6 +2,7 @@
 
 import { auth } from '@/auth'
 import { commitFile, getFileContent } from '@/lib/github'
+import { getISTDateString } from '@/lib/utils'
 
 const MAX_TITLE_LENGTH = 200
 const MAX_DESCRIPTION_LENGTH = 1000
@@ -42,7 +43,7 @@ export async function addBookmark(formData: FormData) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('Date must be in YYYY-MM-DD format')
   const parsedDate = new Date(date + 'T00:00:00Z')
   if (isNaN(parsedDate.getTime())) throw new Error('Invalid date')
-  const today = new Date().toISOString().split('T')[0]
+  const today = getISTDateString()
   if (date > today) throw new Error('Date cannot be in the future')
 
   const bookmark = {

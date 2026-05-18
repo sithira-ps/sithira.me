@@ -1,12 +1,13 @@
 import { MetadataRoute } from 'next'
 import { allPosts } from 'contentlayer/generated'
 import siteMetadata from '@/data/siteMetadata'
+import { getISTDateString } from '@/lib/utils'
 
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = siteMetadata.siteUrl
-  const now = new Date().toISOString().split('T')[0]
+  const now = getISTDateString()
 
   const posts = allPosts.filter((post) => !post.draft)
 

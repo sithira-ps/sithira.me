@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { addBookmark } from './actions'
+import { getISTDateString } from '@/lib/utils'
 
 const categories = ['Development', 'Design', 'YouTube', 'Articles', 'Tools']
 
@@ -39,8 +40,8 @@ export default function AdminBookmarksPage() {
             type="date"
             required
             form="bookmark-form"
-            defaultValue={new Date().toISOString().split('T')[0]}
-            max={new Date().toISOString().split('T')[0]}
+            defaultValue={getISTDateString()}
+            max={getISTDateString()}
             className="cursor-pointer border-none bg-transparent text-sm text-[var(--color-caption)] hover:text-[var(--color-header)] focus:outline-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full relative"
           />
         </label>

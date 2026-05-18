@@ -2,6 +2,7 @@
 
 import { auth } from '@/auth'
 import { commitFile } from '@/lib/github'
+import { getISTDateString } from '@/lib/utils'
 
 const MAX_SECTIONS = 20
 const MAX_ITEMS_PER_SECTION = 30
@@ -42,7 +43,7 @@ export async function updateNow(sections: { heading: string; items: { title: str
   }
 
   const data = {
-    lastUpdated: new Date().toISOString().split('T')[0],
+    lastUpdated: getISTDateString(),
     sections,
   }
 

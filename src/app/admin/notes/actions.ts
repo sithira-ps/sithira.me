@@ -2,6 +2,7 @@
 
 import { auth } from '@/auth'
 import { commitFile } from '@/lib/github'
+import { getISTDateString, getISTTimeComponents } from '@/lib/utils'
 
 const MAX_CONTENT_LENGTH = 10000
 
@@ -22,13 +23,12 @@ export async function createNote(formData: FormData) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateInput)) throw new Error('Date must be in YYYY-MM-DD format')
   const parsedDate = new Date(dateInput + 'T00:00:00Z')
   if (isNaN(parsedDate.getTime())) throw new Error('Invalid date')
-  const today = new Date().toISOString().split('T')[0]
+  const today = getISTDateString()
   if (dateInput > today) throw new Error('Date cannot be in the future')
 
-  const now = new Date()
-  const pad = (n: number) => String(n).padStart(2, '0')
-  const dateStr = `${dateInput}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`
-  const fileSlug = `note-${dateInput}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`
+  const { h, m, s } = getISTTimeComponents()
+  const dateStr = `${dateInput}T${h}:${m}:${s}`
+  const fileSlug = `note-${dateInput}-${h}${m}${s}`
 
   const sanitizedContent = content.trim().replace(/^---/gm, '\\---')
   const mdx = `---\ndate: ${dateStr}\n---\n\n${sanitizedContent}\n`

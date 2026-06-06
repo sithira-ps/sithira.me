@@ -1,0 +1,55 @@
+---
+title: 'I updated my Blog'
+date: '2026-05-12'
+lastmod: '2026-05-12'
+tags: ['blog', 'project']
+draft: false
+summary: 'A year after creating my blog and barely keeping it alive, I finally gave it the attention it deserved. What started as a simple theme change turned into a full redesign with new features, a new workflow, and a renewed excitement to actually write. Here''s what changed, what I built, and why I''m genuinely happy with where it ended up.'
+---
+
+![updated-my-blog](/images/articles/updated-my-blog.png)
+
+
+# I Updated My Blog
+
+> A year after creating my blog and barely keeping it alive, I finally gave it the attention it deserved. What started as a simple theme change turned into a full redesign with new features, a new workflow, and a renewed excitement to actually write. Here's what changed, what I built, and why I'm genuinely happy with where it ended up.
+
+## A Promise I Barely Kept
+
+I created my blog exactly a year ago, promising myself I would write more and stay active. That promise didn't last very long. The initial excitement of building something new slowly faded once the interesting part was over, leaving behind the less glamorous work of maintaining it. So after a full year, I had written only about eight articles, even though I had plenty of things to say.
+
+This year, I made that promise again. But this time, alongside committing to work on unfinished articles, I also decided to update the blog itself, just to keep myself interested. What started as a simple theme change ended up being a lot more than I anticipated.
+
+## The New Look
+
+While browsing other blogs for inspiration, I came across [chsmc.org](https://chsmc.org/). It immediately caught my eye with its clean, minimal design and orange-and-black color theme. I felt a little guilty about borrowing the design so closely, but I did it anyway, with a few tweaks here and there.
+
+I asked Claude to rebuild the same look by providing the link and some screenshots. The first attempt was nowhere close to what I needed, but after a few more rounds of back and forth, I got exactly what I was after. Same old engine, brand new face.
+
+Still, I wasn't completely satisfied. I knew I wanted to add more features, even if I couldn't immediately put my finger on what they were. So I brainstormed with Claude and landed on three new additions.
+
+## Three New Features
+
+The first is a Notes page, where I can share quick thoughts like a tweet or a short message, posted instantly without the overhead of writing a full article. A simple way to share updates without the pressure of a proper post.
+
+The second is a Bookmarks page, where I share interesting videos and articles I come across, along with a short comment of my own. A nice way to curate and share things I find worth reading or watching.
+
+The third is something I had never seen on many blogs before: a Now page. It's a single page where I keep an updated snapshot of what I'm currently working on. I can update it anytime the content feels outdated. The idea was originally introduced by [Derek Sivers](https://sive.rs/), and it has since been widely adopted by bloggers around the world. There's even a dedicated site, [nownownow.com](https://nownownow.com/about), that explains the concept and lists bloggers who have their own Now pages. I emailed Derek Sivers and got my site added to that list. You can check my page [here](https://nownownow.com/p/sTMz).
+
+## Building a Dashboard
+
+I didn't want to have to touch code every time I wanted to post a note, add a bookmark, or update the Now page. So I also built a small dashboard to handle all of that.
+
+When I create a new note, it automatically generates a new file in my repository, commits it, and triggers the CI/CD pipeline. The changes go live within a couple of minutes. The same applies to bookmarks and the Now page: it updates a JSON file in the repository and commits it automatically. This means I can make updates even without my laptop nearby.
+
+I'm not sure how often I'll use the dashboard in practice, but it's a nice thing to have. I also made a conscious decision to stop there, because I didn't want to overcomplicate what is ultimately a simple personal blog.
+
+## The Result
+
+I think I've added enough features to last another four or five years, so hopefully the urge to redesign things again will stay away for a while.
+
+At the end of it all, I'm really happy with where the blog stands. It's clean, it's fast, and it's visually pleasing, at least to my eye. Google PageSpeed scored it close to 100 across almost all factors, which I'm very proud of.
+
+The only thing missing now is more articles. That's still the boring part, and I still have to work on it.
+
+Inspirations: [zejiantan.com](https://zejiantan.com/), [nownownow.com](https://nownownow.com/about) and [chsmc.org](https://chsmc.org/)

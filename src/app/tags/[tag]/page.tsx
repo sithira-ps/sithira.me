@@ -93,11 +93,11 @@ export default async function TagPage(props: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(tagSchema) }}
       />
-      <h1 className="page-title mb-8">
+      <h1 className="page-title mb-2">
         Tagged: <span className="text-[var(--color-accent)]">{displayTag}</span>
       </h1>
       <p className="text-caption mb-8">
-        {posts.length} post{posts.length !== 1 ? 's' : ''} tagged with &ldquo;{displayTag}&rdquo;
+        Found {posts.length} post{posts.length !== 1 ? 's' : ''} tagged with &ldquo;{displayTag}&rdquo;
       </p>
 
       {posts.map((post) => (

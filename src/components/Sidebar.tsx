@@ -117,9 +117,9 @@ export default function Sidebar() {
         </div>
       )}
 
-      {/* Featured */}
+      {/* Recent Articles */}
       <div>
-        <h2>Featured</h2>
+        <h2>Recent Articles</h2>
         <ul className="list-none p-0">
           {featuredPosts.map((post) => (
             <li key={post._id} className="mb-1 !ml-0">

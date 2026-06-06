@@ -35,7 +35,7 @@
     "title": "Signs of introspection in large language models",
     "description": "Anthropic's research on \"introspection\" suggests that Large Language Models (specifically Claude Opus 4 and 4.1) can, to a limited degree, monitor and control their own internal neural states.",
     "url": "https://www.anthropic.com/research/introspection",
-    "category": "Article",
+    "category": "Articles",
     "addedAt": "2026-05-04",
     "comment": "Wild that we're at the point where models might actually know what they're doing internally."
   },

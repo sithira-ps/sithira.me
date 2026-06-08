@@ -1,12 +1,9 @@
 {
-  "lastUpdated": "2026-05-18",
+  "lastUpdated": "2026-06-08",
   "sections": [
     {
       "heading": "Working on",
       "items": [
-        {
-          "title": "Building and improving this personal blog"
-        },
         {
           "title": "MSc assignments"
         }
@@ -16,7 +13,10 @@
       "heading": "Learning",
       "items": [
         {
-          "title": "Self teaching advanced SQL concepts & Python"
+          "title": "Self teaching Python for Data Engineering"
+        },
+        {
+          "title": "Joined Microsoft AI Fest"
         }
       ]
     },
@@ -32,7 +32,7 @@
       "heading": "Listning / Watching",
       "items": [
         {
-          "title": "Levelup sessions done by Malinda"
+          "title": "ProLaunch Career guidance program be  Asela Sandaruwan"
         }
       ]
     }

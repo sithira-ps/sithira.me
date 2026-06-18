@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-08",
+  "lastUpdated": "2026-06-18",
   "sections": [
     {
       "heading": "Working on",
@@ -13,10 +13,10 @@
       "heading": "Learning",
       "items": [
         {
-          "title": "Self teaching Python for Data Engineering"
+          "title": "Self teaching Data Engineering"
         },
         {
-          "title": "Joined Microsoft AI Fest"
+          "title": "Joined Databricks learning festival"
         }
       ]
     },
